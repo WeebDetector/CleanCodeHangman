@@ -1,7 +1,7 @@
 import { Game } from "../domain/game";
-import { GameGateway } from "./gameGateway";
+import { GameGateway } from "./GameGateway";
 
-export class FakeGameGateway implements GameGateway {
+export class InMemoryGameGateway implements GameGateway {
     private allGames : Game[];
 
     constructor() {
@@ -13,10 +13,10 @@ export class FakeGameGateway implements GameGateway {
     }
 
     getGameById(playerIdToLookFor : number): Game {
-        return this.findASpecificGame(playerIdToLookFor);
+        return this.findSpecificGame(playerIdToLookFor);
     }
 
-    private findASpecificGame(playerId : number) : Game {
+    private findSpecificGame(playerId : number) : Game {
         var test = new Game(-1, "");
         for (let i = 0; i < this.allGames.length; i++) {
             if (playerId === this.allGames[i].getPlayerId()) {

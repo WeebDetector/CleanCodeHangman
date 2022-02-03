@@ -1,9 +1,9 @@
-import { WordGateway } from "../gateway/wordGateway";
-import { CreateGameUseCase } from "../usecases/CreateGameUseCase";
-import { BoundaryGameDataStruct } from "../usecases/BoundaryGameDataStruct";
-import { PlayerGateway } from "../gateway/playerGateway";
+import { WordGateway } from "../gateway/WordGateway";
+import { CreateGameUseCase } from "../use_cases/CreateGameUseCase";
+import { BoundaryGameDataStruct } from "../use_cases/BoundaryGameDataStruct";
+import { PlayerGateway } from "../gateway/PlayerGateway";
 import { Game } from "../domain/game";
-import { GameGateway } from "../gateway/gameGateway";
+import { GameGateway } from "../gateway/GameGateway";
 
 export class CreateGameInteractor implements CreateGameUseCase {
     private readonly wordGateway : WordGateway;
@@ -17,12 +17,12 @@ export class CreateGameInteractor implements CreateGameUseCase {
     }
 
     execute() : BoundaryGameDataStruct {
-        var playerIdAndGameWord = new BoundaryGameDataStruct(this.playerGateway.addAPlayer(), this.wordGateway.pickARandomWord())
-        this.addAGameToGamesGateway(this.playerGateway.addAPlayer(), this.wordGateway.pickARandomWord());
+        var playerIdAndGameWord = new BoundaryGameDataStruct(this.playerGateway.addPlayer(), this.wordGateway.pickRandomWord())
+        this.addGameToGamesGateway(this.playerGateway.addPlayer(), this.wordGateway.pickRandomWord());
         return playerIdAndGameWord;
     }
 
-    private addAGameToGamesGateway(playerId : number, gameWord : string) : void {
+    private addGameToGamesGateway(playerId : number, gameWord : string) : void {
         var gameSession = new Game(playerId, gameWord)
         this.gameGateway.addGameToAllGamesArray(gameSession);
     }

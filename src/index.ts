@@ -1,9 +1,9 @@
 import * as express from 'express';
-import { FakeWordGateway } from './gateway/fakeWordGateway';
-import { CreateGameController } from './controllers/createGameController';
-import { CreateGameInteractor } from './Interactors/createGameInteractor';
-import { FakePlayerGateway } from './gateway/fakePlayerGateway';
-import { FakeGameGateway } from './gateway/fakeGameGateway';
+import { InMemoryWordGateway } from './gateway/InMemoryWordGateway';
+import { CreateGameController } from './controllers/CreateGameController';
+import { CreateGameInteractor } from './Interactors/CreateGameInteractor';
+import { InMemoryPlayerGateway } from './gateway/InMemoryPlayerGateway';
+import { InMemoryGameGateway } from './gateway/InMemoryGameGateway';
 const app = express();
 const path = require('path');
 
@@ -11,9 +11,9 @@ app.listen(3000, () => console.log("Listening to app at 3000"));
 app.use(express.static('src'));
 app.use(express.json());
 
-let wordGateway = new FakeWordGateway();
-let playerGateway = new FakePlayerGateway();
-let gameGateway = new FakeGameGateway();
+let wordGateway = new InMemoryWordGateway();
+let playerGateway = new InMemoryPlayerGateway();
+let gameGateway = new InMemoryGameGateway();
 let createGameUC = new CreateGameInteractor(wordGateway, playerGateway, gameGateway);
 let createGameController = new CreateGameController(createGameUC)
 

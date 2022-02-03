@@ -1,7 +1,7 @@
-import { CreateGameController } from "../../src/controllers/createGameController";
+import { CreateGameController } from "../../src/controllers/CreateGameController";
 import { mock, MockProxy } from 'jest-mock-extended';
-import { BoundaryGameDataStruct } from "../../src/usecases/BoundaryGameDataStruct";
-import { CreateGameUseCase } from "../../src/usecases/CreateGameUseCase";
+import { BoundaryGameDataStruct } from "../../src/use_cases/BoundaryGameDataStruct";
+import { CreateGameUseCase } from "../../src/use_cases/CreateGameUseCase";
 
 describe("Testing game controller", () => {
     const expectedGameDataStruct = new BoundaryGameDataStruct(1, 'table');

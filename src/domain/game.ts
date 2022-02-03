@@ -16,14 +16,7 @@ export class Game {
     }
     
     private initiateCurrentWordStateArray(chosenWordForTheGame : string) {
-        var tempArray = new Array();
-
-        for (let i = 0; i < chosenWordForTheGame.length; i++)
-        {
-            tempArray.push('_');
-        }
-
-        return tempArray
+        return new Array(chosenWordForTheGame.length).fill('_');
     }
 
     getMissedGuesses() {

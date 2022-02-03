@@ -1,3 +1,3 @@
 export interface WordGateway {
-    pickARandomWord() : string;
+    pickRandomWord() : string;
 }

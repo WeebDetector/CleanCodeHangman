@@ -1,9 +1,9 @@
-import { WordGateway } from "./wordGateway";
+import { WordGateway } from "./WordGateway";
 
-export class FakeWordGateway implements WordGateway {
+export class InMemoryWordGateway implements WordGateway {
     readonly wordsToPickFrom = ['table', 'hello', 'sunshine', 'knowledge', 'interface'];
 
-    pickARandomWord(): string {
+    pickRandomWord(): string {
         return this.wordsToPickFrom[this.generateRandomIndex(this.wordsToPickFrom.length)];
     }
 

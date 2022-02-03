@@ -1,4 +1,4 @@
-import { GameDataStruct } from "./gameDataStruct";
+import { GameDataStruct } from "./GameDataStruct";
 
 export class BoundaryGameDataStruct implements GameDataStruct {
     private readonly playerId : number

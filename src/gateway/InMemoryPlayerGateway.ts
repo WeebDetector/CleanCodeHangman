@@ -1,13 +1,13 @@
-import { PlayerGateway } from "./playerGateway";
+import { PlayerGateway } from "./PlayerGateway";
 
-export class FakePlayerGateway implements PlayerGateway {
+export class InMemoryPlayerGateway implements PlayerGateway {
     private readonly playerIds : number[];
 
     constructor() {
         this.playerIds = new Array();
     }
 
-    addAPlayer() : number {
+    addPlayer() : number {
         var newPlayerId = this.getLastIndexOfArray() + 1;
         this.playerIds.push(newPlayerId);
         return newPlayerId;
