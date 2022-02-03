@@ -3,6 +3,7 @@ import { FakeWordGateway } from './gateway/fakeWordGateway';
 import { CreateGameController } from './controllers/createGameController';
 import { CreateGameInteractor } from './Interactors/createGameInteractor';
 import { FakePlayerGateway } from './gateway/fakePlayerGateway';
+import { FakeGameGateway } from './gateway/fakeGameGateway';
 const app = express();
 const path = require('path');
 
@@ -12,17 +13,14 @@ app.use(express.json());
 
 let wordGateway = new FakeWordGateway();
 let playerGateway = new FakePlayerGateway();
-let createGameUC = new CreateGameInteractor(wordGateway, playerGateway);
+let gameGateway = new FakeGameGateway();
+let createGameUC = new CreateGameInteractor(wordGateway, playerGateway, gameGateway);
 let createGameController = new CreateGameController(createGameUC)
 
-app.get('/', (req, resp) => {
-    console.log("Home page");
-    resp.send("Hello world");
-})
-
 app.post('/games', (req, resp) => {
-    var gameWord = createGameController.execute();
+    var playerIdAndGameWord = createGameController.execute();
     resp.json({
-        chosenWord: gameWord,
+        playerId: playerIdAndGameWord.getPlayerId(),
+        chosenWord: playerIdAndGameWord.getChosenWord(),
     })
 })

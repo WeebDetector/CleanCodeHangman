@@ -1,7 +1,7 @@
 import { PlayerGateway } from "./playerGateway";
 
 export class FakePlayerGateway implements PlayerGateway {
-    private readonly playerIds : number;
+    private readonly playerIds : number[];
 
     constructor() {
         this.playerIds = new Array();

@@ -1,23 +1,17 @@
 import { CreateGameController } from "../../src/controllers/createGameController";
-import { FakePlayerGateway } from "../../src/gateway/fakePlayerGateway";
-import { FakeSingleWordGateway } from "../../src/gateway/fakeSingleWordGateway";
-import { CreateGameInteractor } from "../../src/Interactors/createGameInteractor";
+import { mock, MockProxy } from 'jest-mock-extended';
+import { BoundaryGameDataStruct } from "../../src/usecases/BoundaryGameDataStruct";
+import { CreateGameUseCase } from "../../src/usecases/CreateGameUseCase";
 
 describe("Testing game controller", () => {
-    var obj;
-    let wordGateway = new FakeSingleWordGateway();
-    let playerGateway = new FakePlayerGateway();
-    let createGameUC = new CreateGameInteractor(wordGateway, playerGateway);
+    const expectedGameDataStruct = new BoundaryGameDataStruct(1, 'table');
+    var createGameUC : MockProxy<CreateGameUseCase> = mock<CreateGameUseCase>();
+    var obj = new CreateGameController(createGameUC);
 
-    test("Controller created correctly", () => {
-        obj = new CreateGameController(createGameUC);
-        expect(obj.execute()).toBe("table");
+    test("Controller created with the right structure", () => {
+        createGameUC.execute.mockReturnValue(expectedGameDataStruct);
+        var gameObject = obj.execute()
+        expect(gameObject.getPlayerId()).toBe(expectedGameDataStruct.getPlayerId());
+        expect(gameObject.getChosenWord()).toBe(expectedGameDataStruct.getChosenWord());
     })
-
-    /*beforeEach(() => {
-        const app = express();
-        app.listen(0, () => console.log("Listening to app at 3000"));
-        app.use(express.static('src'));
-        app.use(express.json());
-    }) */
 })

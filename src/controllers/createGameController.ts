@@ -1,14 +1,14 @@
-import { CreateGameInteractor } from "../Interactors/createGameInteractor";
+import { BoundaryGameDataStruct } from "../usecases/BoundaryGameDataStruct";
+import { CreateGameUseCase } from "../usecases/CreateGameUseCase";
 
 export class CreateGameController {
-    private readonly useCase : CreateGameInteractor
+    private readonly createGameInteractor : CreateGameUseCase
 
-    constructor(useCase : CreateGameInteractor) {
-        this.useCase = useCase;
+    constructor(interactor : CreateGameUseCase) {
+        this.createGameInteractor = interactor;
     }
 
-    execute() {
-        return this.useCase.execute();
-        //var chosenWord = this.useCase.execute();
+    execute() : BoundaryGameDataStruct {
+        return this.createGameInteractor.execute();
     }
 }

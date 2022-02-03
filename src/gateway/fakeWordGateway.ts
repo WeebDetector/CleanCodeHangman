@@ -7,7 +7,7 @@ export class FakeWordGateway implements WordGateway {
         return this.wordsToPickFrom[this.generateRandomIndex(this.wordsToPickFrom.length)];
     }
 
-    generateRandomIndex(totalAmountOfWords: number) : number {
+    private generateRandomIndex(totalAmountOfWords: number) : number {
         return Math.floor((Math.random() * totalAmountOfWords))
     }
 }
