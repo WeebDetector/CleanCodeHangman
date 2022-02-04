@@ -8,7 +8,7 @@ export class GameBuilder {
     private readonly playerId: number;
     private readonly wordBeingGuessed: string;
 
-    constructor(missedGuesses : number, correctGuesses : number, lettersGuessed : string[],
+    private constructor(missedGuesses : number, correctGuesses : number, lettersGuessed : string[],
         currentWordState : string[], playerId : number, chosenWordForTheGame : string) {
             this.missedGuesses = missedGuesses;
             this.correctGuesses = correctGuesses;
@@ -16,6 +16,10 @@ export class GameBuilder {
             this.currentWordState = currentWordState;
             this.playerId = playerId;
             this.wordBeingGuessed = chosenWordForTheGame;
+    }
+
+    static init(playerId : number, gameWord : string) : GameBuilder {
+        return new GameBuilder(0, 0, new Array(), new Array(), playerId, gameWord);
     }
 
     static of(game: Game): GameBuilder {
