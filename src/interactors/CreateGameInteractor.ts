@@ -2,8 +2,8 @@ import { WordGateway } from "../gateway/WordGateway";
 import { CreateGameUseCase } from "../use_cases/CreateGameUseCase";
 import { BoundaryGameDataStruct } from "../use_cases/BoundaryGameDataStruct";
 import { PlayerGateway } from "../gateway/PlayerGateway";
-import { Game } from "../domain/game";
 import { GameGateway } from "../gateway/GameGateway";
+import { GameBuilder } from "../domain/GameBuilder";
 
 export class CreateGameInteractor implements CreateGameUseCase {
     private readonly wordGateway : WordGateway;
@@ -17,14 +17,18 @@ export class CreateGameInteractor implements CreateGameUseCase {
     }
 
     execute() : BoundaryGameDataStruct {
-        var playerIdAndGameWord = new BoundaryGameDataStruct(this.playerGateway.addPlayer(), this.wordGateway.pickRandomWord())
+        let playerIdAndGameWord = new BoundaryGameDataStruct(this.playerGateway.addPlayer(), this.wordGateway.pickRandomWord())
         this.addGameToGamesGateway(this.playerGateway.addPlayer(), this.wordGateway.pickRandomWord());
         return playerIdAndGameWord;
     }
 
     private addGameToGamesGateway(playerId : number, gameWord : string) : void {
-        var gameSession = new Game(playerId, gameWord)
-        this.gameGateway.addGameToAllGamesArray(gameSession);
+        let gameSession = new GameBuilder(0, 0, new Array(), this.constructLettersGuessedArray(gameWord), playerId, gameWord);
+        this.gameGateway.addGame(gameSession.build());
+    }
+
+    private constructLettersGuessedArray(gameWord : string) : string[] {
+        return new Array(gameWord.length).fill('_');
     }
 
 }

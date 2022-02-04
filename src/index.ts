@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { InMemoryWordGateway } from './gateway/InMemoryWordGateway';
 import { CreateGameController } from './controllers/CreateGameController';
-import { CreateGameInteractor } from './Interactors/CreateGameInteractor';
+import { CreateGameInteractor } from './interactors/CreateGameInteractor';
 import { InMemoryPlayerGateway } from './gateway/InMemoryPlayerGateway';
 import { InMemoryGameGateway } from './gateway/InMemoryGameGateway';
 const app = express();

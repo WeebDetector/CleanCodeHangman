@@ -6,17 +6,14 @@ export class Game {
     private readonly playerId: number;
     private readonly wordBeingGuessed: string;
 
-    constructor(playerId : number, chosenWordForTheGame : string) {
-        this.missedGuesses = 0;
-        this.correctGuesses = 0;
-        this.lettersGuessed = new Array();
-        this.currentWordState = this.initiateCurrentWordStateArray(chosenWordForTheGame);
+    constructor(missedGuesses : number, correctGuesses : number, lettersGuessed : string[],
+                currentWordState : string[], playerId : number, chosenWordForTheGame : string) {
+        this.missedGuesses = missedGuesses;
+        this.correctGuesses = correctGuesses;
+        this.lettersGuessed = lettersGuessed;
+        this.currentWordState = currentWordState;
         this.playerId = playerId;
         this.wordBeingGuessed = chosenWordForTheGame;
-    }
-    
-    private initiateCurrentWordStateArray(chosenWordForTheGame : string) {
-        return new Array(chosenWordForTheGame.length).fill('_');
     }
 
     getMissedGuesses() {

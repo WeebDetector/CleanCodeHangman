@@ -1,6 +1,4 @@
-import { GameDataStruct } from "./GameDataStruct";
-
-export class BoundaryGameDataStruct implements GameDataStruct {
+export class BoundaryGameDataStruct {
     private readonly playerId : number
     private readonly chosenWord : string
 
