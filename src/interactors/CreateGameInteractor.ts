@@ -4,8 +4,6 @@ import { BoundaryGameDataStruct } from "../use_cases/BoundaryGameDataStruct";
 import { PlayerGateway } from "../gateway/PlayerGateway";
 import { GameGateway } from "../gateway/GameGateway";
 import { GameBuilder } from "../domain/GameBuilder";
-import { Game } from "../domain/Game";
-import { GameFramework } from "../domain/GameFramework";
 
 export class CreateGameInteractor implements CreateGameUseCase {
     private readonly wordGateway : WordGateway;
@@ -18,14 +16,10 @@ export class CreateGameInteractor implements CreateGameUseCase {
         this.gameGateway = gameGateway
     }
 
-    getGameFromGamesGateway(playerId : number) : GameFramework {
-        return this.gameGateway.getGameByPlayerId(playerId);
-    }
-
     execute() : BoundaryGameDataStruct {
         const playerIdAndGameWord = new BoundaryGameDataStruct(this.playerGateway.addPlayer(), this.wordGateway.pickRandomWord())
 
-        this.addGameToGamesGateway(this.playerGateway.addPlayer(), this.wordGateway.pickRandomWord());
+        this.addGameToGamesGateway(playerIdAndGameWord.getPlayerId(), playerIdAndGameWord.getChosenWord());
         return playerIdAndGameWord;
     }
 

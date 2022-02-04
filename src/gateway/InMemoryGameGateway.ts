@@ -1,6 +1,4 @@
 import { Game } from "../domain/Game";
-import { GameFramework } from "../domain/GameFramework";
-import { NullGame } from "../domain/NullGame";
 import { GameGateway } from "./GameGateway";
 
 export class InMemoryGameGateway implements GameGateway {
@@ -14,13 +12,7 @@ export class InMemoryGameGateway implements GameGateway {
         this.allGames.push(newGame);
     }
 
-    getGameByPlayerId(playerId : number): GameFramework {
-        return this.findSpecificGame(playerId);
+    getGameByPlayerId(playerId : number): Game | undefined {
+        return this.allGames.find(game => game.getPlayerId() === playerId);
     }
-
-    private findSpecificGame(playerId : number) : GameFramework {
-        const game = this.allGames.find(game => game.getPlayerId() === playerId);
-        
-        return game ?? new NullGame();
-    } 
 }

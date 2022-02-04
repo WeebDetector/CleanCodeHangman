@@ -30,6 +30,5 @@ describe("Testing game interactor", () => {
         
         expect(gameObject.getPlayerId()).toBe(1);
         expect(gameObject.getChosenWord()).toBe("table");
-        expect(createGameUC.getGameFromGamesGateway(1).isNull()).toBe(false);
     })
 })
