@@ -4,8 +4,8 @@ import { CreateGameUseCase } from "../use_cases/CreateGameUseCase";
 export class CreateGameController {
     private readonly createGameUC : CreateGameUseCase
 
-    constructor(interactor : CreateGameUseCase) {
-        this.createGameUC = interactor;
+    constructor(createGameUC : CreateGameUseCase) {
+        this.createGameUC = createGameUC;
     }
 
     execute() : BoundaryGameDataStruct {

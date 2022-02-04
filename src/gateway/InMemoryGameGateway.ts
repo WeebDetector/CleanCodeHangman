@@ -13,7 +13,7 @@ export class InMemoryGameGateway implements GameGateway {
         this.allGames.push(newGame);
     }
 
-    getGameById(playerIdToLookFor : number): Game {
+    getGameByPlayerId(playerIdToLookFor : number): Game {
         return this.findSpecificGame(playerIdToLookFor);
     }
 
