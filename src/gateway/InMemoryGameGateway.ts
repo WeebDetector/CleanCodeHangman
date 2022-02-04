@@ -18,6 +18,6 @@ export class InMemoryGameGateway implements GameGateway {
     }
 
     private findSpecificGame(playerId : number) : Game {
-        return this.allGames.filter(game => game.getPlayerId() === playerId)[0] ?? new Game(-1, -1, new Array(), new Array(), -1, "");
+        return this.allGames.find(game => game.getPlayerId() === playerId) ?? new Game(-1, -1, new Array(), new Array(), -1, "");
     } 
 }
