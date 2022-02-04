@@ -16,7 +16,7 @@ describe("Testing game controller", () => {
 
     test("Controller returns correct values", () => {
         createGameUC.execute.mockReturnValue(EXPECTED_GAME_DATA_STRUCT);
-        let gameObject = obj.execute();
+        const gameObject = obj.execute();
         
         expect(gameObject.getPlayerId()).toBe(EXPECTED_GAME_DATA_STRUCT.getPlayerId());
         expect(gameObject.getChosenWord()).toBe(EXPECTED_GAME_DATA_STRUCT.getChosenWord());

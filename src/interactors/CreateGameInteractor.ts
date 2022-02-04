@@ -17,13 +17,15 @@ export class CreateGameInteractor implements CreateGameUseCase {
     }
 
     execute() : BoundaryGameDataStruct {
-        let playerIdAndGameWord = new BoundaryGameDataStruct(this.playerGateway.addPlayer(), this.wordGateway.pickRandomWord())
+        const playerIdAndGameWord = new BoundaryGameDataStruct(this.playerGateway.addPlayer(), this.wordGateway.pickRandomWord())
+
         this.addGameToGamesGateway(this.playerGateway.addPlayer(), this.wordGateway.pickRandomWord());
         return playerIdAndGameWord;
     }
 
     private addGameToGamesGateway(playerId : number, gameWord : string) : void {
-        let gameSession = new GameBuilder(0, 0, new Array(), this.constructLettersGuessedArray(gameWord), playerId, gameWord);
+        const gameSession = new GameBuilder(0, 0, new Array(), this.constructLettersGuessedArray(gameWord), playerId, gameWord);
+        
         this.gameGateway.addGame(gameSession.build());
     }
 

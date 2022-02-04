@@ -24,7 +24,7 @@ describe("Testing game interactor", () => {
     test("Iterator returns correct values", () => {
         wordGateway.pickRandomWord.mockReturnValue(EXPECTED_WORD_GATEWAY_RESULT);
         playerGateway.addPlayer.mockReturnValue(EXPECTED_PLAYER_GATEWAY_RESULT);
-        let gameObject = createGameUC.execute();
+        const gameObject = createGameUC.execute();
         
         expect(gameObject.getPlayerId()).toBe(1);
         expect(gameObject.getChosenWord()).toBe("table");

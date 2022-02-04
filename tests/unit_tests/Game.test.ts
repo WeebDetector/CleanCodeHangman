@@ -2,10 +2,10 @@ import { GameBuilder } from "../../src/domain/GameBuilder";
 
 describe('Game', () => {
     test("Game object being created correctly", () => {
-        let word = "table";
-        let wordStateArray = new Array("table".length).fill('_');
-        let gameBuilder = new GameBuilder(0, 0, new Array(), wordStateArray, 1, word);
-        let game = gameBuilder.build();
+        const word = "table";
+        const wordStateArray = new Array("table".length).fill('_');
+        const gameBuilder = new GameBuilder(0, 0, new Array(), wordStateArray, 1, word);
+        const game = gameBuilder.build();
         
         expect(game.getMissedGuesses()).toBe(0);
         expect(game.getCorrectGuesses()).toBe(0);

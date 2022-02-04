@@ -1,5 +1,4 @@
 import { Game } from "../domain/Game";
-import { GameBuilder } from "../domain/GameBuilder";
 import { GameGateway } from "./GameGateway";
 
 export class InMemoryGameGateway implements GameGateway {
@@ -13,11 +12,13 @@ export class InMemoryGameGateway implements GameGateway {
         this.allGames.push(newGame);
     }
 
-    getGameByPlayerId(playerIdToLookFor : number): Game {
-        return this.findSpecificGame(playerIdToLookFor);
+    getGameByPlayerId(playerId : number): Game {
+        return this.findSpecificGame(playerId);
     }
 
     private findSpecificGame(playerId : number) : Game {
-        return this.allGames.find(game => game.getPlayerId() === playerId) ?? new Game(-1, -1, new Array(), new Array(), -1, "");
+        const game = this.allGames.find(game => game.getPlayerId() === playerId);
+
+        return game ?? new Game(-1, -1, new Array(), new Array(), -1, "");
     } 
 }

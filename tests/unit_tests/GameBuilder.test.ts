@@ -6,13 +6,13 @@ function fillArray(size: number) {
 
 describe('Game Builder', () => {
     test("GameBuilder object methods", () => {
-        let word = "table";
+        const word = "table";
         let gameBuilder = new GameBuilder(0, 0, new Array(), fillArray(word.length), 1, word);
         gameBuilder = gameBuilder.setCorrectGuesses(1);
         gameBuilder = gameBuilder.setMissedGuesses(3);
         gameBuilder = gameBuilder.setLettersGuessed(fillArray(1));
         gameBuilder = gameBuilder.setCurrentWordState(new Array());
-        let game = gameBuilder.build();
+        const game = gameBuilder.build();
         
         expect(game.getMissedGuesses()).toBe(3);
         expect(game.getCorrectGuesses()).toBe(1);
