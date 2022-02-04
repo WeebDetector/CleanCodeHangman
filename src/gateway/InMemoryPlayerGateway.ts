@@ -8,7 +8,7 @@ export class InMemoryPlayerGateway implements PlayerGateway {
     }
 
     addPlayer() : number {
-        var newPlayerId = this.getLastIndexOfArray() + 1;
+        const newPlayerId = this.getLastIndexOfArray() + 1;
         this.playerIds.push(newPlayerId);
         return newPlayerId;
     }

@@ -1,4 +1,6 @@
-export class Game {
+import { GameFramework } from "./GameFramework";
+
+export class Game extends GameFramework {
     private readonly missedGuesses: number;
     private readonly correctGuesses: number;
     private readonly lettersGuessed: string[];
@@ -8,6 +10,7 @@ export class Game {
 
     constructor(missedGuesses : number, correctGuesses : number, lettersGuessed : string[],
                 currentWordState : string[], playerId : number, chosenWordForTheGame : string) {
+        super();
         this.missedGuesses = missedGuesses;
         this.correctGuesses = correctGuesses;
         this.lettersGuessed = lettersGuessed;
@@ -16,27 +19,31 @@ export class Game {
         this.wordBeingGuessed = chosenWordForTheGame;
     }
 
-    getMissedGuesses() {
+    getMissedGuesses() : number {
         return this.missedGuesses;
     }
 
-    getCorrectGuesses() {
+    getCorrectGuesses() : number {
         return this.correctGuesses;
     }
 
-    getLettersGuessed() {
+    getLettersGuessed() : string[] {
         return this.lettersGuessed;
     }
 
-    getCurrentWordState() {
+    getCurrentWordState() : string[] {
         return this.currentWordState;
     }
 
-    getPlayerId() {
+    getPlayerId() : number {
         return this.playerId;
     }
 
-    getWordBeingGuessed() {
+    getWordBeingGuessed() : string {
         return this.wordBeingGuessed;
+    }
+
+    isNull() : boolean {
+        return false;
     }
 }
