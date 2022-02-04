@@ -12,4 +12,8 @@ describe("Testing game gateway", () => {
         obj.addGame(GameBuilder.init(1, "table").build());
         expect(obj.getGameByPlayerId(1)).not.toBeUndefined();
     })
+
+    test("Game retrieval without addition", () => {
+        expect(obj.getGameByPlayerId(1)).toBeUndefined();
+    })
 })

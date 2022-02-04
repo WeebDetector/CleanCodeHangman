@@ -24,7 +24,8 @@ export class CreateGameInteractor implements CreateGameUseCase {
     }
 
     private addGameToGamesGateway(playerId : number, gameWord : string) : void {
-        const gameSession = GameBuilder.init(playerId, gameWord).setCurrentWordState(this.constructLettersGuessedArray(gameWord));
+        const gameSession = GameBuilder.init(playerId, gameWord)
+        .setCurrentWordState(this.constructLettersGuessedArray(gameWord));
         this.gameGateway.addGame(gameSession.build());
     }
 

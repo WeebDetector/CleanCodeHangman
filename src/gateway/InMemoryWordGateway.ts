@@ -1,11 +1,11 @@
-import { RandomGenerator } from "./RandomGenerator";
+import { RandomIntGenerator } from "./RandomIntGenerator";
 import { WordGateway } from "./WordGateway";
 
 export class InMemoryWordGateway implements WordGateway {
     private readonly wordsToPickFrom = ['table', 'hello', 'sunshine', 'knowledge', 'interface'];
-    private readonly numberGenerator : RandomGenerator
+    private readonly numberGenerator : RandomIntGenerator
 
-    constructor(rnd : RandomGenerator) {
+    constructor(rnd : RandomIntGenerator) {
         this.numberGenerator = rnd;
     }
 
@@ -14,6 +14,6 @@ export class InMemoryWordGateway implements WordGateway {
     }
 
     private generateRandomIndex(totalAmountOfWords: number) : number {
-        return Math.floor((this.numberGenerator.generateNumber(totalAmountOfWords)));
+        return this.numberGenerator.generateNumber(totalAmountOfWords);
     }
 }
