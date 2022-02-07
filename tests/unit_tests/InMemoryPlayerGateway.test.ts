@@ -1,13 +1,13 @@
 import { InMemoryPlayerGateway } from "../../src/gateway/InMemoryPlayerGateway";
 
 describe("Testing player gateway", () => {
-    let obj : InMemoryPlayerGateway;
+    let playerGateway : InMemoryPlayerGateway;
 
     beforeEach(() => {
-        obj = new InMemoryPlayerGateway();
+        playerGateway = new InMemoryPlayerGateway();
     });
 
     test("Player addition", () => {
-        expect(obj.addPlayer()).toBe(1);
+        expect(playerGateway.addPlayer()).toBe(1);
     })
 })

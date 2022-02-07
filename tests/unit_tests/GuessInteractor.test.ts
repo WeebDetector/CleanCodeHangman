@@ -9,7 +9,7 @@ describe("Testing guess interactor", () => {
 
     let gameGateway : MockProxy<GameGateway>;
     let guessUC : GuessInteractor
-    const guess = "a";
+    const GUESS = "a";
 
     beforeEach(() => {
         gameGateway = mock<GameGateway>();
@@ -19,12 +19,12 @@ describe("Testing guess interactor", () => {
     test("Letter in the word checking", () => {
         gameGateway.getGameByPlayerId.mockReturnValue(EXPECTED_GAME_GATEWAY_RESULT);
     
-        expect(guessUC.isLetterInWord(1, guess)).toBe(true);
+        expect(guessUC.isLetterInWord(1, GUESS)).toBe(true);
     })
 
     test("The game doesn't exist case", () => {
         expect(() => {
-            guessUC.isLetterInWord(1, guess)
+            guessUC.isLetterInWord(1, GUESS)
         }).toThrow('Game is undefined');
     })
 })

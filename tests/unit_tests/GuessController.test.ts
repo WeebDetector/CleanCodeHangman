@@ -7,17 +7,17 @@ const EXPECTED_USE_CASE_RESULT = true
 describe("Testing guess controller", () => {
 
     let guessUC : MockProxy<GuessUseCase>;
-    let obj : GuessController
-    const guess = "a";
+    let guessController : GuessController
+    const GUESS = "a";
 
     beforeEach(() => {
         guessUC = mock<GuessUseCase>();
-        obj = new GuessController(guessUC);
+        guessController = new GuessController(guessUC);
     });
 
     test("Letter in the word method", () => {
         guessUC.isLetterInWord.mockReturnValue(EXPECTED_USE_CASE_RESULT);
 
-        expect(obj.isLetterInWord(1, guess)).toBe(true);
+        expect(guessController.isLetterInWord(1, GUESS)).toBe(true);
     })
 })

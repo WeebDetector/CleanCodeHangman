@@ -6,15 +6,15 @@ const EXPECTED_GENERATOR_RESULT = 2;
 
 describe("Testing word gateway", () => {
     let numberGenerator : MockProxy<RandomIntGenerator>;
-    let obj : InMemoryWordGateway;
+    let wordGateway : InMemoryWordGateway;
 
     beforeEach(() => {
         numberGenerator = mock<RandomIntGenerator>();
-        obj = new InMemoryWordGateway(numberGenerator);
+        wordGateway = new InMemoryWordGateway(numberGenerator);
     });
 
     test("Word retrieval", () => {
         numberGenerator.generateNumber.mockReturnValue(EXPECTED_GENERATOR_RESULT);
-        expect(obj.pickRandomWord()).toBe("sunshine");
+        expect(wordGateway.pickRandomWord()).toBe("sunshine");
     })
 })

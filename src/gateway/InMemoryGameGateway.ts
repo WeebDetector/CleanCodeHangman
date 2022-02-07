@@ -13,7 +13,9 @@ export class InMemoryGameGateway implements GameGateway {
     }
 
     updateGame(playerId: number, updatedVersion: Game): void {
-        this.allGames[this.allGames.indexOf(this.getGameByPlayerId(playerId)!)] = updatedVersion;
+        const game = this.getGameByPlayerId(playerId);
+        const gameIndexInArray = this.allGames.indexOf(game!);
+        this.allGames[gameIndexInArray] = updatedVersion;
     }
 
     getGameByPlayerId(playerId : number): Game | undefined {
