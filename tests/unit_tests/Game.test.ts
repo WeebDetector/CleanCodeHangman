@@ -4,7 +4,7 @@ describe('Game', () => {
     test("Game object being created correctly", () => {
         const word = "table";
         const wordStateArray = new Array("table".length).fill('_');
-        const gameBuilder = new GameBuilder(0, 0, new Array(), wordStateArray, 1, word);
+        const gameBuilder = GameBuilder.init(1, word).setCurrentWordState(wordStateArray);
         const game = gameBuilder.build();
         
         expect(game.getMissedGuesses()).toBe(0);

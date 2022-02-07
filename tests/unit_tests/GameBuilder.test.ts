@@ -7,7 +7,7 @@ function fillArray(size: number) {
 describe('Game Builder', () => {
     test("GameBuilder object methods", () => {
         const word = "table";
-        let gameBuilder = new GameBuilder(0, 0, new Array(), fillArray(word.length), 1, word);
+        let gameBuilder = GameBuilder.init(1, word).setCurrentWordState(fillArray(word.length));
         gameBuilder = gameBuilder.setCorrectGuesses(1);
         gameBuilder = gameBuilder.setMissedGuesses(3);
         gameBuilder = gameBuilder.setLettersGuessed(fillArray(1));

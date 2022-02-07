@@ -4,6 +4,7 @@ import { CreateGameController } from './controllers/CreateGameController';
 import { CreateGameInteractor } from './interactors/CreateGameInteractor';
 import { InMemoryPlayerGateway } from './gateway/InMemoryPlayerGateway';
 import { InMemoryGameGateway } from './gateway/InMemoryGameGateway';
+import { RandomIntGenerator } from './gateway/RandomIntGenerator';
 const app = express();
 const path = require('path');
 
@@ -11,11 +12,12 @@ app.listen(3000, () => console.log("Listening to app at 3000"));
 app.use(express.static('src'));
 app.use(express.json());
 
-let wordGateway = new InMemoryWordGateway();
-let playerGateway = new InMemoryPlayerGateway();
-let gameGateway = new InMemoryGameGateway();
-let createGameUC = new CreateGameInteractor(wordGateway, playerGateway, gameGateway);
-let createGameController = new CreateGameController(createGameUC)
+const generator = new RandomIntGenerator();
+const wordGateway = new InMemoryWordGateway(generator);
+const playerGateway = new InMemoryPlayerGateway();
+const gameGateway = new InMemoryGameGateway();
+const createGameUC = new CreateGameInteractor(wordGateway, playerGateway, gameGateway);
+const createGameController = new CreateGameController(createGameUC)
 
 app.post('/games', (req, resp) => {
     var playerIdAndGameWord = createGameController.execute();
