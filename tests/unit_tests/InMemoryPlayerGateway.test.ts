@@ -1,4 +1,3 @@
-import { GameBuilder } from "../../src/domain/GameBuilder";
 import { InMemoryPlayerGateway } from "../../src/gateway/InMemoryPlayerGateway";
 
 describe("Testing player gateway", () => {
@@ -8,7 +7,7 @@ describe("Testing player gateway", () => {
         obj = new InMemoryPlayerGateway();
     });
 
-    test("Game addition and retrieval", () => {
+    test("Player addition", () => {
         expect(obj.addPlayer()).toBe(1);
     })
 })

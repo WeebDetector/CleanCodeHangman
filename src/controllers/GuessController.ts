@@ -8,6 +8,6 @@ export class GuessController {
     }
 
     isLetterInWord(playerId : number, guessedLetter : string) : boolean {
-        return this.guessUC.isLetterInWord(guessedLetter);
+        return this.guessUC.isLetterInWord(playerId, guessedLetter);
     }
 }

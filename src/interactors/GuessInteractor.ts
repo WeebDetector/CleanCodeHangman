@@ -11,7 +11,7 @@ export class GuessInteractor implements GuessUseCase {
     isLetterInWord(playerId : number, guessedLetter: string): boolean {
         const gameSession = this.gameGateway.getGameByPlayerId(playerId);
 
-        if (gameSession !== undefined) {
+        if (gameSession === undefined) {
             throw new Error("Game is undefined");
         } else {
             return gameSession!.getWordBeingGuessed().includes(guessedLetter);
