@@ -19,12 +19,13 @@ describe("Testing guess interactor", () => {
     test("Letter in the word checking", () => {
         gameGateway.getGameByPlayerId.mockReturnValue(EXPECTED_GAME_GATEWAY_RESULT);
     
-        expect(guessUC.isLetterInWord(1, GUESS)).toBe(true);
+        expect(guessUC.isLetterInWord(1, GUESS).getGuessState()).toBe(true);
+        expect(guessUC.isLetterInWord(1, GUESS).getGameStateDescription()).toBe("Game is still in progress");
     })
 
     test("The game doesn't exist case", () => {
         expect(() => {
             guessUC.isLetterInWord(1, GUESS)
-        }).toThrow('Game is undefined');
+        }).toThrow('Game played by player ' + 1 + ' not found');
     })
 })

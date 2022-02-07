@@ -1,3 +1,4 @@
+import { BoundaryGameToClientResponse } from "../use_cases/BoundaryGameToClientResponse";
 import { GuessUseCase } from "../use_cases/GuessUseCase";
 
 export class GuessController {
@@ -7,7 +8,7 @@ export class GuessController {
         this.guessUC = guessUC;
     }
 
-    isLetterInWord(playerId : number, guessedLetter : string) : boolean {
+    isLetterInWord(playerId : number, guessedLetter : string) : BoundaryGameToClientResponse {
         return this.guessUC.isLetterInWord(playerId, guessedLetter);
     }
 }
