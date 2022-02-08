@@ -7,7 +7,7 @@ import { Game } from "../../src/domain/Game";
 
 const EXPECTED_WORD_GATEWAY_RESULT = "table";
 const EXPECTED_PLAYER_GATEWAY_RESULT = 1;
-const EXPECTED_GAME_GATEWAY_RESULT = new Game(0, 0, new Array(), new Array(), 1, "table");
+const EXPECTED_GAME_GATEWAY_RESULT = new Game(0, new Array(), new Array(), 1, "table");
 
 describe("Testing game interactor", () => {
     let wordGateway : MockProxy<WordGateway>;

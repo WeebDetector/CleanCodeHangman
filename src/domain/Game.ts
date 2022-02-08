@@ -1,18 +1,16 @@
-import { BoundaryGameUpdateResponse } from "../use_cases/BoundaryGameUpdateResponse";
 import { GameBuilder } from "./GameBuilder";
+import { GuessResponse } from "./GuessResponse";
 
 export class Game {
     private readonly missedGuesses: number;
-    private readonly correctGuesses: number;
     private readonly lettersGuessed: string[];
     private readonly currentWordState: string[];
     private readonly playerId: number;
     private readonly wordBeingGuessed: string;
 
-    constructor(missedGuesses : number, correctGuesses : number, lettersGuessed : string[],
+    constructor(missedGuesses : number, lettersGuessed : string[],
                 currentWordState : string[], playerId : number, chosenWordForTheGame : string) {
         this.missedGuesses = missedGuesses;
-        this.correctGuesses = correctGuesses;
         this.lettersGuessed = lettersGuessed;
         this.currentWordState = currentWordState;
         this.playerId = playerId;
@@ -24,7 +22,10 @@ export class Game {
     }
 
     getCorrectGuesses() : number {
-        return this.correctGuesses;
+        const set = new Set(this.currentWordState);
+        if (set.has('_'))
+            return (set.size - 1);
+        return set.size;
     }
 
     getLettersGuessed() : string[] {
@@ -43,34 +44,29 @@ export class Game {
         return this.wordBeingGuessed;
     }
 
-    isGameOver() : string {
+    isGameOver() : 'won' | 'lost' | 'in-progress' {
         const maxMissedGuesses = 10;
         const correctGuessesRequiredToWin = this.getUniqueLettersInAWord();
 
         if (this.getMissedGuesses() == maxMissedGuesses)
-            return "Game is lost";
+            return 'lost';
         else if (this.getCorrectGuesses() == correctGuessesRequiredToWin)
-            return "Game is won";
+            return 'won';
         else
-            return "Game is still in progress";
+            return 'in-progress';
     }
 
     private getUniqueLettersInAWord() : number {
         const word = this.getWordBeingGuessed();
-        let seenLetters = new Array();
+        const wordLetters = Array.from(word);
 
-        for (let i = 0; i < word.length; i++) {
-            if (!seenLetters.includes(word[i]))
-                seenLetters.push(word[i]);
-        }
-
-        return seenLetters.length;
+        return new Set(wordLetters).size;
     }
 
-    updateGame(guessedLetter : string) : BoundaryGameUpdateResponse {
+    guess(guessedLetter : string) : GuessResponse {
         if (this.lettersGuessed.includes(guessedLetter))
             throw new Error("Letter " + guessedLetter + " has already been guessed");
-            
+
         const wordBeingGuessed = this.getWordBeingGuessed();
         let gameBuilder;
 
@@ -83,7 +79,7 @@ export class Game {
 
         const stateDescription = this.isGameOver();
         const updatedGame = gameBuilder.build();
-        const response = new BoundaryGameUpdateResponse(updatedGame, stateDescription);
+        const response = new GuessResponse(updatedGame, stateDescription);
 
         return response;
     }
@@ -92,9 +88,7 @@ export class Game {
         let gameBuilder = GameBuilder.of(this);
         const currentWordState = this.getCurrentWordState();
         const updatedWordState = this.updateCurrentWordState(currentWordState, guessedLetter, this.getWordBeingGuessed())
-        const correctGuesses = this.getCorrectGuesses() + 1;
 
-        gameBuilder = gameBuilder.setCorrectGuesses(correctGuesses);
         gameBuilder = gameBuilder.setCurrentWordState(updatedWordState);
 
         return gameBuilder;

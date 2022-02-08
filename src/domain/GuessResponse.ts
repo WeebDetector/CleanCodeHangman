@@ -1,6 +1,6 @@
 import { Game } from "../domain/Game";
 
-export class BoundaryGameUpdateResponse {
+export class GuessResponse {
     private readonly game : Game
     private readonly stateDescription : string
 

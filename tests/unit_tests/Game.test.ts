@@ -28,7 +28,7 @@ describe('Testing game', () => {
     test("Game object updates correctly with a correct guess", () => {
         expect(game.getCorrectGuesses()).toBe(0);
         expect(game.getLettersGuessed().length).toBe(0);
-        const response = game.updateGame(CORRECT_GUESS);
+        const response = game.guess(CORRECT_GUESS);
         expect(response.getGame().getCorrectGuesses()).toBe(1);
         expect(response.getGame().getLettersGuessed()).toContain(CORRECT_GUESS);
         expect(response.getGame().getCurrentWordState()).toContain(CORRECT_GUESS);
@@ -37,29 +37,30 @@ describe('Testing game', () => {
 
     test("Game object updates correctly with an incorrect guess", () => {
         expect(game.getMissedGuesses()).toBe(0);
-        const response = game.updateGame(INCORRECT_GUESS);
+        const response = game.guess(INCORRECT_GUESS);
         expect(response.getGame().getMissedGuesses()).toBe(1);
     })
 
     test("Game ending conditions: victory", () => {
-        const newGameBuilder = gameBuilder.setCorrectGuesses(5);
+        const winningArray = ['t', 'a', 'b', 'l', 'e'];
+        const newGameBuilder = gameBuilder.setCurrentWordState(winningArray);
         const wonGame = newGameBuilder.build();
 
-        expect(wonGame.isGameOver()).toBe("Game is won");
+        expect(wonGame.isGameOver()).toBe("won");
     })
 
     test("Game ending conditions: defeat", () => {
         const newGameBuilder = gameBuilder.setMissedGuesses(10);
         const lostGame = newGameBuilder.build();
 
-        expect(lostGame.isGameOver()).toBe("Game is lost");
+        expect(lostGame.isGameOver()).toBe("lost");
     })
 
     test("Guessing a letter that was guessed already", () => {
-        const response = game.updateGame(CORRECT_GUESS);
+        const response = game.guess(CORRECT_GUESS);
         expect(response.getGame().getLettersGuessed()).toContain(CORRECT_GUESS);
         expect(() => {
-            response.getGame().updateGame(CORRECT_GUESS)
+            response.getGame().guess(CORRECT_GUESS)
         }).toThrow('Letter ' + CORRECT_GUESS + ' has already been guessed');
     })
 })
