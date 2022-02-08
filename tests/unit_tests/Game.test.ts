@@ -54,4 +54,12 @@ describe('Testing game', () => {
 
         expect(lostGame.isGameOver()).toBe("Game is lost");
     })
+
+    test("Guessing a letter that was guessed already", () => {
+        const response = game.updateGame(CORRECT_GUESS);
+        expect(response.getGame().getLettersGuessed()).toContain(CORRECT_GUESS);
+        expect(() => {
+            response.getGame().updateGame(CORRECT_GUESS)
+        }).toThrow('Letter ' + CORRECT_GUESS + ' has already been guessed');
+    })
 })

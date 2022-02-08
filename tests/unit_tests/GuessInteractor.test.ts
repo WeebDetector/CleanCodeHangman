@@ -10,6 +10,7 @@ describe("Testing guess interactor", () => {
     let gameGateway : MockProxy<GameGateway>;
     let guessUC : GuessInteractor
     const GUESS = "a";
+    const SECOND_GUESS = "l";
 
     beforeEach(() => {
         gameGateway = mock<GameGateway>();
@@ -18,9 +19,10 @@ describe("Testing guess interactor", () => {
 
     test("Letter in the word checking", () => {
         gameGateway.getGameByPlayerId.mockReturnValue(EXPECTED_GAME_GATEWAY_RESULT);
+        const gameResponse = guessUC.isLetterInWord(1, SECOND_GUESS);
     
-        expect(guessUC.isLetterInWord(1, GUESS).getGuessState()).toBe(true);
-        expect(guessUC.isLetterInWord(1, GUESS).getGameStateDescription()).toBe("Game is still in progress");
+        expect(gameResponse.getGuessState()).toBe(true);
+        expect(gameResponse.getGameStateDescription()).toBe("Game is still in progress");
     })
 
     test("The game doesn't exist case", () => {

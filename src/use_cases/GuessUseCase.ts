@@ -1,5 +1,5 @@
-import { BoundaryGameToClientResponse } from "./BoundaryGameToClientResponse";
+import { BoundaryGuessResponse } from "./BoundaryGuessResponse";
 
 export interface GuessUseCase {
-    isLetterInWord(playerId: number, guessedLetter : string) : BoundaryGameToClientResponse;
+    isLetterInWord(playerId: number, guessedLetter : string) : BoundaryGuessResponse;
 }

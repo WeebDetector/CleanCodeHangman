@@ -68,6 +68,9 @@ export class Game {
     }
 
     updateGame(guessedLetter : string) : BoundaryGameUpdateResponse {
+        if (this.lettersGuessed.includes(guessedLetter))
+            throw new Error("Letter " + guessedLetter + " has already been guessed");
+            
         const wordBeingGuessed = this.getWordBeingGuessed();
         let gameBuilder;
 

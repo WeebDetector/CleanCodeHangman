@@ -1,9 +1,9 @@
 import { GuessController } from "../../src/controllers/GuessController";
 import { GuessUseCase } from "../../src/use_cases/GuessUseCase";
 import { mock, MockProxy } from 'jest-mock-extended';
-import { BoundaryGameToClientResponse } from "../../src/use_cases/BoundaryGameToClientResponse";
+import { BoundaryGuessResponse } from "../../src/use_cases/BoundaryGuessResponse";
 
-const EXPECTED_RESPONSE_STRUCT = new BoundaryGameToClientResponse(true, "Game is still in progress");
+const EXPECTED_RESPONSE_STRUCT = new BoundaryGuessResponse(true, "Game is still in progress");
 
 describe("Testing guess controller", () => {
 

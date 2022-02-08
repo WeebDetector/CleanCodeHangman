@@ -1,6 +1,4 @@
-import { Game } from "../domain/Game";
-
-export class BoundaryGameToClientResponse {
+export class BoundaryGuessResponse {
     private readonly isGuessCorrect : boolean
     private readonly stateDescription : string
 
