@@ -2,11 +2,11 @@
   "name": "cleancodehangman",
   "version": "1.0.0",
   "description": "Hangman game using SOLID principles",
-  "main": "index.js",
+  "main": "Index.js",
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc",
-    "start": "npm run build && node dist/src/index.js",
+    "start": "npm run build && node dist/src/Index.js",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "lint": "tsc && eslint --max-warnings 0 --ext js,ts,tsx src"
