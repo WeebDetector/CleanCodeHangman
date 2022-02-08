@@ -3,7 +3,7 @@ import { GuessUseCase } from "../../src/use_cases/GuessUseCase";
 import { mock, MockProxy } from 'jest-mock-extended';
 import { BoundaryGuessResponse } from "../../src/use_cases/BoundaryGuessResponse";
 
-const EXPECTED_RESPONSE_STRUCT = new BoundaryGuessResponse(true, "Game is still in progress");
+const EXPECTED_RESPONSE_STRUCT = new BoundaryGuessResponse(true, "in-progress");
 
 describe("Testing guess controller", () => {
 
@@ -20,6 +20,6 @@ describe("Testing guess controller", () => {
         guessUC.isLetterInWord.mockReturnValue(EXPECTED_RESPONSE_STRUCT);
 
         expect(guessController.isLetterInWord(1, GUESS).getGuessState()).toBe(true);
-        expect(guessController.isLetterInWord(1, GUESS).getGameStateDescription()).toBe("Game is still in progress");
+        expect(guessController.isLetterInWord(1, GUESS).getGameStateDescription()).toBe("in-progress");
     })
 })

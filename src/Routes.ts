@@ -20,7 +20,7 @@ const guessUC = new GuessInteractor(gameGateway);
 const guessController = new GuessController(guessUC);
 
 router.post('/games', (req: any, res: any) => {
-    var playerIdAndGameWord = createGameController.execute();
+    const playerIdAndGameWord = createGameController.execute();
     res.json({
         playerId: playerIdAndGameWord.getPlayerId(),
         chosenWord: playerIdAndGameWord.getChosenWord(),
