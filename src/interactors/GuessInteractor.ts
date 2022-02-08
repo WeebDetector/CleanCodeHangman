@@ -15,15 +15,11 @@ export class GuessInteractor implements GuessUseCase {
 
         if (gameSession === undefined)
             throw new Error("Game played by player " + playerId + " not found");
-        else {
             const response = gameSession.updateGame(guessedLetter);
 
             this.gameGateway.updateGame(playerId, response.getGame());
 
-            const responseToClient = new BoundaryGameToClientResponse(this.isGuessCorrect(gameSession, guessedLetter), response.getGameStateDescription())
-
-            return responseToClient;
-        }
+        return new BoundaryGameToClientResponse(this.isGuessCorrect(gameSession, guessedLetter), response.getGameStateDescription())
     }
 
     private isGuessCorrect(gameSession : Game, guessedLetter : string) : boolean {
