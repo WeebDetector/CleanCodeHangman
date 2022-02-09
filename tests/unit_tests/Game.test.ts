@@ -46,14 +46,14 @@ describe('Testing game', () => {
         const newGameBuilder = gameBuilder.setCurrentWordState(winningArray);
         const wonGame = newGameBuilder.build();
 
-        expect(wonGame.isGameOver()).toBe("won");
+        expect(wonGame.getGameState()).toBe("won");
     })
 
     test("Game ending conditions: defeat", () => {
         const newGameBuilder = gameBuilder.setMissedGuesses(10);
         const lostGame = newGameBuilder.build();
 
-        expect(lostGame.isGameOver()).toBe("lost");
+        expect(lostGame.getGameState()).toBe("lost");
     })
 
     test("Guessing a letter that was guessed already", () => {

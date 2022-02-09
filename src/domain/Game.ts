@@ -22,10 +22,10 @@ export class Game {
     }
 
     getCorrectGuesses() : number {
-        const set = new Set(this.currentWordState);
-        if (set.has('_'))
-            return (set.size - 1);
-        return set.size;
+        const uniqueSymbols = new Set(this.currentWordState);
+        if (uniqueSymbols.has('_'))
+            return (uniqueSymbols.size - 1);
+        return uniqueSymbols.size;
     }
 
     getLettersGuessed() : string[] {
@@ -48,11 +48,9 @@ export class Game {
         const maxMissedGuesses = 10;
         const correctGuessesRequiredToWin = this.getUniqueLettersInAWord();
 
-        if (this.getMissedGuesses() == maxMissedGuesses)
-            return 'lost';
-        else if (this.getCorrectGuesses() == correctGuessesRequiredToWin)
-            return 'won';
-        return 'in-progress';
+        return this.missedGuesses == maxMissedGuesses ? 'lost'
+             : this.getCorrectGuesses() == correctGuessesRequiredToWin ? 'won'
+             : 'in-progress';
     }
 
     private getUniqueLettersInAWord() : number {
@@ -67,13 +65,12 @@ export class Game {
             throw new Error("Letter " + guessedLetter + " has already been guessed");
 
         const wordBeingGuessed = this.getWordBeingGuessed();
-        let gameBuilder;
 
-        gameBuilder = wordBeingGuessed.includes(guessedLetter)
+        let gameBuilder = wordBeingGuessed.includes(guessedLetter)
                     ? this.updateGameAfterCorrectGuess(guessedLetter)
                     : this.updateGameAfterIncorrectGuess();
 
-        this.updateLettersGuessed(gameBuilder, guessedLetter);
+        gameBuilder = this.updateLettersGuessed(gameBuilder, guessedLetter);
 
         const stateDescription = this.getGameState();
         const updatedGame = gameBuilder.build();
@@ -83,20 +80,18 @@ export class Game {
 
     private updateGameAfterCorrectGuess(guessedLetter : string) : GameBuilder {
         let gameBuilder = GameBuilder.of(this);
-        const currentWordState = this.getCurrentWordState();
-        const updatedWordState = this.updateCurrentWordState(currentWordState, guessedLetter, this.getWordBeingGuessed())
+        const updatedWordState = this.updateCurrentWordState(guessedLetter)
 
-        gameBuilder = gameBuilder.setCurrentWordState(updatedWordState);
-
-        return gameBuilder;
+        return gameBuilder.setCurrentWordState(updatedWordState);
     }
 
-    private updateCurrentWordState(currentWordState : string[], guessedLetter : string, wordBeingGuessed : string) : string[] {
-        let letterIndex = wordBeingGuessed.indexOf(guessedLetter);
+    private updateCurrentWordState(guessedLetter : string) : string[] {
+        let currentWordState = this.getCurrentWordState();
+        let letterIndex = this.wordBeingGuessed.indexOf(guessedLetter);
         while (letterIndex != -1) {
             if (currentWordState[letterIndex] == '_')
                 currentWordState[letterIndex] = guessedLetter;
-            letterIndex = wordBeingGuessed.indexOf(guessedLetter, letterIndex + 1);
+            letterIndex = this.wordBeingGuessed.indexOf(guessedLetter, letterIndex + 1);
         }
         return currentWordState;
     }
