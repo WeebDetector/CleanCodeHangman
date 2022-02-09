@@ -52,8 +52,7 @@ export class Game {
             return 'lost';
         else if (this.getCorrectGuesses() == correctGuessesRequiredToWin)
             return 'won';
-        else
-            return 'in-progress';
+        return 'in-progress';
     }
 
     private getUniqueLettersInAWord() : number {
@@ -70,18 +69,16 @@ export class Game {
         const wordBeingGuessed = this.getWordBeingGuessed();
         let gameBuilder;
 
-        if (wordBeingGuessed.includes(guessedLetter))
-            gameBuilder = this.updateGameAfterCorrectGuess(guessedLetter);
-        else
-            gameBuilder = this.updateGameAfterIncorrectGuess();
+        gameBuilder = wordBeingGuessed.includes(guessedLetter)
+                    ? this.updateGameAfterCorrectGuess(guessedLetter)
+                    : this.updateGameAfterIncorrectGuess();
 
         this.updateLettersGuessed(gameBuilder, guessedLetter);
 
         const stateDescription = this.isGameOver();
         const updatedGame = gameBuilder.build();
-        const response = new GuessResponse(updatedGame, stateDescription);
 
-        return response;
+        return new GuessResponse(updatedGame, stateDescription);;
     }
 
     private updateGameAfterCorrectGuess(guessedLetter : string) : GameBuilder {
@@ -107,17 +104,15 @@ export class Game {
     private updateGameAfterIncorrectGuess() : GameBuilder {
         let gameBuilder = GameBuilder.of(this);
         const missedGuesses = this.getMissedGuesses() + 1;
-        gameBuilder = gameBuilder.setMissedGuesses(missedGuesses);
 
-        return gameBuilder;
+        return gameBuilder.setMissedGuesses(missedGuesses);
     }
 
     private updateLettersGuessed(gameBuilder : GameBuilder, guessedLetter : string) : GameBuilder {
         let lettersGuessed = this.getLettersGuessed();
 
         lettersGuessed.push(guessedLetter);
-        gameBuilder.setLettersGuessed(lettersGuessed);
 
-        return gameBuilder;
+        return gameBuilder.setLettersGuessed(lettersGuessed);;
     }
 }
