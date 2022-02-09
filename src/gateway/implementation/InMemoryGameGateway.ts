@@ -1,5 +1,5 @@
-import { Game } from "../domain/Game";
-import { GameGateway } from "./GameGateway";
+import { Game } from "../../domain/Game";
+import { GameGateway } from "../api/GameGateway";
 
 export class InMemoryGameGateway implements GameGateway {
     private allGames : Game[];

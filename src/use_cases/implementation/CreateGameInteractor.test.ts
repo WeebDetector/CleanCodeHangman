@@ -1,9 +1,9 @@
-import { GameGateway } from "../../src/gateway/GameGateway";
-import { CreateGameInteractor } from "../../src/interactors/CreateGameInteractor";
+import { GameGateway } from "../../gateway/api/GameGateway";
+import { CreateGameInteractor } from "./CreateGameInteractor";
 import { mock, MockProxy } from 'jest-mock-extended';
-import { WordGateway } from "../../src/gateway/WordGateway";
-import { PlayerGateway } from "../../src/gateway/PlayerGateway";
-import { Game } from "../../src/domain/Game";
+import { WordGateway } from "../../gateway/api/WordGateway";
+import { PlayerGateway } from "../../gateway/api/PlayerGateway";
+import { Game } from "../../domain/Game";
 
 const EXPECTED_WORD_GATEWAY_RESULT = "table";
 const EXPECTED_PLAYER_GATEWAY_RESULT = 1;

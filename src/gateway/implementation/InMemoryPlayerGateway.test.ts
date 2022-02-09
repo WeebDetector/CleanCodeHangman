@@ -1,4 +1,4 @@
-import { InMemoryPlayerGateway } from "../../src/gateway/InMemoryPlayerGateway";
+import { InMemoryPlayerGateway } from "./InMemoryPlayerGateway";
 
 describe("Testing player gateway", () => {
     let playerGateway : InMemoryPlayerGateway;

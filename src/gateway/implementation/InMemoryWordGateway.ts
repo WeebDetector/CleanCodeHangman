@@ -1,5 +1,5 @@
 import { RandomIntGenerator } from "./RandomIntGenerator";
-import { WordGateway } from "./WordGateway";
+import { WordGateway } from "../api/WordGateway";
 
 export class InMemoryWordGateway implements WordGateway {
     private readonly wordsToPickFrom = ['table', 'hello', 'sunshine', 'knowledge', 'interface'];

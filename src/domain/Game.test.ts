@@ -1,5 +1,5 @@
-import { Game } from "../../src/domain/Game";
-import { GameBuilder } from "../../src/domain/GameBuilder";
+import { Game } from "./Game";
+import { GameBuilder } from "./GameBuilder";
 
 const WORD = "table";
 const WORD_STATE_ARRAY = new Array(WORD.length).fill('_');

@@ -1,6 +1,6 @@
 import { mock, MockProxy } from 'jest-mock-extended';
-import { InMemoryWordGateway } from "../../src/gateway/InMemoryWordGateway"
-import { RandomIntGenerator } from "../../src/gateway/RandomIntGenerator";
+import { InMemoryWordGateway } from "./InMemoryWordGateway"
+import { RandomIntGenerator } from "./RandomIntGenerator";
 
 const EXPECTED_GENERATOR_RESULT = 2;
 

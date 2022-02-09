@@ -1,6 +1,6 @@
-import { GameGateway } from "../../src/gateway/GameGateway";
-import { Game } from "../../src/domain/Game";
-import { GuessInteractor } from "../../src/interactors/GuessInteractor";
+import { GameGateway } from "../../gateway/api/GameGateway";
+import { Game } from "../../domain/Game";
+import { GuessInteractor } from "./GuessInteractor";
 import { mock, MockProxy } from 'jest-mock-extended';
 
 const EXPECTED_GAME_GATEWAY_RESULT = new Game(0, new Array(), new Array(), 1, "table");
