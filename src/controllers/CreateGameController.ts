@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { BoundaryGameDataStruct } from "../use_cases/BoundaryGameDataStruct";
 import { CreateGameUseCase } from "../use_cases/CreateGameUseCase";
 
@@ -8,7 +9,12 @@ export class CreateGameController {
         this.createGameUC = createGameUC;
     }
 
-    execute() : BoundaryGameDataStruct {
-        return this.createGameUC.execute();
+    execute(req : Request, res : Response) : void {
+        const interactorResponse = this.createGameUC.execute();
+        console.log(interactorResponse);
+        res.status(201).json({
+            playerId: interactorResponse.getPlayerId(),
+            chosenWord: interactorResponse.getChosenWord(),
+        });
     }
 }

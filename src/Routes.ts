@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 import { CreateGameController } from "./controllers/CreateGameController";
 import { GuessController } from "./controllers/GuessController";
 import { GameGateway } from "./gateway/GameGateway";
@@ -25,21 +25,12 @@ export class Routes {
     }
 
     private init() : void {
-        this.router.post('/games', (req: any, res: any) => {
-            const playerIdAndGameWord = this.createGameController.execute();
-            res.json({
-                playerId: playerIdAndGameWord.getPlayerId(),
-                chosenWord: playerIdAndGameWord.getChosenWord(),
-            })
+        this.router.post('/games', (req: Request, res: Response) => {
+            this.createGameController.execute(req, res);
         })
     
-        this.router.post('/guess', (req: any, res: any) => {
-            const data = req.body;
-            const guessStatus = this.guessController.isLetterInWord(data.userId, data.letterGuessed);
-            res.json({
-                guessStatus: guessStatus.getGuessState(),
-                gameState: guessStatus.getGameStateDescription(),  
-            })
+        this.router.post('/guess', (req: Request, res: Response) => {
+            this.guessController.isLetterInWord(req, res);
         })
     }
 

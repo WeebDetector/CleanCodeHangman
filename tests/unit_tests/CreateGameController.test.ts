@@ -2,6 +2,7 @@ import { CreateGameController } from "../../src/controllers/CreateGameController
 import { mock, MockProxy } from 'jest-mock-extended';
 import { BoundaryGameDataStruct } from "../../src/use_cases/BoundaryGameDataStruct";
 import { CreateGameUseCase } from "../../src/use_cases/CreateGameUseCase";
+import { getMockReq, getMockRes } from '@jest-mock/express'
 
 const EXPECTED_GAME_DATA_STRUCT = new BoundaryGameDataStruct(1, 'table');
 
@@ -16,9 +17,14 @@ describe("Testing game controller", () => {
 
     test("Controller returns correct values", () => {
         createGameUC.execute.mockReturnValue(EXPECTED_GAME_DATA_STRUCT);
-        const game = createGameController.execute();
+        const req = getMockReq();
+        const { res } = getMockRes();
+        createGameController.execute(req, res);
         
-        expect(game.getPlayerId()).toBe(EXPECTED_GAME_DATA_STRUCT.getPlayerId());
-        expect(game.getChosenWord()).toBe(EXPECTED_GAME_DATA_STRUCT.getChosenWord());
+        expect(res.status).toHaveBeenCalledWith(201);
+        expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
+            playerId: EXPECTED_GAME_DATA_STRUCT.getPlayerId(),
+            chosenWord: EXPECTED_GAME_DATA_STRUCT.getChosenWord(),
+        }))
     })
 })
