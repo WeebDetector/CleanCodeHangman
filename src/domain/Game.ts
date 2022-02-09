@@ -48,9 +48,11 @@ export class Game {
         const maxMissedGuesses = 10;
         const correctGuessesRequiredToWin = this.getUniqueLettersInAWord();
 
-        return this.missedGuesses == maxMissedGuesses ? 'lost'
-             : this.getCorrectGuesses() == correctGuessesRequiredToWin ? 'won'
-             : 'in-progress';
+        if (this.getMissedGuesses() == maxMissedGuesses) 
+            return 'lost';
+        else if (this.getCorrectGuesses() == correctGuessesRequiredToWin)
+            return 'won'
+        return 'in-progress';
     }
 
     private getUniqueLettersInAWord() : number {
