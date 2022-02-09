@@ -5,7 +5,7 @@ describe("Testing endpoints", () => {
     test("POST /games", async () => {
         const response = await supertest(app.getApp()).post('/games').expect(201);
         expect(response.body.playerId).toBe(1);
-        expect(response.body.chosenWord).toBeTruthy();
+        expect(response.body.chosenWord).toBe("table");
     })
 
     test("POST /guess", async () => {
