@@ -19,7 +19,6 @@ describe("Testing game gateway", () => {
 
     test("Updating game", () => {
         gameGateway.addGame(GameBuilder.init(1, "table").build());
-        expect(gameGateway.getGameByPlayerId(1)?.getWordBeingGuessed()).toBe("table");
         gameGateway.updateGame(1, GameBuilder.init(1, "interface").build());
         expect(gameGateway.getGameByPlayerId(1)?.getWordBeingGuessed()).toBe("interface");
         

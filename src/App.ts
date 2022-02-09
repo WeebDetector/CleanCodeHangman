@@ -18,9 +18,7 @@ export class App {
     }
 
     listen() {
-        this.app.listen(this.port, () => {
-            console.log('Listening to app at 3000');
-        })
+        this.app.listen(this.port);
     }
 
     getApp() : any {

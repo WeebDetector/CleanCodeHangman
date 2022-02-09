@@ -44,7 +44,7 @@ export class Game {
         return this.wordBeingGuessed;
     }
 
-    isGameOver() : 'won' | 'lost' | 'in-progress' {
+    getGameState() : 'won' | 'lost' | 'in-progress' {
         const maxMissedGuesses = 10;
         const correctGuessesRequiredToWin = this.getUniqueLettersInAWord();
 
@@ -75,7 +75,7 @@ export class Game {
 
         this.updateLettersGuessed(gameBuilder, guessedLetter);
 
-        const stateDescription = this.isGameOver();
+        const stateDescription = this.getGameState();
         const updatedGame = gameBuilder.build();
 
         return new GuessResponse(updatedGame, stateDescription);;

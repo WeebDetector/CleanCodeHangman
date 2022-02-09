@@ -11,7 +11,6 @@ export class CreateGameController {
 
     execute(req : Request, res : Response) : void {
         const interactorResponse = this.createGameUC.execute();
-        console.log(interactorResponse);
         res.status(201).json({
             playerId: interactorResponse.getPlayerId(),
             chosenWord: interactorResponse.getChosenWord(),
