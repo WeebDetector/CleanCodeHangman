@@ -17,6 +17,11 @@ export class CreateGameRoute {
     }
 
     private convertB2R(interactorResponse: BoundaryGameDataStruct) : RestGameDataStruct {
-        return new RestGameDataStruct(interactorResponse.getPlayerId(), interactorResponse.getChosenWord());
+        const hiddenWordArray = this.convertMapToArray(interactorResponse.getChosenWord());
+        return new RestGameDataStruct(interactorResponse.getPlayerId(), hiddenWordArray);
+    }
+
+    private convertMapToArray(hiddenWordMap : Map<number, string>) {
+        return Array.from(hiddenWordMap);
     }
 }

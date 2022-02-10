@@ -1,8 +1,8 @@
 export class RestGameDataStruct {
     readonly playerId : number
-    readonly chosenWord : string
+    readonly chosenWord : [number, string][]
 
-    constructor(playerId : number, chosenWord : string) {
+    constructor(playerId : number, chosenWord : [number, string][]) {
         this.playerId = playerId;
         this.chosenWord = chosenWord;
     }

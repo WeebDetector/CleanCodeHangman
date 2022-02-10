@@ -3,8 +3,26 @@ import { mock, MockProxy } from 'jest-mock-extended';
 import { BoundaryGameDataStruct } from "../../use_cases/api/entity/BoundaryGameDataStruct";
 import { CreateGameUseCase } from "../../use_cases/api/CreateGameUseCase";
 import { getMockReq, getMockRes } from '@jest-mock/express'
+import { RestGameDataStruct } from "../api/entity/RestGameDataStruct";
 
-const EXPECTED_GAME_DATA_STRUCT = new BoundaryGameDataStruct(1, 'table');
+const EXPECTED_GAME_DATA_STRUCT = new BoundaryGameDataStruct(1, constructHiddenWord("table"));
+const EXPECTED_RESPONSE_TO_SEND = new RestGameDataStruct(1, constructArray("table"));
+
+function constructArray(word : string) : [number, string][] {
+    const arrayToExpect = new Array();
+    for (let i = 0; i < word.length; i++)
+        arrayToExpect.push([i, '_']);
+
+    return arrayToExpect;
+}
+
+function constructHiddenWord(word : string) : Map<number, string> {
+    const hiddenWord = new Map<number, string>();
+    for (let i = 0; i < word.length; i++)
+        hiddenWord.set(i, '_');
+
+    return hiddenWord;
+}
 
 describe("Testing game controller", () => {
     let createGameUC : MockProxy<CreateGameUseCase>;
@@ -23,8 +41,8 @@ describe("Testing game controller", () => {
         
         expect(res.status).toHaveBeenCalledWith(201);
         expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
-            playerId: EXPECTED_GAME_DATA_STRUCT.getPlayerId(),
-            chosenWord: EXPECTED_GAME_DATA_STRUCT.getChosenWord(),
+            playerId: EXPECTED_RESPONSE_TO_SEND.playerId,
+            chosenWord: EXPECTED_RESPONSE_TO_SEND.chosenWord,
         }))
     })
 })

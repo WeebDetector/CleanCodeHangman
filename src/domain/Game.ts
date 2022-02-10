@@ -5,12 +5,12 @@ import { GuessResponse } from "./GuessResponse";
 export class Game {
     private readonly missedGuesses: number;
     private readonly lettersGuessed: string[];
-    private readonly currentWordState: string[];
+    private readonly currentWordState: Map<number, string>;
     private readonly playerId: number;
     private readonly wordBeingGuessed: string;
 
     constructor(missedGuesses : number, lettersGuessed : string[],
-                currentWordState : string[], playerId : number, chosenWordForTheGame : string) {
+                currentWordState : Map<number, string>, playerId : number, chosenWordForTheGame : string) {
         this.missedGuesses = missedGuesses;
         this.lettersGuessed = lettersGuessed;
         this.currentWordState = currentWordState;
@@ -23,7 +23,7 @@ export class Game {
     }
 
     getCorrectGuesses() : number {
-        const uniqueSymbols = new Set(this.currentWordState);
+        const uniqueSymbols = new Set(this.currentWordState.values());
         if (uniqueSymbols.has('_'))
             return (uniqueSymbols.size - 1);
         return uniqueSymbols.size;
@@ -33,7 +33,7 @@ export class Game {
         return this.lettersGuessed;
     }
 
-    getCurrentWordState() : string[] {
+    getCurrentWordState() : Map<number, string> {
         return this.currentWordState;
     }
 
@@ -82,21 +82,33 @@ export class Game {
     }
 
     private updateGameAfterCorrectGuess(guessedLetter : string) : GameBuilder {
-        let gameBuilder = GameBuilder.of(this);
+        const gameBuilder = GameBuilder.of(this);
         const updatedWordState = this.updateCurrentWordState(guessedLetter)
 
         return gameBuilder.setCurrentWordState(updatedWordState);
     }
 
-    private updateCurrentWordState(guessedLetter : string) : string[] {
+    private updateCurrentWordState(guessedLetter : string) : Map<number, string> {
         let currentWordState = this.getCurrentWordState();
-        let letterIndex = this.wordBeingGuessed.indexOf(guessedLetter);
-        while (letterIndex != -1) {
-            if (currentWordState[letterIndex] == '_')
-                currentWordState[letterIndex] = guessedLetter;
-            letterIndex = this.wordBeingGuessed.indexOf(guessedLetter, letterIndex + 1);
-        }
-        return currentWordState;
+        const letterIndexes = this.findLetterOccurences(guessedLetter);
+
+        const updatedWordState = new Map<number, string>();
+
+        Array.from(currentWordState.entries()).forEach(entry => {
+            const symbol = (letterIndexes.includes(entry[0])) ? guessedLetter : entry[1];
+
+            updatedWordState.set(entry[0], symbol);
+        });
+
+        return updatedWordState;
+    }
+
+    private findLetterOccurences(guessedLetter : string) : number[] {
+        const letterIndexes = new Array();
+        for (let i = 0; i < this.wordBeingGuessed.length; i++)
+            if (this.wordBeingGuessed[i] === guessedLetter)
+                letterIndexes.push(i);
+        return letterIndexes;
     }
 
     private updateGameAfterIncorrectGuess() : GameBuilder {

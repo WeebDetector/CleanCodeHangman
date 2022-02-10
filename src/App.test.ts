@@ -1,11 +1,21 @@
 import app from './TestApiRunner';
 const supertest = require("supertest");
 
+function constructArray(word : string) : [number, string][] {
+    const arrayToExpect = new Array();
+    for (let i = 0; i < word.length; i++)
+        arrayToExpect.push([i, '_']);
+
+    return arrayToExpect;
+}
+
 describe("Testing endpoints", () => {
     test("POST /games", async () => {
         const response = await supertest(app.getApp()).post('/games').expect(201);
+        const responseArray = constructArray("table");
+
         expect(response.body.playerId).toBe(1);
-        expect(response.body.chosenWord).toBe("table");
+        expect(response.body.chosenWord).toStrictEqual(responseArray);
     })
 
     test("POST /guess", async () => {

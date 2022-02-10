@@ -17,19 +17,28 @@ export class CreateGameInteractor implements CreateGameUseCase {
     }
 
     execute() : BoundaryGameDataStruct {
-        const playerIdAndGameWord = new BoundaryGameDataStruct(this.playerGateway.addPlayer(), this.wordGateway.pickRandomWord())
+        const player = this.playerGateway.addPlayer();
+        const word = this.wordGateway.pickRandomWord();
+        const hiddenWord = this.constructHiddenWord(word);
 
-        this.addGameToGamesGateway(playerIdAndGameWord.getPlayerId(), playerIdAndGameWord.getChosenWord());
+        this.addGameToGamesGateway(player, word, hiddenWord);
+        const playerIdAndGameWord = new BoundaryGameDataStruct(player, hiddenWord);
+
         return playerIdAndGameWord;
     }
+    private constructHiddenWord(gameWord : string) : Map<number, string> {
+        const hiddenWord = new Map<number, string>();
+        for (let i = 0; i < gameWord.length; i++) {
+            hiddenWord.set(i, '_');
+        }
 
-    private addGameToGamesGateway(playerId : number, gameWord : string) : void {
-        const gameSession = GameBuilder.init(playerId, gameWord)
-        .setCurrentWordState(this.constructLettersGuessedArray(gameWord));
-        this.gameGateway.addGame(gameSession.build());
+        return hiddenWord;
     }
 
-    private constructLettersGuessedArray(gameWord : string) : string[] {
-        return new Array(gameWord.length).fill('_');
+    private addGameToGamesGateway(playerId : number, gameWord : string, hiddenWord : Map<number, string>) : void {
+        const gameSession = GameBuilder.init(playerId, gameWord)
+        .setCurrentWordState(hiddenWord)
+        .build();
+        this.gameGateway.addGame(gameSession);
     }
 }
