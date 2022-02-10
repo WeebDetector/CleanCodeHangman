@@ -12,22 +12,6 @@ const FRESH_WORD_STATE_ARRAY = Array.from(FRESH_WORD_STATE_MAP);
 const EXPECTED_RESPONSE_STRUCT = new BoundaryGuessResponse(true, "in-progress", FRESH_WORD_STATE_MAP);
 const EXPECTED_CALL_STRUCT = new RestGuessResponse(true, 'in-progress', FRESH_WORD_STATE_ARRAY);
 
-function constructArray(word : string) : [number, string][] {
-    const arrayToExpect = new Array();
-    for (let i = 0; i < word.length; i++)
-        arrayToExpect.push([i, '_']);
-
-    return arrayToExpect;
-}
-
-function constructHiddenWord(word : string) : Map<number, string> {
-    const hiddenWord = new Map<number, string>();
-    for (let i = 0; i < word.length; i++)
-        hiddenWord.set(i, '_');
-
-    return hiddenWord;
-}
-
 describe("Testing guess controller", () => {
 
     let guessUC : MockProxy<GuessUseCase>;
