@@ -78,7 +78,7 @@ export class Game {
         const stateDescription = this.getGameState();
         const updatedGame = gameBuilder.build();
 
-        return new GuessResponse(updatedGame, stateDescription);;
+        return new GuessResponse(updatedGame, stateDescription);
     }
 
     private updateGameAfterCorrectGuess(guessedLetter : string) : GameBuilder {

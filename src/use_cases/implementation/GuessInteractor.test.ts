@@ -3,7 +3,16 @@ import { Game } from "../../domain/Game";
 import { GuessInteractor } from "./GuessInteractor";
 import { mock, MockProxy } from 'jest-mock-extended';
 
-const EXPECTED_GAME_GATEWAY_RESULT = new Game(0, new Array(), new Map<number, string>(), 1, "table");
+const WORD = "table";
+const EXPECTED_GAME_GATEWAY_RESULT = new Game(0, new Array(), constructHiddenWord(''), 1, WORD);
+
+function constructHiddenWord(letter : string) : Map<number, string> {
+    const hiddenWord = new Map<number, string>();
+    for (let i = 0; i < WORD.length; i++)
+        (letter === WORD[i]) ? hiddenWord.set(i, letter) : hiddenWord.set(i, '_');
+
+    return hiddenWord;
+}
 
 describe("Testing guess interactor", () => {
 
@@ -22,6 +31,7 @@ describe("Testing guess interactor", () => {
     
         expect(gameResponse.getGuessState()).toBe(true);
         expect(gameResponse.getGameStateDescription()).toBe("in-progress");
+        expect(gameResponse.getHiddenWord()).toStrictEqual(constructHiddenWord(GUESS));
     })
 
     test("The game doesn't exist case", () => {

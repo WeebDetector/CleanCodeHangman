@@ -1,10 +1,10 @@
 import app from './TestApiRunner';
 const supertest = require("supertest");
 
-function constructArray(word : string) : [number, string][] {
+function constructArray(word : string, letterGuessed : string) : [number, string][] {
     const arrayToExpect = new Array();
     for (let i = 0; i < word.length; i++)
-        arrayToExpect.push([i, '_']);
+        (letterGuessed == word[i]) ? arrayToExpect.push([i, letterGuessed]) : arrayToExpect.push([i, '_']);
 
     return arrayToExpect;
 }
@@ -12,7 +12,7 @@ function constructArray(word : string) : [number, string][] {
 describe("Testing endpoints", () => {
     test("POST /games", async () => {
         const response = await supertest(app.getApp()).post('/games').expect(201);
-        const responseArray = constructArray("table");
+        const responseArray = constructArray("table", '');
 
         expect(response.body.playerId).toBe(1);
         expect(response.body.chosenWord).toStrictEqual(responseArray);
@@ -23,10 +23,12 @@ describe("Testing endpoints", () => {
             userId: 1,
             letterGuessed: "a"
         }
+        const wordStateArray = constructArray("table", data.letterGuessed);
 
         const response = await supertest(app.getApp()).post('/guess').send(data).expect(200);
 
         expect(response.body.isGuessCorrect).toBe(true);
         expect(response.body.stateDescription).toBe('in-progress');
+        expect(response.body.wordState).toStrictEqual(wordStateArray);
     })
 })

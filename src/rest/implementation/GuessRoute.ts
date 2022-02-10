@@ -18,6 +18,11 @@ export class GuessRoute {
     }
 
     private convertB2R(interactorResponse: BoundaryGuessResponse) : RestGuessResponse {
-        return new RestGuessResponse(interactorResponse.getGuessState(), interactorResponse.getGameStateDescription());
+        const hiddenWordArray = this.convertMapToArray(interactorResponse.getHiddenWord());
+        return new RestGuessResponse(interactorResponse.getGuessState(), interactorResponse.getGameStateDescription(), hiddenWordArray);
+    }
+
+    private convertMapToArray(hiddenWordMap : Map<number, string>) {
+        return Array.from(hiddenWordMap);
     }
 }
