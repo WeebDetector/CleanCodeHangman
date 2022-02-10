@@ -82,7 +82,7 @@ export class Game {
     }
 
     private updateGameAfterCorrectGuess(guessedLetter : string) : GameBuilder {
-        let gameBuilder = GameBuilder.of(this);
+        const gameBuilder = GameBuilder.of(this);
         const updatedWordState = this.updateCurrentWordState(guessedLetter)
 
         return gameBuilder.setCurrentWordState(updatedWordState);
@@ -95,8 +95,7 @@ export class Game {
         const updatedWordState = new Map<number, string>();
 
         Array.from(currentWordState.entries()).forEach(entry => {
-            let symbol;
-            (letterIndexes.includes(entry[0])) ? symbol = guessedLetter : symbol = entry[1];
+            const symbol = (letterIndexes.includes(entry[0])) ? guessedLetter : entry[1];
 
             updatedWordState.set(entry[0], symbol);
         });
