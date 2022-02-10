@@ -1,4 +1,5 @@
 import { GameBuilder } from "./GameBuilder";
+import { GameState } from "./GameState";
 import { GuessResponse } from "./GuessResponse";
 
 export class Game {
@@ -44,13 +45,15 @@ export class Game {
         return this.wordBeingGuessed;
     }
 
-    getGameState() : 'won' | 'lost' | 'in-progress' {
+    getGameState() : GameState {
         const maxMissedGuesses = 10;
         const correctGuessesRequiredToWin = this.getUniqueLettersInAWord();
 
-        return this.missedGuesses == maxMissedGuesses ? 'lost'
-             : this.getCorrectGuesses() == correctGuessesRequiredToWin ? 'won'
-             : 'in-progress';
+        if (this.getMissedGuesses() == maxMissedGuesses) 
+            return GameState.Lost;
+        else if (this.getCorrectGuesses() == correctGuessesRequiredToWin)
+            return GameState.Won;
+        return GameState.inProgress;
     }
 
     private getUniqueLettersInAWord() : number {

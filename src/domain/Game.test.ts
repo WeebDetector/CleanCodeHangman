@@ -43,8 +43,7 @@ describe('Testing game', () => {
 
     test("Game ending conditions: victory", () => {
         const winningArray = ['t', 'a', 'b', 'l', 'e'];
-        const newGameBuilder = gameBuilder.setCurrentWordState(winningArray);
-        const wonGame = newGameBuilder.build();
+        const wonGame = gameBuilder.setCurrentWordState(winningArray).build();
 
         expect(wonGame.getGameState()).toBe("won");
     })
