@@ -1,6 +1,6 @@
 export class RestGuessResponse {
-    private isGuessCorrect : boolean
-    private stateDescription : string
+    readonly isGuessCorrect : boolean
+    readonly stateDescription : string
 
     constructor(isGuessCorrect : boolean, stateDescription : string) {
         this.isGuessCorrect = isGuessCorrect;
