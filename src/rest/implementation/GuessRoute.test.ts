@@ -5,8 +5,12 @@ import { BoundaryGuessResponse } from "../../use_cases/api/entity/BoundaryGuessR
 import { getMockReq, getMockRes } from '@jest-mock/express'
 import { RestGuessResponse } from "../api/entity/RestGuessResponse";
 
-const EXPECTED_RESPONSE_STRUCT = new BoundaryGuessResponse(true, "in-progress", constructHiddenWord("table"));
-const EXPECTED_CALL_STRUCT = new RestGuessResponse(true, 'in-progress', constructArray("table"));
+const FRESH_WORD_STATE_MAP = new Map<number, string>([
+                        [0, '_'], [1, '_'], [2, '_'],
+                        [3, '_'], [4, '_']]);
+const FRESH_WORD_STATE_ARRAY = Array.from(FRESH_WORD_STATE_MAP);
+const EXPECTED_RESPONSE_STRUCT = new BoundaryGuessResponse(true, "in-progress", FRESH_WORD_STATE_MAP);
+const EXPECTED_CALL_STRUCT = new RestGuessResponse(true, 'in-progress', FRESH_WORD_STATE_ARRAY);
 
 function constructArray(word : string) : [number, string][] {
     const arrayToExpect = new Array();

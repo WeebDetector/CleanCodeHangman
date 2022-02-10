@@ -5,24 +5,12 @@ import { CreateGameUseCase } from "../../use_cases/api/CreateGameUseCase";
 import { getMockReq, getMockRes } from '@jest-mock/express'
 import { RestGameDataStruct } from "../api/entity/RestGameDataStruct";
 
-const EXPECTED_GAME_DATA_STRUCT = new BoundaryGameDataStruct(1, constructHiddenWord("table"));
-const EXPECTED_RESPONSE_TO_SEND = new RestGameDataStruct(1, constructArray("table"));
-
-function constructArray(word : string) : [number, string][] {
-    const arrayToExpect = new Array();
-    for (let i = 0; i < word.length; i++)
-        arrayToExpect.push([i, '_']);
-
-    return arrayToExpect;
-}
-
-function constructHiddenWord(word : string) : Map<number, string> {
-    const hiddenWord = new Map<number, string>();
-    for (let i = 0; i < word.length; i++)
-        hiddenWord.set(i, '_');
-
-    return hiddenWord;
-}
+const FRESH_WORD_STATE_MAP = new Map<number, string>([
+                        [0, '_'], [1, '_'], [2, '_'],
+                        [3, '_'], [4, '_']]);
+const FRESH_WORD_STATE_ARRAY = Array.from(FRESH_WORD_STATE_MAP);
+const EXPECTED_GAME_DATA_STRUCT = new BoundaryGameDataStruct(1, FRESH_WORD_STATE_MAP);
+const EXPECTED_RESPONSE_TO_SEND = new RestGameDataStruct(1, FRESH_WORD_STATE_ARRAY);
 
 describe("Testing game controller", () => {
     let createGameUC : MockProxy<CreateGameUseCase>;
