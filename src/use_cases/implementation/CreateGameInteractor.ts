@@ -37,7 +37,8 @@ export class CreateGameInteractor implements CreateGameUseCase {
 
     private addGameToGamesGateway(playerId : number, gameWord : string, hiddenWord : Map<number, string>) : void {
         const gameSession = GameBuilder.init(playerId, gameWord)
-        .setCurrentWordState(hiddenWord);
-        this.gameGateway.addGame(gameSession.build());
+        .setCurrentWordState(hiddenWord)
+        .build();
+        this.gameGateway.addGame(gameSession);
     }
 }

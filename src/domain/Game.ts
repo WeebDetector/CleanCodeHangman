@@ -96,10 +96,7 @@ export class Game {
 
         Array.from(currentWordState.entries()).forEach(entry => {
             let symbol;
-            if (letterIndexes.includes(entry[0]))
-                symbol = guessedLetter;
-            else
-                symbol = entry[1];
+            (letterIndexes.includes(entry[0])) ? symbol = guessedLetter : symbol = entry[1];
 
             updatedWordState.set(entry[0], symbol);
         });
