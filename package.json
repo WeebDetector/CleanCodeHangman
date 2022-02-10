@@ -2,11 +2,11 @@
   "name": "cleancodehangman",
   "version": "1.0.0",
   "description": "Hangman game using SOLID principles",
-  "main": "index.js",
+  "main": "Index.js",
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc",
-    "start": "npm run build && node dist/src/index.js",
+    "start": "npm run build && node dist/src/Index.js",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "lint": "tsc && eslint --max-warnings 0 --ext js,ts,tsx src"
@@ -36,6 +36,7 @@
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
+    "@jest-mock/express": "^1.4.5",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.0",
     "babel-jest": "^27.4.6",

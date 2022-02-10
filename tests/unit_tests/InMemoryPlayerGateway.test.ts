@@ -1,14 +1,13 @@
-import { GameBuilder } from "../../src/domain/GameBuilder";
 import { InMemoryPlayerGateway } from "../../src/gateway/InMemoryPlayerGateway";
 
 describe("Testing player gateway", () => {
-    let obj : InMemoryPlayerGateway;
+    let playerGateway : InMemoryPlayerGateway;
 
     beforeEach(() => {
-        obj = new InMemoryPlayerGateway();
+        playerGateway = new InMemoryPlayerGateway();
     });
 
-    test("Game addition and retrieval", () => {
-        expect(obj.addPlayer()).toBe(1);
+    test("Player addition", () => {
+        expect(playerGateway.addPlayer()).toBe(1);
     })
 })

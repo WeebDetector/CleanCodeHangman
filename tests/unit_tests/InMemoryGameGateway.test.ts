@@ -2,18 +2,25 @@ import { GameBuilder } from "../../src/domain/GameBuilder";
 import { InMemoryGameGateway } from "../../src/gateway/InMemoryGameGateway";
 
 describe("Testing game gateway", () => {
-    let obj : InMemoryGameGateway;
+    let gameGateway : InMemoryGameGateway;
 
     beforeEach(() => {
-        obj = new InMemoryGameGateway();
+        gameGateway = new InMemoryGameGateway();
     });
 
     test("Game addition and retrieval", () => {
-        obj.addGame(GameBuilder.init(1, "table").build());
-        expect(obj.getGameByPlayerId(1)).not.toBeUndefined();
+        gameGateway.addGame(GameBuilder.init(1, "table").build());
+        expect(gameGateway.getGameByPlayerId(1)).not.toBeUndefined();
     })
 
     test("Game retrieval without addition", () => {
-        expect(obj.getGameByPlayerId(1)).toBeUndefined();
+        expect(gameGateway.getGameByPlayerId(1)).toBeUndefined();
+    })
+
+    test("Updating game", () => {
+        gameGateway.addGame(GameBuilder.init(1, "table").build());
+        gameGateway.updateGame(1, GameBuilder.init(1, "interface").build());
+        expect(gameGateway.getGameByPlayerId(1)?.getWordBeingGuessed()).toBe("interface");
+        
     })
 })
