@@ -16,7 +16,7 @@ describe("Testing endpoints", () => {
 
         const response = await supertest(app.getApp()).post('/guess').send(data).expect(200);
 
-        expect(response.body.guessStatus).toBe(true);
-        expect(response.body.gameState).toBe('in-progress');
+        expect(response.body.isGuessCorrect).toBe(true);
+        expect(response.body.stateDescription).toBe('in-progress');
     })
 })

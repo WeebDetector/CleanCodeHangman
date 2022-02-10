@@ -1,4 +1,4 @@
-import { Game } from "../domain/Game";
+import { Game } from "./Game";
 
 export class GuessResponse {
     private readonly game : Game

@@ -1,5 +1,5 @@
-import { GameBuilder } from "../../src/domain/GameBuilder";
-import { InMemoryGameGateway } from "../../src/gateway/InMemoryGameGateway";
+import { GameBuilder } from "../../domain/GameBuilder";
+import { InMemoryGameGateway } from "./InMemoryGameGateway";
 
 describe("Testing game gateway", () => {
     let gameGateway : InMemoryGameGateway;

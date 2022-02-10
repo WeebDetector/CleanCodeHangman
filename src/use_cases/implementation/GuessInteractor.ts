@@ -1,7 +1,7 @@
-import { Game } from "../domain/Game";
-import { GameGateway } from "../gateway/GameGateway";
-import { BoundaryGuessResponse } from "../use_cases/BoundaryGuessResponse";
-import { GuessUseCase } from "../use_cases/GuessUseCase";
+import { Game } from "../../domain/Game";
+import { GameGateway } from "../../gateway/api/GameGateway";
+import { BoundaryGuessResponse } from "../api/entity/BoundaryGuessResponse";
+import { GuessUseCase } from "../api/GuessUseCase";
 
 export class GuessInteractor implements GuessUseCase {
     private readonly gameGateway : GameGateway;

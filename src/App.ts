@@ -1,6 +1,6 @@
-import { GameGateway } from './gateway/GameGateway';
-import { PlayerGateway } from './gateway/PlayerGateway';
-import { WordGateway } from './gateway/WordGateway';
+import { GameGateway } from './gateway/api/GameGateway';
+import { PlayerGateway } from './gateway/api/PlayerGateway';
+import { WordGateway } from './gateway/api/WordGateway';
 import { Routes } from './Routes';
 const express = require('express');
 

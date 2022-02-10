@@ -1,4 +1,4 @@
-import { BoundaryGameDataStruct } from "./BoundaryGameDataStruct";
+import { BoundaryGameDataStruct } from "./entity/BoundaryGameDataStruct";
 
 export interface CreateGameUseCase {
     execute() : BoundaryGameDataStruct;

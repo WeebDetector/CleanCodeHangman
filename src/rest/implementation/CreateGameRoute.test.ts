@@ -1,18 +1,18 @@
-import { CreateGameController } from "../../src/controllers/CreateGameController";
+import { CreateGameRoute } from "./CreateGameRoute";
 import { mock, MockProxy } from 'jest-mock-extended';
-import { BoundaryGameDataStruct } from "../../src/use_cases/BoundaryGameDataStruct";
-import { CreateGameUseCase } from "../../src/use_cases/CreateGameUseCase";
+import { BoundaryGameDataStruct } from "../../use_cases/api/entity/BoundaryGameDataStruct";
+import { CreateGameUseCase } from "../../use_cases/api/CreateGameUseCase";
 import { getMockReq, getMockRes } from '@jest-mock/express'
 
 const EXPECTED_GAME_DATA_STRUCT = new BoundaryGameDataStruct(1, 'table');
 
 describe("Testing game controller", () => {
     let createGameUC : MockProxy<CreateGameUseCase>;
-    let createGameController : CreateGameController;
+    let createGameController : CreateGameRoute;
 
     beforeEach(() => {
         createGameUC = mock<CreateGameUseCase>();
-        createGameController = new CreateGameController(createGameUC);
+        createGameController = new CreateGameRoute(createGameUC);
     });
 
     test("Controller returns correct values", () => {

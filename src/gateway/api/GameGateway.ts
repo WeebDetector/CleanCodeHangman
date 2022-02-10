@@ -1,4 +1,4 @@
-import { Game } from "../domain/Game";
+import { Game } from "../../domain/Game";
 
 export interface GameGateway {
     addGame(newGame : Game): void

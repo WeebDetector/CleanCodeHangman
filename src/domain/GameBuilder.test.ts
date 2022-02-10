@@ -1,4 +1,4 @@
-import { GameBuilder } from "../../src/domain/GameBuilder";
+import { GameBuilder } from "./GameBuilder";
 
 function fillArray(size: number) {
     return new Array(size).fill('_');

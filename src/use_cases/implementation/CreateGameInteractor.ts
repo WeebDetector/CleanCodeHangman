@@ -1,9 +1,9 @@
-import { WordGateway } from "../gateway/WordGateway";
-import { CreateGameUseCase } from "../use_cases/CreateGameUseCase";
-import { BoundaryGameDataStruct } from "../use_cases/BoundaryGameDataStruct";
-import { PlayerGateway } from "../gateway/PlayerGateway";
-import { GameGateway } from "../gateway/GameGateway";
-import { GameBuilder } from "../domain/GameBuilder";
+import { WordGateway } from "../../gateway/api/WordGateway";
+import { CreateGameUseCase } from "../api/CreateGameUseCase";
+import { BoundaryGameDataStruct } from "../api/entity/BoundaryGameDataStruct";
+import { PlayerGateway } from "../../gateway/api/PlayerGateway";
+import { GameGateway } from "../../gateway/api/GameGateway";
+import { GameBuilder } from "../../domain/GameBuilder";
 
 export class CreateGameInteractor implements CreateGameUseCase {
     private readonly wordGateway : WordGateway;

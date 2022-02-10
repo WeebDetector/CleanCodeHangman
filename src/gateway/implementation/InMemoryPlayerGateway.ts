@@ -1,4 +1,4 @@
-import { PlayerGateway } from "./PlayerGateway";
+import { PlayerGateway } from "../api/PlayerGateway";
 
 export class InMemoryPlayerGateway implements PlayerGateway {
     private readonly playerIds : number[];
