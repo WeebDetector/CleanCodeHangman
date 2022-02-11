@@ -5,13 +5,6 @@ import { BoundaryGuessResponse } from "../../use_cases/api/entity/BoundaryGuessR
 import { getMockReq, getMockRes } from '@jest-mock/express'
 import { RestGuessResponse } from "../api/entity/RestGuessResponse";
 
-const FRESH_WORD_STATE_MAP = new Map<number, string>([
-                        [0, '_'], [1, '_'], [2, '_'],
-                        [3, '_'], [4, '_']]);
-const FRESH_WORD_STATE_ARRAY = Array.from(FRESH_WORD_STATE_MAP);
-const EXPECTED_RESPONSE_STRUCT = new BoundaryGuessResponse(true, "in-progress", FRESH_WORD_STATE_MAP);
-const EXPECTED_CALL_STRUCT = new RestGuessResponse(true, 'in-progress', FRESH_WORD_STATE_ARRAY);
-
 describe("Testing guess controller", () => {
 
     let guessUC : MockProxy<GuessUseCase>;
@@ -23,13 +16,20 @@ describe("Testing guess controller", () => {
     });
 
     test("Letter in the word method", () => {
-        guessUC.isLetterInWord.mockReturnValue(EXPECTED_RESPONSE_STRUCT);
+        const freshWordStateMap = new Map<number, string>([
+                                [0, '_'], [1, '_'], [2, '_'],
+                                [3, '_'], [4, '_']]);
+        const freshWordStateArray = Array.from(freshWordStateMap);
+        const expectedResponseStruct = new BoundaryGuessResponse(true, "in-progress", freshWordStateMap);
+        const expectedCallStruct = new RestGuessResponse(true, 'in-progress', freshWordStateArray);
+        
+        guessUC.isLetterInWord.mockReturnValue(expectedResponseStruct);
         
         const req = getMockReq();
         const { res } = getMockRes();
         guessController.isLetterInWord(req, res);
 
         expect(res.status).toHaveBeenCalledWith(200);
-        expect(res.json).toHaveBeenCalledWith(expect.objectContaining(EXPECTED_CALL_STRUCT))
+        expect(res.json).toHaveBeenCalledWith(expect.objectContaining(expectedCallStruct))
     })
 })
