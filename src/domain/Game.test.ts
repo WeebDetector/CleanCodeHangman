@@ -1,18 +1,7 @@
 import { Game } from "./Game";
 import { GameBuilder } from "./GameBuilder";
 
-const WORD = "table";
-const WORD_STATE_MAP = constructWordMap("empty");
 const CORRECT_GUESS = "a";
-const INCORRECT_GUESS = "o";
-
-function constructWordMap(type : string) : Map<number, string> {
-    const hiddenWord = new Map<number, string>();
-    for (let i = 0; i < WORD.length; i++)
-        (type == 'empty') ? hiddenWord.set(i, '_') : hiddenWord.set(i, WORD[i]);
-        
-    return hiddenWord;
-}
 
 describe('Testing game', () => {
 
@@ -20,7 +9,11 @@ describe('Testing game', () => {
     let game : Game
 
     beforeEach(() => {
-        gameBuilder = GameBuilder.init(1, WORD).setCurrentWordState(WORD_STATE_MAP);
+        const word = "table";
+        const freshWordStateMap = new Map<number, string>([
+                                    [0, '_'], [1, '_'], [2, '_'],
+                                    [3, '_'], [4, '_']]);
+        gameBuilder = GameBuilder.init(1, word).setCurrentWordState(freshWordStateMap);
         game = gameBuilder.build();
     });
 
@@ -42,13 +35,16 @@ describe('Testing game', () => {
     })
 
     test("Game object updates correctly with an incorrect guess", () => {
-        const response = game.guess(INCORRECT_GUESS);
+        const incorrectGuess = "o";
+        const response = game.guess(incorrectGuess);
         expect(response.getGame().getMissedGuesses()).toBe(1);
     })
 
     test("Game ending conditions: victory", () => {
-        const winningMap = constructWordMap("full");
-        const wonGame = gameBuilder.setCurrentWordState(winningMap).build();
+        const modifiedWordStateMap = new Map<number, string>([
+                                    [0, 't'], [1, 'a'], [2, 'b'],
+                                    [3, 'l'], [4, 'e']]);
+        const wonGame = gameBuilder.setCurrentWordState(modifiedWordStateMap).build();
 
         expect(wonGame.getGameState()).toBe("won");
     })

@@ -5,25 +5,6 @@ import { CreateGameUseCase } from "../../use_cases/api/CreateGameUseCase";
 import { getMockReq, getMockRes } from '@jest-mock/express'
 import { RestGameDataStruct } from "../api/entity/RestGameDataStruct";
 
-const EXPECTED_GAME_DATA_STRUCT = new BoundaryGameDataStruct(1, constructHiddenWord("table"));
-const EXPECTED_RESPONSE_TO_SEND = new RestGameDataStruct(1, constructArray("table"));
-
-function constructArray(word : string) : [number, string][] {
-    const arrayToExpect = new Array();
-    for (let i = 0; i < word.length; i++)
-        arrayToExpect.push([i, '_']);
-
-    return arrayToExpect;
-}
-
-function constructHiddenWord(word : string) : Map<number, string> {
-    const hiddenWord = new Map<number, string>();
-    for (let i = 0; i < word.length; i++)
-        hiddenWord.set(i, '_');
-
-    return hiddenWord;
-}
-
 describe("Testing game controller", () => {
     let createGameUC : MockProxy<CreateGameUseCase>;
     let createGameController : CreateGameRoute;
@@ -34,15 +15,22 @@ describe("Testing game controller", () => {
     });
 
     test("Controller returns correct values", () => {
-        createGameUC.execute.mockReturnValue(EXPECTED_GAME_DATA_STRUCT);
+        const freshWordStateMap = new Map<number, string>([
+                                    [0, '_'], [1, '_'], [2, '_'],
+                                    [3, '_'], [4, '_']]);
+        const freshWordStateArray = Array.from(freshWordStateMap);
+        const expectedGameDataStruct = new BoundaryGameDataStruct(1, freshWordStateMap);
+        const expectedResponseToSend = new RestGameDataStruct(1, freshWordStateArray);
+        
+        createGameUC.execute.mockReturnValue(expectedGameDataStruct);
         const req = getMockReq();
         const { res } = getMockRes();
         createGameController.execute(req, res);
         
         expect(res.status).toHaveBeenCalledWith(201);
         expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
-            playerId: EXPECTED_RESPONSE_TO_SEND.playerId,
-            chosenWord: EXPECTED_RESPONSE_TO_SEND.chosenWord,
+            playerId: expectedResponseToSend.playerId,
+            chosenWord: expectedResponseToSend.chosenWord,
         }))
     })
 })
