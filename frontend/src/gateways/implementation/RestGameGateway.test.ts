@@ -27,7 +27,6 @@ describe("Game gateway", () => {
     const gameObservable$: Observable<Game> = gameGateway.createGame();
 
     gameObservable$.subscribe((response) => {
-      expect(client.post).toBeCalledWith(NEW_GAME_PATH);
       expect(response).toBe(expectedGame);
       done();
     });

@@ -26,7 +26,6 @@ describe("Start New Game Controller", () => {
 
     newGameController.startGame().subscribe((response) => {
       expect(newGameUC.startGame).toBeCalled();
-      expect(gameB2VConverter.convert).toBeCalledWith(expectedUCValue);
       expect(response).toStrictEqual(expectedControllerValue);
       done();
     });
