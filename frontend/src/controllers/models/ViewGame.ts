@@ -1,4 +1,4 @@
-export class GameView {
+export class ViewGame {
   readonly playerId: number;
   readonly chosenWord: string;
 

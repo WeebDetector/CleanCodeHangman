@@ -1,32 +1,22 @@
 /* eslint-disable no-restricted-imports */
 import { map, Observable } from "rxjs";
-import { Game } from "../../domain/Game";
 import { GameGateway } from "../../gateways/api/GameGateway";
 import { StartNewGameUseCase } from "../api/StartNewGameUseCase";
 import { BoundaryGame } from "../model/BoundaryGame";
+import { GameD2BConverter } from "./GameD2BConverter";
 
 export class StartNewGameInteractor implements StartNewGameUseCase {
   private readonly gameGW: GameGateway;
+  private readonly converter: GameD2BConverter;
 
-  constructor(gameGW: GameGateway) {
+  constructor(gameGW: GameGateway, converter: GameD2BConverter) {
     this.gameGW = gameGW;
+    this.converter = converter;
   }
 
   startGame(): Observable<BoundaryGame> {
-    return this.gameGW.createGame().pipe(map((game) => this.convertD2B(game)));
-  }
-
-  private convertD2B(game: Game): BoundaryGame {
-    const playerId = game.playerId;
-    const gameWord = this.convertHiddenWordToString(game.chosenWord);
-    return new BoundaryGame(playerId, gameWord);
-  }
-
-  private convertHiddenWordToString(hiddenWord: [number, string][]): string {
-    let word = "";
-    hiddenWord.forEach((element) => {
-      word += element[1];
-    });
-    return word;
+    return this.gameGW
+      .createGame()
+      .pipe(map((game) => this.converter.convertD2B(game)));
   }
 }

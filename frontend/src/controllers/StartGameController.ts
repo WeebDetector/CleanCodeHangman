@@ -1,23 +1,21 @@
 /* eslint-disable no-restricted-imports */
 import { map, Observable } from "rxjs";
 import { StartNewGameUseCase } from "../use-cases/api/StartNewGameUseCase";
-import { BoundaryGame } from "../use-cases/model/BoundaryGame";
-import { GameView } from "./models/GameView";
+import { GameB2VConverter } from "./GameB2VConverter";
+import { ViewGame } from "./models/ViewGame";
 
 export class StartGameController {
   private readonly startGameUC: StartNewGameUseCase;
+  private readonly converter: GameB2VConverter;
 
-  constructor(startGameUC: StartNewGameUseCase) {
+  constructor(startGameUC: StartNewGameUseCase, converter: GameB2VConverter) {
     this.startGameUC = startGameUC;
+    this.converter = converter;
   }
 
-  startGame(): Observable<GameView> {
+  startGame(): Observable<ViewGame> {
     return this.startGameUC
       .startGame()
-      .pipe(map((game) => this.convertB2V(game)));
-  }
-
-  private convertB2V(game: BoundaryGame): GameView {
-    return new GameView(game.playerId, game.chosenWord);
+      .pipe(map((game) => this.converter.convertB2V(game)));
   }
 }

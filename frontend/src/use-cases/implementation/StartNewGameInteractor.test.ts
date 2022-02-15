@@ -5,14 +5,17 @@ import { mock, MockProxy } from "jest-mock-extended";
 import { GameGateway } from "../../gateways/api/GameGateway";
 import { StartNewGameInteractor } from "./StartNewGameInteractor";
 import { BoundaryGame } from "../model/BoundaryGame";
+import { GameD2BConverter } from "./GameD2BConverter";
 
 describe("Start New Game Interactor", () => {
   let gameGW: MockProxy<GameGateway>;
+  let gameD2BConverter: MockProxy<GameD2BConverter>;
   let newGameInteractor: StartNewGameInteractor;
 
   beforeEach(() => {
     gameGW = mock<GameGateway>();
-    newGameInteractor = new StartNewGameInteractor(gameGW);
+    gameD2BConverter = mock<GameD2BConverter>();
+    newGameInteractor = new StartNewGameInteractor(gameGW, gameD2BConverter);
   });
 
   test("New game is created and returned", (done) => {
@@ -27,6 +30,7 @@ describe("Start New Game Interactor", () => {
 
     const expectedGameBoundary = new BoundaryGame(1, "______");
     gameGW.createGame.mockReturnValue(of(expectedGame));
+    gameD2BConverter.convertD2B.mockReturnValue(expectedGameBoundary);
     const gameObservable$: Observable<BoundaryGame> =
       newGameInteractor.startGame();
 
