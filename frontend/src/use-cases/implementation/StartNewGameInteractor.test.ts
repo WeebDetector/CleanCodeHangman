@@ -35,7 +35,6 @@ describe("Start New Game Interactor", () => {
       newGameInteractor.startGame();
 
     gameObservable$.subscribe((response) => {
-      expect(gameGW.createGame).toBeCalled();
       expect(response).toStrictEqual(expectedGameBoundary);
       done();
     });
