@@ -4,7 +4,7 @@ import { Game } from "../../domain/Game";
 import { GameGatewayImpl } from "./RestGameGateway";
 import { mock, MockProxy } from "jest-mock-extended";
 import { Client } from "../api/Client";
-import { newGameURL } from "../../Environment";
+import { newGameURL } from "../../RouteConstants";
 
 describe("Game gateway", () => {
   let client: MockProxy<Client>;

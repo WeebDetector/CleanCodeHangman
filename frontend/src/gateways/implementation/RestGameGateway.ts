@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { Game } from "../../domain/Game";
 import { Client } from "../api/Client";
 import { GameGateway } from "../api/GameGateway";
-import { newGameURL } from "../../Environment";
+import { newGameURL } from "../../RouteConstants";
 
 export class GameGatewayImpl implements GameGateway {
   private readonly client: Client;

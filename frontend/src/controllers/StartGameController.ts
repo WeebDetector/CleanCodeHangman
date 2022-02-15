@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-imports */
 import { map, Observable } from "rxjs";
 import { StartNewGameUseCase } from "../use-cases/api/StartNewGameUseCase";
-import { GameBoundary } from "../use-cases/model/GameBoundary";
+import { BoundaryGame } from "../use-cases/model/BoundaryGame";
 import { GameView } from "./models/GameView";
 
 export class StartGameController {
@@ -17,7 +17,7 @@ export class StartGameController {
       .pipe(map((game) => this.convertB2V(game)));
   }
 
-  private convertB2V(game: GameBoundary): GameView {
+  private convertB2V(game: BoundaryGame): GameView {
     return new GameView(game.playerId, game.chosenWord);
   }
 }

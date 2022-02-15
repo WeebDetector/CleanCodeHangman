@@ -1,4 +1,4 @@
-export class GameBoundary {
+export class BoundaryGame {
   readonly playerId: number;
   readonly chosenWord: string;
 
