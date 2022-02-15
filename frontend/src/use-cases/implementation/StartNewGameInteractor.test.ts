@@ -4,6 +4,7 @@ import { Game } from "../../domain/Game";
 import { mock, MockProxy } from "jest-mock-extended";
 import { GameGateway } from "../../gateways/api/GameGateway";
 import { StartNewGameInteractor } from "./StartNewGameInteractor";
+import { GameBoundary } from "../model/GameBoundary";
 
 describe("Start New Game Interactor", () => {
   let gameGW: MockProxy<GameGateway>;
@@ -23,12 +24,16 @@ describe("Start New Game Interactor", () => {
       [4, "_"],
       [5, "_"],
     ]);
+
+    const expectedGameBoundary = new GameBoundary(1, "______");
     gameGW.createGame.mockReturnValue(of(expectedGame));
-    const gameObservable$: Observable<Game> = newGameInteractor.startGame();
+    const gameObservable$: Observable<GameBoundary> =
+      newGameInteractor.startGame();
 
     gameObservable$.subscribe((response) => {
-      expect(response).toBe(expectedGame);
+      expect(gameGW.createGame).toBeCalled();
+      expect(response).toStrictEqual(expectedGameBoundary);
+      done();
     });
-    done();
   });
 });

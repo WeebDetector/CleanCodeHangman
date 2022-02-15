@@ -3,7 +3,7 @@ import { map, Observable } from "rxjs";
 import { ajax } from "rxjs/ajax";
 import { Client } from "../api/Client";
 
-export class ClientImpl implements Client {
+export class RxJsAjaxClient implements Client {
   private readonly url: string;
 
   constructor(url: string) {

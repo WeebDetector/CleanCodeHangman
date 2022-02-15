@@ -1,9 +1,10 @@
 /* eslint-disable no-restricted-imports */
 import { Observable, of } from "rxjs";
 import { Game } from "../../domain/Game";
-import { GameGatewayImpl } from "./GameGatewayImpl";
+import { GameGatewayImpl } from "./RestGameGateway";
 import { mock, MockProxy } from "jest-mock-extended";
 import { Client } from "../api/Client";
+import { newGameURL } from "../../Environment";
 
 describe("Game gateway", () => {
   let client: MockProxy<Client>;
@@ -13,7 +14,7 @@ describe("Game gateway", () => {
     gameGateway = new GameGatewayImpl(client);
   });
 
-  test("New game is created and returned", () => {
+  test("New game is created and returned", (done) => {
     const expectedGame = new Game(1, [
       [0, "_"],
       [1, "_"],
@@ -26,7 +27,9 @@ describe("Game gateway", () => {
     const gameObservable$: Observable<Game> = gameGateway.createGame();
 
     gameObservable$.subscribe((response) => {
+      expect(client.post).toBeCalledWith(newGameURL);
       expect(response).toBe(expectedGame);
+      done();
     });
   });
 });

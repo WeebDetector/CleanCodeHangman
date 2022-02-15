@@ -1,7 +1,7 @@
+/* eslint-disable no-restricted-imports */
 import { Observable } from "rxjs";
-// eslint-disable-next-line no-restricted-imports
-import { Game } from "../../domain/Game";
+import { GameBoundary } from "../model/GameBoundary";
 
 export interface StartNewGameUseCase {
-  startGame(): Observable<Game>;
+  startGame(): Observable<GameBoundary>;
 }
