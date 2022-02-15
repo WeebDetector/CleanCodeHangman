@@ -6,8 +6,6 @@ import { useGame } from "./useGame";
 const GameContainer = () => {
   const hookResponse = useGame(startGameController);
 
-  console.log(hookResponse);
-
   return (
     <div>
       <h1>{hookResponse?.playerId}</h1>
