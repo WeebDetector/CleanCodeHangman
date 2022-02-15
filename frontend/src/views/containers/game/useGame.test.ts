@@ -23,7 +23,6 @@ describe("Use Game Hook", () => {
     const { result, rerender } = renderHook(() => useGame(startGameController));
     const hookReturn = new ViewGame(1, "______");
 
-    expect(startGameController.startGame).toBeCalled();
     expect(result.current).toStrictEqual(hookReturn);
   });
 });
