@@ -1,1 +1,1 @@
-export const NEW_GAME_URL = "/games";
+export const NEW_GAME_PATH = "/games";

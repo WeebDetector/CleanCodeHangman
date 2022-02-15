@@ -4,7 +4,7 @@ import { Game } from "../../domain/Game";
 import { RestGameGateway } from "./RestGameGateway";
 import { mock, MockProxy } from "jest-mock-extended";
 import { Client } from "../api/Client";
-import { NEW_GAME_URL } from "../../RouteConstants";
+import { NEW_GAME_PATH } from "../../RouteConstants";
 
 describe("Game gateway", () => {
   let client: MockProxy<Client>;
@@ -27,7 +27,7 @@ describe("Game gateway", () => {
     const gameObservable$: Observable<Game> = gameGateway.createGame();
 
     gameObservable$.subscribe((response) => {
-      expect(client.post).toBeCalledWith(NEW_GAME_URL);
+      expect(client.post).toBeCalledWith(NEW_GAME_PATH);
       expect(response).toBe(expectedGame);
       done();
     });
