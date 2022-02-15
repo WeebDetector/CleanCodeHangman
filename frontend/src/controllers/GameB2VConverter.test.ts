@@ -13,7 +13,7 @@ describe("Game B2V Converter ", () => {
     const gameBeforeConversion = new BoundaryGame(1, "______");
     const gameAfterConversion = new ViewGame(1, "______");
 
-    expect(converter.convertB2V(gameBeforeConversion)).toStrictEqual(
+    expect(converter.convert(gameBeforeConversion)).toStrictEqual(
       gameAfterConversion
     );
   });

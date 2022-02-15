@@ -17,6 +17,6 @@ export class StartNewGameInteractor implements StartNewGameUseCase {
   startGame(): Observable<BoundaryGame> {
     return this.gameGW
       .createGame()
-      .pipe(map((game) => this.converter.convertD2B(game)));
+      .pipe(map((game) => this.converter.convert(game)));
   }
 }

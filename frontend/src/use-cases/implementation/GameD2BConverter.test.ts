@@ -19,6 +19,6 @@ describe("Game D2B Converter", () => {
     ]);
     const gameAfter = new BoundaryGame(1, "______");
 
-    expect(converter.convertD2B(gameBefore)).toStrictEqual(gameAfter);
+    expect(converter.convert(gameBefore)).toStrictEqual(gameAfter);
   });
 });

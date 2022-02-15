@@ -3,7 +3,7 @@ import { Game } from "../../domain/Game";
 import { BoundaryGame } from "../model/BoundaryGame";
 
 export class GameD2BConverter {
-  convertD2B(game: Game): BoundaryGame {
+  convert(game: Game): BoundaryGame {
     const playerId = game.playerId;
     const gameWord = this.convertHiddenWordToString(game.chosenWord);
     return new BoundaryGame(playerId, gameWord);

@@ -1,17 +1,17 @@
 /* eslint-disable no-restricted-imports */
 import { Observable, of } from "rxjs";
 import { Game } from "../../domain/Game";
-import { GameGatewayImpl } from "./RestGameGateway";
+import { RestGameGateway } from "./RestGameGateway";
 import { mock, MockProxy } from "jest-mock-extended";
 import { Client } from "../api/Client";
 import { NEW_GAME_URL } from "../../RouteConstants";
 
 describe("Game gateway", () => {
   let client: MockProxy<Client>;
-  let gameGateway: GameGatewayImpl;
+  let gameGateway: RestGameGateway;
   beforeEach(() => {
     client = mock<Client>();
-    gameGateway = new GameGatewayImpl(client);
+    gameGateway = new RestGameGateway(client);
   });
 
   test("New game is created and returned", (done) => {

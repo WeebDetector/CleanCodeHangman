@@ -30,7 +30,7 @@ describe("Start New Game Interactor", () => {
 
     const expectedGameBoundary = new BoundaryGame(1, "______");
     gameGW.createGame.mockReturnValue(of(expectedGame));
-    gameD2BConverter.convertD2B.mockReturnValue(expectedGameBoundary);
+    gameD2BConverter.convert.mockReturnValue(expectedGameBoundary);
     const gameObservable$: Observable<BoundaryGame> =
       newGameInteractor.startGame();
 

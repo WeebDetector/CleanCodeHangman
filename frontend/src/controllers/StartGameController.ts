@@ -16,6 +16,6 @@ export class StartGameController {
   startGame(): Observable<ViewGame> {
     return this.startGameUC
       .startGame()
-      .pipe(map((game) => this.converter.convertB2V(game)));
+      .pipe(map((game) => this.converter.convert(game)));
   }
 }

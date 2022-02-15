@@ -22,11 +22,11 @@ describe("Start New Game Controller", () => {
     const expectedUCValue = new BoundaryGame(1, "______");
     const expectedControllerValue = new ViewGame(1, "______");
     newGameUC.startGame.mockReturnValue(of(expectedUCValue));
-    gameB2VConverter.convertB2V.mockReturnValue(expectedControllerValue);
+    gameB2VConverter.convert.mockReturnValue(expectedControllerValue);
 
     newGameController.startGame().subscribe((response) => {
       expect(newGameUC.startGame).toBeCalled();
-      expect(gameB2VConverter.convertB2V).toBeCalledWith(expectedUCValue);
+      expect(gameB2VConverter.convert).toBeCalledWith(expectedUCValue);
       expect(response).toStrictEqual(expectedControllerValue);
       done();
     });

@@ -5,7 +5,7 @@ import { Client } from "../api/Client";
 import { GameGateway } from "../api/GameGateway";
 import { NEW_GAME_URL } from "../../RouteConstants";
 
-export class GameGatewayImpl implements GameGateway {
+export class RestGameGateway implements GameGateway {
   private readonly client: Client;
 
   constructor(client: Client) {
