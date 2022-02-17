@@ -7,9 +7,7 @@ export function useGame(startGameController: StartGameController) {
   const [game, setGame] = useState<ViewGame>();
 
   useEffect(() => {
-    const subscription = startGameController
-      .startGame()
-      .subscribe((game) => setGame(game));
+    const subscription = startGameController.startGame().subscribe(setGame);
 
     return () => subscription.unsubscribe();
   }, []);
