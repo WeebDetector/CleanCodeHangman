@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-imports */
-import { Game } from "../../domain/Game";
+import { FreshGame } from "../../domain/FreshGame";
 import { BoundaryGame } from "../model/BoundaryGame";
 import { GameD2BConverter } from "./GameD2BConverter";
 
@@ -9,7 +9,7 @@ describe("Game D2B Converter", () => {
     converter = new GameD2BConverter();
   });
   test("Domain model to boundary conversion", () => {
-    const gameBefore = new Game(1, [
+    const gameBefore = new FreshGame(1, [
       [0, "_"],
       [1, "_"],
       [2, "_"],

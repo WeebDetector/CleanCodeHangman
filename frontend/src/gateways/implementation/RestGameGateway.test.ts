@@ -1,10 +1,10 @@
 /* eslint-disable no-restricted-imports */
 import { Observable, of } from "rxjs";
-import { Game } from "../../domain/Game";
+import { FreshGame } from "../../domain/FreshGame";
 import { RestGameGateway } from "./RestGameGateway";
 import { mock, MockProxy } from "jest-mock-extended";
 import { Client } from "../api/Client";
-import { NEW_GAME_PATH } from "../../RouteConstants";
+import { GameInProgress } from "../../domain/GameInProgress";
 
 describe("Game gateway", () => {
   let client: MockProxy<Client>;
@@ -15,7 +15,7 @@ describe("Game gateway", () => {
   });
 
   test("New game is created and returned", (done) => {
-    const expectedGame = new Game(1, [
+    const expectedGame = new FreshGame(1, [
       [0, "_"],
       [1, "_"],
       [2, "_"],
@@ -24,7 +24,28 @@ describe("Game gateway", () => {
       [5, "_"],
     ]);
     client.post.mockReturnValue(of(expectedGame));
-    const gameObservable$: Observable<Game> = gameGateway.createGame();
+    const gameObservable$: Observable<FreshGame> = gameGateway.createGame();
+
+    gameObservable$.subscribe((response) => {
+      expect(response).toBe(expectedGame);
+      done();
+    });
+  });
+
+  test("Guess verification", (done) => {
+    const expectedGame = new GameInProgress(true, "in-progress", [
+      [0, "_"],
+      [1, "_"],
+      [2, "_"],
+      [3, "_"],
+      [4, "_"],
+      [5, "_"],
+    ]);
+    client.post.mockReturnValue(of(expectedGame));
+    const gameObservable$: Observable<GameInProgress> = gameGateway.verifyGuess(
+      1,
+      "a"
+    );
 
     gameObservable$.subscribe((response) => {
       expect(response).toBe(expectedGame);
