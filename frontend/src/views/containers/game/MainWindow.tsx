@@ -4,7 +4,7 @@ import { ViewGame } from "../../../controllers/models/ViewGame";
 import GameWindow from "../game-window/GameWindow";
 import InitialWindow from "../initial-window/InitialWindow";
 
-const GameContainer = () => {
+const MainWindow = () => {
   const [game, setGame] = useState<ViewGame>();
 
   return game === undefined ? (
@@ -14,4 +14,4 @@ const GameContainer = () => {
   );
 };
 
-export default GameContainer;
+export default MainWindow;

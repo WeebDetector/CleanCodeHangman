@@ -4,7 +4,7 @@
 
 /* eslint-disable no-restricted-imports */
 import { of } from "rxjs";
-import { useGame } from "./useGame";
+import { useMainWindow } from "./useMainWindow";
 import { mock, MockProxy } from "jest-mock-extended";
 import { renderHook } from "@testing-library/react-hooks";
 import { StartGameController } from "../../../controllers/StartGameController";
@@ -23,7 +23,7 @@ describe("Use Game Hook", () => {
     startGameController.startGame.mockReturnValue(of(expectedControllerValue));
     const setStateMock = jest.fn();
     const { result } = renderHook(() =>
-      useGame(startGameController, setStateMock)
+      useMainWindow(startGameController, setStateMock)
     );
 
     act(() => {
