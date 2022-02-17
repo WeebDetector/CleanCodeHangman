@@ -22,12 +22,12 @@ describe("Use Game Hook", () => {
     const expectedControllerValue = new ViewGame(1, "______");
     startGameController.startGame.mockReturnValue(of(expectedControllerValue));
     const setStateMock = jest.fn();
-    const { result, rerender } = renderHook(() =>
+    const { result } = renderHook(() =>
       useGame(startGameController, setStateMock)
     );
 
     act(() => {
-      result.current.startGame();
+      result.current();
     });
 
     expect(setStateMock).toHaveBeenCalled();
