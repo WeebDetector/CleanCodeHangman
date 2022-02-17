@@ -4,11 +4,12 @@
 
 /* eslint-disable no-restricted-imports */
 import { of } from "rxjs";
-import { useGame } from "./useGame";
+import { useMainWindow } from "./useMainWindow";
 import { mock, MockProxy } from "jest-mock-extended";
 import { renderHook } from "@testing-library/react-hooks";
 import { StartGameController } from "../../../controllers/StartGameController";
 import { ViewGame } from "../../../controllers/models/ViewGame";
+import { act } from "react-dom/test-utils";
 
 describe("Use Game Hook", () => {
   let startGameController: MockProxy<StartGameController>;
@@ -20,9 +21,15 @@ describe("Use Game Hook", () => {
   test("New game creation", () => {
     const expectedControllerValue = new ViewGame(1, "______");
     startGameController.startGame.mockReturnValue(of(expectedControllerValue));
-    const { result, rerender } = renderHook(() => useGame(startGameController));
-    const hookReturn = new ViewGame(1, "______");
+    const setStateMock = jest.fn();
+    const { result } = renderHook(() =>
+      useMainWindow(startGameController, setStateMock)
+    );
 
-    expect(result.current).toStrictEqual(hookReturn);
+    act(() => {
+      result.current();
+    });
+
+    expect(setStateMock).toHaveBeenCalled();
   });
 });
