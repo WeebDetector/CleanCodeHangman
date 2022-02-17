@@ -1,16 +1,14 @@
 /* eslint-disable no-restricted-imports */
-import { useEffect, useState } from "react";
 import { ViewGame } from "../../../controllers/models/ViewGame";
 import { StartGameController } from "../../../controllers/StartGameController";
 
-export function useGame(startGameController: StartGameController) {
-  const [game, setGame] = useState<ViewGame>();
+export function useGame(
+  startGameController: StartGameController,
+  setGame: React.Dispatch<React.SetStateAction<ViewGame | undefined>>
+) {
+  const startGame = () => {
+    startGameController.startGame().subscribe(setGame);
+  };
 
-  useEffect(() => {
-    const subscription = startGameController.startGame().subscribe(setGame);
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  return game;
+  return { startGame };
 }

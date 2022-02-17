@@ -1,16 +1,19 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
+import React, { useState } from "react";
 import { startGameController } from "../../../configuration";
+import { ViewGame } from "../../../controllers/models/ViewGame";
 import { useGame } from "./useGame";
 
 const GameContainer = () => {
-  const hookResponse = useGame(startGameController);
+  const [game, setGame] = useState<ViewGame>();
+  const { startGame } = useGame(startGameController, setGame);
 
-  return (
+  return game === undefined ? (
     <div>
-      <h1>{hookResponse?.playerId}</h1>
-      <h1>{hookResponse?.chosenWord}</h1>
+      <button onClick={() => startGame()}>start</button>
     </div>
+  ) : (
+    <div>{game.playerId}</div>
   );
 };
 
