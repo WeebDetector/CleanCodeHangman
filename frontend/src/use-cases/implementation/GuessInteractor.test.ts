@@ -1,11 +1,13 @@
 /* eslint-disable no-restricted-imports */
 import { mock, MockProxy } from "jest-mock-extended";
-import { Observable, of } from "rxjs";
-import { GameInProgress } from "../../domain/GameInProgress";
+import { of } from "rxjs";
 import { GameGateway } from "../../gateways/api/GameGateway";
-import { BoundaryGameInProgress } from "../model/BoundaryGameInProgress";
 import { GameD2BConverter } from "./GameD2BConverter";
 import { GuessInteractor } from "./GuessInteractor";
+import {
+  expectedGame,
+  expectedGameBoundary,
+} from "./GuessInteractorTestConfig";
 
 describe("Guess Interactor", () => {
   let gameGW: MockProxy<GameGateway>;
@@ -19,27 +21,11 @@ describe("Guess Interactor", () => {
   });
 
   test("Guess is received", (done) => {
-    const expectedGame = new GameInProgress(true, "in-progress", [
-      [0, "_"],
-      [1, "_"],
-      [2, "a"],
-      [3, "_"],
-      [4, "_"],
-      [5, "_"],
-    ]);
-
-    const expectedGameBoundary = new BoundaryGameInProgress(
-      true,
-      "in-progress",
-      "__a___"
-    );
     gameGW.verifyGuess.mockReturnValue(of(expectedGame));
     gameD2BConverter.convertGameInProgress.mockReturnValue(
       expectedGameBoundary
     );
-
-    const gameObservable$: Observable<BoundaryGameInProgress> =
-      guessInteractor.guess(1, "a");
+    const gameObservable$ = guessInteractor.guess(1, "a");
 
     gameObservable$.subscribe((response) => {
       expect(response).toStrictEqual(expectedGameBoundary);
