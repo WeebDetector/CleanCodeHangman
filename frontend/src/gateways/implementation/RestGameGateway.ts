@@ -18,11 +18,11 @@ export class RestGameGateway implements GameGateway {
   }
 
   verifyGuess(
-    playerId: number,
+    userId: number,
     letterGuessed: string
   ): Observable<GameInProgress> {
     const body = {
-      userId: playerId,
+      userId: userId,
       letterGuessed: letterGuessed,
     };
     return this.client.post<GameInProgress>(GUESSES_PATH, body);
