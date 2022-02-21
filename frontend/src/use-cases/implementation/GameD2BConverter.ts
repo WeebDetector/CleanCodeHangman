@@ -12,7 +12,7 @@ export class GameD2BConverter {
   }
 
   convertGameInProgress(game: GameInProgress): BoundaryGameInProgress {
-    const gameWord = this.convertHiddenWordToString(game.chosenWord);
+    const gameWord = this.convertHiddenWordToString(game.wordState);
     return new BoundaryGameInProgress(
       game.isGuessCorrect,
       game.stateDescription,

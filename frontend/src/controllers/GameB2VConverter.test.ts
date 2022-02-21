@@ -28,6 +28,8 @@ describe("Game B2V Converter ", () => {
     );
     const gameAfter = new ViewGameInProgress(true, "in-progress", "______");
 
-    expect(converter.convertGameInProgress(gameBefore)).toEqual(gameAfter);
+    expect(converter.convertGameInProgress(gameBefore)).toStrictEqual(
+      gameAfter
+    );
   });
 });

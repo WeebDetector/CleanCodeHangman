@@ -10,10 +10,10 @@ export class GameB2VConverter {
   }
 
   convertGameInProgress(game: BoundaryGameInProgress): ViewGameInProgress {
-    return new BoundaryGameInProgress(
+    return new ViewGameInProgress(
       game.isGuessCorrect,
       game.stateDescription,
-      game.chosenWord
+      game.wordState
     );
   }
 }

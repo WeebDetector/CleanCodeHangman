@@ -1,11 +1,26 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
+import React, { useState } from "react";
 import { ViewGame } from "../../../controllers/models/ViewGame";
+import { ViewGameInProgress } from "../../../controllers/models/ViewGameInProgress";
+import { LetterKeyboard } from "../letter-keyboard/LetterKeyboard";
 
 interface Props {
   game: ViewGame;
 }
 
 export const GameWindow = ({ game }: Props) => {
-  return <div data-testid="player-id">{game.playerId}</div>;
+  const [newGame, setGame] = useState<ViewGameInProgress>();
+  if (sessionStorage.getItem("userId") === null)
+    sessionStorage.setItem("userId", game.playerId.toString());
+
+  return (
+    <div>
+      {newGame === undefined ? (
+        <h1 data-testid="gameWord">{game.chosenWord}</h1>
+      ) : (
+        <h1 data-testid="gameWord">{newGame.chosenWord}</h1>
+      )}
+      <LetterKeyboard setGame={setGame} />
+    </div>
+  );
 };

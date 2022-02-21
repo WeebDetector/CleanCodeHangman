@@ -14,6 +14,7 @@ describe("Game window tests", () => {
 
     render(<GameWindow game={game} />);
 
-    expect(screen.getByTestId("player-id")).toBeInTheDocument();
+    expect(screen.getByTestId("gameWord")).toBeInTheDocument();
+    expect(screen.getByTestId("letterKeyboard")).toBeInTheDocument();
   });
 });

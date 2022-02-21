@@ -1,15 +1,15 @@
 export class BoundaryGameInProgress {
   readonly isGuessCorrect: boolean;
   readonly stateDescription: string;
-  readonly chosenWord: string;
+  readonly wordState: string;
 
   constructor(
     isGuessCorrect: boolean,
     stateDescription: string,
-    chosenWord: string
+    wordState: string
   ) {
     this.isGuessCorrect = isGuessCorrect;
     this.stateDescription = stateDescription;
-    this.chosenWord = chosenWord;
+    this.wordState = wordState;
   }
 }

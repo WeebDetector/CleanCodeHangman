@@ -12,7 +12,13 @@ export const InitialWindow = ({ setGame }: Props) => {
   const startGame = useInitialWindow(startGameController, setGame);
 
   return (
-    <button data-testid="start-btn" onClick={startGame}>
+    <button
+      data-testid="start-btn"
+      onClick={() => {
+        startGame();
+        sessionStorage.removeItem("userId");
+      }}
+    >
       start
     </button>
   );

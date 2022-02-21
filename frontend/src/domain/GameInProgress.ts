@@ -1,15 +1,15 @@
 export class GameInProgress {
   readonly isGuessCorrect: boolean;
   readonly stateDescription: string;
-  readonly chosenWord: [number, string][];
+  readonly wordState: [number, string][];
 
   constructor(
     isGuessCorrect: boolean,
     stateDescription: string,
-    chosenWord: [number, string][]
+    wordState: [number, string][]
   ) {
     this.isGuessCorrect = isGuessCorrect;
     this.stateDescription = stateDescription;
-    this.chosenWord = chosenWord;
+    this.wordState = wordState;
   }
 }
