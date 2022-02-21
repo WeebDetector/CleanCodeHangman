@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import Game from "./views/containers/startGame/useGame";
+import { MainWindow } from "./views/containers/game/MainWindow";
 
 function App() {
   return (
     <div className="App">
-      <Game />
+      <MainWindow />
     </div>
   );
 }
