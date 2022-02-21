@@ -7,7 +7,7 @@ import { GuessInteractor } from "./GuessInteractor";
 import {
   expectedGame,
   expectedGameBoundary,
-} from "./GuessInteractorTestConfig";
+} from "../../GuessInteractorTestConfig";
 
 describe("Guess Interactor", () => {
   let gameGW: MockProxy<GameGateway>;
@@ -25,9 +25,8 @@ describe("Guess Interactor", () => {
     gameD2BConverter.convertGameInProgress.mockReturnValue(
       expectedGameBoundary
     );
-    const gameObservable$ = guessInteractor.guess(1, "a");
 
-    gameObservable$.subscribe((response) => {
+    guessInteractor.guess(1, "a").subscribe((response) => {
       expect(response).toStrictEqual(expectedGameBoundary);
       done();
     });

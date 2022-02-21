@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-imports */
-import { GameInProgress } from "../../domain/GameInProgress";
-import { BoundaryGameInProgress } from "../model/BoundaryGameInProgress";
+import { GameInProgress } from "./domain/GameInProgress";
+import { BoundaryGameInProgress } from "./use-cases/model/BoundaryGameInProgress";
 
 export const expectedGame = new GameInProgress(true, "in-progress", [
   [0, "_"],

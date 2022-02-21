@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-imports */
-import { startGameController } from "../../../configuration";
+import { startGameController } from "../../../Configuration";
 import { ViewGame } from "../../../controllers/models/ViewGame";
 import useInitialWindow from "./useInitialWindow";
 import React from "react";

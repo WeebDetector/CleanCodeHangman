@@ -29,7 +29,7 @@ export class Routes {
             this.createGameController.execute(req, res);
         })
     
-        this.router.post('/guess', (req: Request, res: Response) => {
+        this.router.post('/guesses', (req: Request, res: Response) => {
             this.guessController.isLetterInWord(req, res);
         })
     }

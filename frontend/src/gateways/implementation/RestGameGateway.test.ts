@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-imports */
 import { Observable, of } from "rxjs";
-import { FreshGame } from "../../domain/FreshGame";
+import { NewGame } from "../../domain/NewGame";
 import { RestGameGateway } from "./RestGameGateway";
 import { mock, MockProxy } from "jest-mock-extended";
 import { Client } from "../api/Client";
@@ -15,7 +15,7 @@ describe("Game gateway", () => {
   });
 
   test("New game is created and returned", (done) => {
-    const expectedGame = new FreshGame(1, [
+    const expectedGame = new NewGame(1, [
       [0, "_"],
       [1, "_"],
       [2, "_"],
@@ -24,7 +24,7 @@ describe("Game gateway", () => {
       [5, "_"],
     ]);
     client.post.mockReturnValue(of(expectedGame));
-    const gameObservable$: Observable<FreshGame> = gameGateway.createGame();
+    const gameObservable$: Observable<NewGame> = gameGateway.createGame();
 
     gameObservable$.subscribe((response) => {
       expect(response).toBe(expectedGame);

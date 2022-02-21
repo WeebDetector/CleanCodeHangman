@@ -1,10 +1,10 @@
 /* eslint-disable no-restricted-imports */
 import { Observable } from "rxjs";
-import { FreshGame } from "../../domain/FreshGame";
+import { NewGame } from "../../domain/NewGame";
 import { GameInProgress } from "../../domain/GameInProgress";
 
 export interface GameGateway {
-  createGame(): Observable<FreshGame>;
+  createGame(): Observable<NewGame>;
 
   verifyGuess(
     playerId: number,

@@ -1,4 +1,4 @@
-export class FreshGame {
+export class NewGame {
   readonly playerId: number;
   readonly chosenWord: [number, string][];
 
