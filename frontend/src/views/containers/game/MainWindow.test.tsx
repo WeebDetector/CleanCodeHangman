@@ -8,10 +8,6 @@ import "@testing-library/jest-dom/extend-expect";
 import { MainWindow } from "./MainWindow";
 import { ViewGame } from "../../../controllers/models/ViewGame";
 
-jest.mock("../initial-window/InitialWindow", () => ({
-  InitialWindow: () => <div data-testid="initial-window" />,
-}));
-
 describe("Main window tests", () => {
   test("Loads the initial window when game is undefined", () => {
     render(<MainWindow />);
