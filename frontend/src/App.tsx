@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import MainWindow from "./views/containers/game/MainWindow";
+import { MainWindow } from "./views/containers/game/MainWindow";
 
 function App() {
   return (

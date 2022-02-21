@@ -5,6 +5,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { ViewGame } from "../../../controllers/models/ViewGame";
+import "@testing-library/jest-dom/extend-expect";
 import { GameWindow } from "./GameWindow";
 
 describe("Game window tests", () => {
