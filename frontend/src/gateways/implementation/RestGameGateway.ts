@@ -1,9 +1,10 @@
 /* eslint-disable no-restricted-imports */
 import { Observable } from "rxjs";
-import { Game } from "../../domain/Game";
+import { NewGame } from "../../domain/NewGame";
 import { Client } from "../api/Client";
 import { GameGateway } from "../api/GameGateway";
-import { NEW_GAME_PATH } from "../../RouteConstants";
+import { GUESSES_PATH, NEW_GAME_PATH } from "../../RouteConstants";
+import { GameInProgress } from "../../domain/GameInProgress";
 
 export class RestGameGateway implements GameGateway {
   private readonly client: Client;
@@ -12,7 +13,18 @@ export class RestGameGateway implements GameGateway {
     this.client = client;
   }
 
-  createGame(): Observable<Game> {
-    return this.client.post<Game>(NEW_GAME_PATH);
+  createGame(): Observable<NewGame> {
+    return this.client.post<NewGame>(NEW_GAME_PATH);
+  }
+
+  verifyGuess(
+    userId: number,
+    letterGuessed: string
+  ): Observable<GameInProgress> {
+    const body = {
+      userId: userId,
+      letterGuessed: letterGuessed,
+    };
+    return this.client.post<GameInProgress>(GUESSES_PATH, body);
   }
 }

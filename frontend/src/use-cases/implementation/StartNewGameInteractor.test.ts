@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-imports */
 import { Observable, of } from "rxjs";
-import { Game } from "../../domain/Game";
+import { NewGame } from "../../domain/NewGame";
 import { mock, MockProxy } from "jest-mock-extended";
 import { GameGateway } from "../../gateways/api/GameGateway";
 import { StartNewGameInteractor } from "./StartNewGameInteractor";
@@ -19,7 +19,7 @@ describe("Start New Game Interactor", () => {
   });
 
   test("New game is created and returned", (done) => {
-    const expectedGame = new Game(1, [
+    const expectedGame = new NewGame(1, [
       [0, "_"],
       [1, "_"],
       [2, "_"],

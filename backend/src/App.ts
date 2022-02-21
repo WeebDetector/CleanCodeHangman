@@ -11,7 +11,7 @@ export class App {
 
     constructor(wordGW : WordGateway, playerGW : PlayerGateway, gameGW : GameGateway) {
         this.app = express();
-        this.port = 3000;
+        this.port = 8000;
 
         this.app.use(cors())
         this.app.use(express.json());

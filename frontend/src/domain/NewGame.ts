@@ -1,4 +1,4 @@
-export class Game {
+export class NewGame {
   readonly playerId: number;
   readonly chosenWord: [number, string][];
 

@@ -6,7 +6,7 @@ import { GameD2BConverter } from "./use-cases/implementation/GameD2BConverter";
 import { StartNewGameInteractor } from "./use-cases/implementation/StartNewGameInteractor";
 
 //@ts-ignore
-const client = new RxJsAjaxClient(process.env.REACT_APP_BASE_URL);
+const client = new RxJsAjaxClient(process.env.REACT_APP_API_URL);
 const gameGW = new RestGameGateway(client);
 const converterD2B = new GameD2BConverter();
 const startNewGameUC = new StartNewGameInteractor(gameGW, converterD2B);
