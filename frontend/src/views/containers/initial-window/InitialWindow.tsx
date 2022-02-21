@@ -1,21 +1,19 @@
 /* eslint-disable no-restricted-imports */
 import { startGameController } from "../../../configuration";
 import { ViewGame } from "../../../controllers/models/ViewGame";
-import { useMainWindow } from "../game/useMainWindow";
+import useInitialWindow from "./useInitialWindow";
 import React from "react";
 
-interface initialWindowProps {
-  setGame: React.Dispatch<React.SetStateAction<ViewGame | undefined>>;
+interface Props {
+  setGame: (game: ViewGame) => void;
 }
 
-const InitialWindow = ({ setGame }: initialWindowProps) => {
-  const startGame = useMainWindow(startGameController, setGame);
+export const InitialWindow = ({ setGame }: Props) => {
+  const startGame = useInitialWindow(startGameController, setGame);
 
   return (
-    <div>
-      <button onClick={() => startGame()}>start</button>
-    </div>
+    <button data-testid="start-btn" onClick={() => startGame()}>
+      start
+    </button>
   );
 };
-
-export default InitialWindow;

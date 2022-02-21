@@ -4,14 +4,14 @@
 
 /* eslint-disable no-restricted-imports */
 import { of } from "rxjs";
-import { useMainWindow } from "./useMainWindow";
+import useInitialWindow from "./useInitialWindow";
 import { mock, MockProxy } from "jest-mock-extended";
 import { renderHook } from "@testing-library/react-hooks";
 import { StartGameController } from "../../../controllers/StartGameController";
 import { ViewGame } from "../../../controllers/models/ViewGame";
 import { act } from "react-dom/test-utils";
 
-describe("Use Game Hook", () => {
+describe("Use Initial Window Hook", () => {
   let startGameController: MockProxy<StartGameController>;
 
   beforeEach(() => {
@@ -23,12 +23,10 @@ describe("Use Game Hook", () => {
     startGameController.startGame.mockReturnValue(of(expectedControllerValue));
     const setStateMock = jest.fn();
     const { result } = renderHook(() =>
-      useMainWindow(startGameController, setStateMock)
+      useInitialWindow(startGameController, setStateMock)
     );
 
-    act(() => {
-      result.current();
-    });
+    act(() => result.current());
 
     expect(setStateMock).toHaveBeenCalled();
   });

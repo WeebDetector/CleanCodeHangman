@@ -2,9 +2,9 @@
 import { ViewGame } from "../../../controllers/models/ViewGame";
 import { StartGameController } from "../../../controllers/StartGameController";
 
-export function useMainWindow(
+export default function useInitialWindow(
   startGameController: StartGameController,
-  setGame: React.Dispatch<React.SetStateAction<ViewGame | undefined>>
+  setGame: (game: ViewGame) => void
 ): () => void {
   const startGame = () => {
     startGameController.startGame().subscribe(setGame);
