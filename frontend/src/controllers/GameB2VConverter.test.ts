@@ -24,9 +24,12 @@ describe("Game B2V Converter ", () => {
     const gameBefore = new BoundaryGameInProgress(
       true,
       "in-progress",
-      "______"
+      "______",
+      ["a"]
     );
-    const gameAfter = new ViewGameInProgress(true, "in-progress", "______");
+    const gameAfter = new ViewGameInProgress(true, "in-progress", "______", [
+      "a",
+    ]);
 
     expect(converter.convertGameInProgress(gameBefore)).toStrictEqual(
       gameAfter

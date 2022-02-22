@@ -8,18 +8,18 @@ import useLetterKeyboard from "./useLetterKeyboard";
 interface Props {
   setGame: (game: ViewGameInProgress) => void;
   playerId: number;
+  lettersGuessed: string[];
 }
 
-const LETTERS_CLICKED: string[] = [];
-
-function isLetterClicked(letter: string) {
-  if (!LETTERS_CLICKED.includes(letter)) {
-    return false;
-  }
-  return true;
+function isLetterClicked(letter: string, lettersGuessed: string[]) {
+  return lettersGuessed.includes(letter);
 }
 
-export const LetterKeyboard = ({ setGame, playerId }: Props) => {
+export const LetterKeyboard = ({
+  setGame,
+  playerId,
+  lettersGuessed,
+}: Props) => {
   const letterSequence: string[][] = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
@@ -37,9 +37,8 @@ export const LetterKeyboard = ({ setGame, playerId }: Props) => {
               key={letter}
               onClick={() => {
                 guess(playerId, letter.toLowerCase());
-                LETTERS_CLICKED.push(letter);
               }}
-              disabled={isLetterClicked(letter)}
+              disabled={isLetterClicked(letter.toLowerCase(), lettersGuessed)}
             >
               {letter}
             </Button>

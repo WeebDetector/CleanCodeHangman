@@ -16,7 +16,8 @@ export class GameD2BConverter {
     return new BoundaryGameInProgress(
       game.isGuessCorrect,
       game.stateDescription,
-      gameWord
+      gameWord,
+      game.lettersGuessed
     );
   }
 

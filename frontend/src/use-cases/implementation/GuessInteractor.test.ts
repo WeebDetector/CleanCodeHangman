@@ -18,18 +18,24 @@ describe("Guess Interactor", () => {
     gameGW = mock<GameGateway>();
     gameD2BConverter = mock<GameD2BConverter>();
     guessInteractor = new GuessInteractor(gameGW, gameD2BConverter);
-    expectedGame = new GameInProgress(true, "in-progress", [
-      [0, "_"],
-      [1, "_"],
-      [2, "a"],
-      [3, "_"],
-      [4, "_"],
-      [5, "_"],
-    ]);
+    expectedGame = new GameInProgress(
+      true,
+      "in-progress",
+      [
+        [0, "_"],
+        [1, "_"],
+        [2, "a"],
+        [3, "_"],
+        [4, "_"],
+        [5, "_"],
+      ],
+      ["a"]
+    );
     expectedGameBoundary = new BoundaryGameInProgress(
       true,
       "in-progress",
-      "__a___"
+      "__a___",
+      ["a"]
     );
   });
 

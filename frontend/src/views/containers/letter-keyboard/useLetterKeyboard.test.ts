@@ -22,7 +22,8 @@ describe("Use Letter Keyboard Hook", () => {
     const expectedControllerValue = new ViewGameInProgress(
       true,
       "in-progress",
-      "______"
+      "______",
+      ["a"]
     );
     guessController.guess.mockReturnValue(of(expectedControllerValue));
     const setStateMock = jest.fn();

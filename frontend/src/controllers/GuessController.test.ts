@@ -18,11 +18,17 @@ describe("Guess Controller", () => {
     guessUC = mock<GuessUseCase>();
     converter = mock<GameB2VConverter>();
     guessController = new GuessController(guessUC, converter);
-    expectedUCValue = new BoundaryGameInProgress(true, "in-progress", "______");
+    expectedUCValue = new BoundaryGameInProgress(
+      true,
+      "in-progress",
+      "______",
+      ["a"]
+    );
     expectedControllerValue = new ViewGameInProgress(
       true,
       "in-progress",
-      "______"
+      "______",
+      ["a"]
     );
   });
 

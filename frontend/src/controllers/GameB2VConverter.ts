@@ -13,7 +13,8 @@ export class GameB2VConverter {
     return new ViewGameInProgress(
       game.isGuessCorrect,
       game.stateDescription,
-      game.wordState
+      game.wordState,
+      game.lettersGuessed
     );
   }
 }

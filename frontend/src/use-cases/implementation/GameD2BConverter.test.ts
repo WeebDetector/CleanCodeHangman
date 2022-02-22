@@ -7,8 +7,30 @@ import { GameD2BConverter } from "./GameD2BConverter";
 
 describe("Game D2B Converter", () => {
   let converter: GameD2BConverter;
+  let gameInProgressBefore: GameInProgress;
+  let gameInProgressAfter: BoundaryGameInProgress;
   beforeEach(() => {
     converter = new GameD2BConverter();
+    gameInProgressBefore = new GameInProgress(
+      true,
+      "in-progress",
+      [
+        [0, "_"],
+        [1, "_"],
+        [2, "_"],
+        [3, "_"],
+        [4, "_"],
+        [5, "_"],
+      ],
+      ["a"]
+    );
+
+    gameInProgressAfter = new BoundaryGameInProgress(
+      true,
+      "in-progress",
+      "______",
+      ["a"]
+    );
   });
   test("Domain model to boundary new conversion", () => {
     const gameBefore = new NewGame(1, [
@@ -25,18 +47,8 @@ describe("Game D2B Converter", () => {
   });
 
   test("Domain model to boundary in progress conversion", () => {
-    const gameBefore = new GameInProgress(true, "in-progress", [
-      [0, "_"],
-      [1, "_"],
-      [2, "_"],
-      [3, "_"],
-      [4, "_"],
-      [5, "_"],
-    ]);
-    const gameAfter = new BoundaryGameInProgress(true, "in-progress", "______");
-
-    expect(converter.convertGameInProgress(gameBefore)).toStrictEqual(
-      gameAfter
+    expect(converter.convertGameInProgress(gameInProgressBefore)).toStrictEqual(
+      gameInProgressAfter
     );
   });
 });

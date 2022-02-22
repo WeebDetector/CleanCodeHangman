@@ -11,6 +11,8 @@ interface Props {
 export const GameWindow = ({ game }: Props) => {
   const [newGame, setGame] = useState<ViewGameInProgress>();
 
+  const lettersGuessed = newGame === undefined ? [] : newGame.lettersGuessed;
+
   return (
     <div>
       {newGame === undefined ? (
@@ -18,7 +20,11 @@ export const GameWindow = ({ game }: Props) => {
       ) : (
         <h1 data-testid="gameWord">{newGame.chosenWord}</h1>
       )}
-      <LetterKeyboard setGame={setGame} playerId={game.playerId} />
+      <LetterKeyboard
+        setGame={setGame}
+        playerId={game.playerId}
+        lettersGuessed={lettersGuessed}
+      />
     </div>
   );
 };
