@@ -10,7 +10,6 @@ interface Props {
 
 export const GameWindow = ({ game }: Props) => {
   const [newGame, setGame] = useState<ViewGameInProgress>();
-  const PLAYER_ID = game.playerId;
 
   return (
     <div>
@@ -19,7 +18,7 @@ export const GameWindow = ({ game }: Props) => {
       ) : (
         <h1 data-testid="gameWord">{newGame.chosenWord}</h1>
       )}
-      <LetterKeyboard setGame={setGame} playerId={PLAYER_ID} />
+      <LetterKeyboard setGame={setGame} playerId={game.playerId} />
     </div>
   );
 };

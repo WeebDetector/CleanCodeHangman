@@ -33,8 +33,8 @@ export const LetterKeyboard = ({ setGame, playerId }: Props) => {
         <div key={"btn-row-" + index}>
           {row.map((letter) => (
             <Button
-              data-testid={letter + "-btn"}
-              key={letter + "-btn"}
+              data-testid={"btn-" + letter}
+              key={letter}
               onClick={() => {
                 guess(playerId, letter.toLowerCase());
                 LETTERS_CLICKED.push(letter);
