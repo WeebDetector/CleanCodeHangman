@@ -2,29 +2,26 @@
 import { mock, MockProxy } from "jest-mock-extended";
 import { of } from "rxjs";
 import { GuessUseCase } from "../use-cases/api/GuessUseCase";
-import { BoundaryGameInProgress } from "../use-cases/model/BoundaryGameInProgress";
+import { BoundaryGuessResponse } from "../use-cases/model/BoundaryGuessResponse";
 import { GameB2VConverter } from "./GameB2VConverter";
 import { GuessController } from "./GuessController";
-import { ViewGameInProgress } from "./models/ViewGameInProgress";
+import { ViewGuessResponse } from "./models/ViewGuessResponse";
 
 describe("Guess Controller", () => {
   let guessUC: MockProxy<GuessUseCase>;
   let converter: MockProxy<GameB2VConverter>;
   let guessController: GuessController;
-  let expectedUCValue: BoundaryGameInProgress;
-  let expectedControllerValue: ViewGameInProgress;
+  let expectedUCValue: BoundaryGuessResponse;
+  let expectedControllerValue: ViewGuessResponse;
 
   beforeEach(() => {
     guessUC = mock<GuessUseCase>();
     converter = mock<GameB2VConverter>();
     guessController = new GuessController(guessUC, converter);
-    expectedUCValue = new BoundaryGameInProgress(
-      true,
-      "in-progress",
-      "______",
-      ["a"]
-    );
-    expectedControllerValue = new ViewGameInProgress(
+    expectedUCValue = new BoundaryGuessResponse(true, "in-progress", "______", [
+      "a",
+    ]);
+    expectedControllerValue = new ViewGuessResponse(
       true,
       "in-progress",
       "______",

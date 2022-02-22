@@ -1,10 +1,10 @@
 /* eslint-disable no-restricted-imports */
-import { ViewGame } from "../../../controllers/models/ViewGame";
+import { ViewNewGame } from "../../../controllers/models/ViewNewGame";
 import { StartGameController } from "../../../controllers/StartGameController";
 
 export default function useInitialWindow(
   startGameController: StartGameController,
-  setGame: (game: ViewGame) => void
+  setGame: (game: ViewNewGame) => void
 ): () => void {
   const startGame = () => {
     startGameController.startGame().subscribe(setGame);

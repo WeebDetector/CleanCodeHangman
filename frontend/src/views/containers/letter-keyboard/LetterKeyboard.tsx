@@ -2,11 +2,11 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 import { guessController } from "../../../Configuration";
-import { ViewGameInProgress } from "../../../controllers/models/ViewGameInProgress";
+import { ViewGuessResponse } from "../../../controllers/models/ViewGuessResponse";
 import useLetterKeyboard from "./useLetterKeyboard";
 
 interface Props {
-  setGame: (game: ViewGameInProgress) => void;
+  setResponse: (response: ViewGuessResponse) => void;
   playerId: number;
   lettersGuessed: string[];
 }
@@ -16,7 +16,7 @@ function isLetterClicked(letter: string, lettersGuessed: string[]) {
 }
 
 export const LetterKeyboard = ({
-  setGame,
+  setResponse,
   playerId,
   lettersGuessed,
 }: Props) => {
@@ -25,7 +25,7 @@ export const LetterKeyboard = ({
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
     ["Z", "X", "C", "V", "B", "N", "M"],
   ];
-  const guess = useLetterKeyboard(guessController, setGame);
+  const guess = useLetterKeyboard(guessController, setResponse);
 
   return (
     <div data-testid="letterKeyboard" key="letterKeyboard">

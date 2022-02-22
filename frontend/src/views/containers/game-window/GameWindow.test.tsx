@@ -4,15 +4,15 @@
 /* eslint-disable no-restricted-imports */
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { ViewGame } from "../../../controllers/models/ViewGame";
+import { ViewNewGame } from "../../../controllers/models/ViewNewGame";
 import "@testing-library/jest-dom/extend-expect";
 import { GameWindow } from "./GameWindow";
 
 describe("Game window tests", () => {
   test("Window is rendered correctly", () => {
-    const game = new ViewGame(1, "______");
+    const game = new ViewNewGame(1, "______");
 
-    render(<GameWindow game={game} />);
+    render(<GameWindow newGame={game} />);
 
     expect(screen.getByTestId("gameWord")).toBeInTheDocument();
     expect(screen.getByTestId("letterKeyboard")).toBeInTheDocument();

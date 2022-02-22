@@ -1,10 +1,10 @@
 /* eslint-disable no-restricted-imports */
 import { Observable } from "rxjs";
-import { BoundaryGameInProgress } from "../model/BoundaryGameInProgress";
+import { BoundaryGuessResponse } from "../model/BoundaryGuessResponse";
 
 export interface GuessUseCase {
   guess(
     playerId: number,
     letterGuessed: string
-  ): Observable<BoundaryGameInProgress>;
+  ): Observable<BoundaryGuessResponse>;
 }

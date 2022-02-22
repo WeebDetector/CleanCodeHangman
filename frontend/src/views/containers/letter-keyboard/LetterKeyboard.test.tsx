@@ -11,7 +11,11 @@ describe("Letter keyboard tests", () => {
     const setStateMock = jest.fn();
     jest.spyOn(useLetterKeyboard, "default").mockReturnValue(setStateMock);
     render(
-      <LetterKeyboard setGame={setStateMock} playerId={1} lettersGuessed={[]} />
+      <LetterKeyboard
+        setResponse={setStateMock}
+        playerId={1}
+        lettersGuessed={[]}
+      />
     );
     fireEvent.click(screen.getByTestId("btn-A"));
 

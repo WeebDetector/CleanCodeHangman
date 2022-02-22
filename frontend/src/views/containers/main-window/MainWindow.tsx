@@ -1,15 +1,15 @@
 /* eslint-disable no-restricted-imports */
 import React, { useState } from "react";
-import { ViewGame } from "../../../controllers/models/ViewGame";
+import { ViewNewGame } from "../../../controllers/models/ViewNewGame";
 import { GameWindow } from "../game-window/GameWindow";
 import { InitialWindow } from "../initial-window/InitialWindow";
 
 export const MainWindow = () => {
-  const [game, setGame] = useState<ViewGame | undefined>(undefined);
+  const [newGame, setGame] = useState<ViewNewGame | undefined>(undefined);
 
-  return game === undefined ? (
+  return newGame === undefined ? (
     <InitialWindow setGame={setGame} />
   ) : (
-    <GameWindow game={game} />
+    <GameWindow newGame={newGame} />
   );
 };

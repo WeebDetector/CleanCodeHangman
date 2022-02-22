@@ -3,7 +3,7 @@ import { mock, MockProxy } from "jest-mock-extended";
 import { of } from "rxjs";
 import { GameInProgress } from "../../domain/GameInProgress";
 import { GameGateway } from "../../gateways/api/GameGateway";
-import { BoundaryGameInProgress } from "../model/BoundaryGameInProgress";
+import { BoundaryGuessResponse } from "../model/BoundaryGuessResponse";
 import { GameD2BConverter } from "./GameD2BConverter";
 import { GuessInteractor } from "./GuessInteractor";
 
@@ -12,7 +12,7 @@ describe("Guess Interactor", () => {
   let gameD2BConverter: MockProxy<GameD2BConverter>;
   let guessInteractor: GuessInteractor;
   let expectedGame: GameInProgress;
-  let expectedGameBoundary: BoundaryGameInProgress;
+  let expectedGameBoundary: BoundaryGuessResponse;
 
   beforeEach(() => {
     gameGW = mock<GameGateway>();
@@ -31,7 +31,7 @@ describe("Guess Interactor", () => {
       ],
       ["a"]
     );
-    expectedGameBoundary = new BoundaryGameInProgress(
+    expectedGameBoundary = new BoundaryGuessResponse(
       true,
       "in-progress",
       "__a___",

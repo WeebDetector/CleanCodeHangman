@@ -1,11 +1,11 @@
 /* eslint-disable no-restricted-imports */
 import { startGameController } from "../../../Configuration";
-import { ViewGame } from "../../../controllers/models/ViewGame";
+import { ViewNewGame } from "../../../controllers/models/ViewNewGame";
 import useInitialWindow from "./useInitialWindow";
 import React from "react";
 
 interface Props {
-  setGame: (game: ViewGame) => void;
+  setGame: (game: ViewNewGame) => void;
 }
 
 export const InitialWindow = ({ setGame }: Props) => {
