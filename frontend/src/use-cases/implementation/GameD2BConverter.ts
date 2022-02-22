@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-imports */
 import { NewGame } from "../../domain/NewGame";
-import { GameInProgress } from "../../domain/GameInProgress";
+import { GuessResponse } from "../../domain/GuessResponse";
 import { BoundaryNewGame } from "../model/BoundaryNewGame";
 import { BoundaryGuessResponse } from "../model/BoundaryGuessResponse";
 
@@ -11,7 +11,7 @@ export class GameD2BConverter {
     return new BoundaryNewGame(playerId, gameWord);
   }
 
-  convertGameInProgress(game: GameInProgress): BoundaryGuessResponse {
+  convertGuessResponse(game: GuessResponse): BoundaryGuessResponse {
     const gameWord = this.convertHiddenWordToString(game.wordState);
     return new BoundaryGuessResponse(
       game.isGuessCorrect,

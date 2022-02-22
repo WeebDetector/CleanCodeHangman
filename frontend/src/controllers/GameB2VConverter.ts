@@ -9,7 +9,7 @@ export class GameB2VConverter {
     return new ViewNewGame(game.playerId, game.chosenWord);
   }
 
-  convertGameInProgress(game: BoundaryGuessResponse): ViewGuessResponse {
+  convertGuessResponse(game: BoundaryGuessResponse): ViewGuessResponse {
     return new ViewGuessResponse(
       game.isGuessCorrect,
       game.stateDescription,

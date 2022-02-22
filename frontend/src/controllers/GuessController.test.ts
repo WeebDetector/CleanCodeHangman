@@ -31,7 +31,7 @@ describe("Guess Controller", () => {
 
   test("Guess is received", (done) => {
     guessUC.guess.mockReturnValue(of(expectedUCValue));
-    converter.convertGameInProgress.mockReturnValue(expectedControllerValue);
+    converter.convertGuessResponse.mockReturnValue(expectedControllerValue);
 
     guessController.guess(1, "a").subscribe((response) => {
       expect(guessUC.guess).toBeCalledWith(1, "a");

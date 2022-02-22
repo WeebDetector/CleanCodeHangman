@@ -20,6 +20,6 @@ export class GuessInteractor implements GuessUseCase {
   ): Observable<BoundaryGuessResponse> {
     return this.gameGW
       .verifyGuess(playerId, letterGuessed)
-      .pipe(map((game) => this.gameD2BConverter.convertGameInProgress(game)));
+      .pipe(map((game) => this.gameD2BConverter.convertGuessResponse(game)));
   }
 }

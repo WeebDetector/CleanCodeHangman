@@ -11,7 +11,7 @@ describe("Game B2V Converter ", () => {
     converter = new GameB2VConverter();
   });
 
-  test("Boundary to view conversion", () => {
+  test("Boundary to view new conversion", () => {
     const gameBeforeConversion = new BoundaryNewGame(1, "______");
     const gameAfterConversion = new ViewNewGame(1, "______");
 
@@ -20,7 +20,7 @@ describe("Game B2V Converter ", () => {
     );
   });
 
-  test("Boundary to view in progress conversion", () => {
+  test("Boundary to view guess response conversion", () => {
     const gameBefore = new BoundaryGuessResponse(
       true,
       "in-progress",
@@ -31,8 +31,6 @@ describe("Game B2V Converter ", () => {
       "a",
     ]);
 
-    expect(converter.convertGameInProgress(gameBefore)).toStrictEqual(
-      gameAfter
-    );
+    expect(converter.convertGuessResponse(gameBefore)).toStrictEqual(gameAfter);
   });
 });

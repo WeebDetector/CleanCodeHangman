@@ -1,4 +1,4 @@
-export class GameInProgress {
+export class GuessResponse {
   readonly isGuessCorrect: boolean;
   readonly stateDescription: string;
   readonly wordState: [number, string][];
