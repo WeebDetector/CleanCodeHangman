@@ -4,7 +4,7 @@ import { NewGame } from "../../domain/NewGame";
 import { Client } from "../api/Client";
 import { GameGateway } from "../api/GameGateway";
 import { GUESSES_PATH, NEW_GAME_PATH } from "../../RouteConstants";
-import { GameInProgress } from "../../domain/GameInProgress";
+import { GuessResponse } from "../../domain/GuessResponse";
 
 export class RestGameGateway implements GameGateway {
   private readonly client: Client;
@@ -20,11 +20,11 @@ export class RestGameGateway implements GameGateway {
   verifyGuess(
     userId: number,
     letterGuessed: string
-  ): Observable<GameInProgress> {
+  ): Observable<GuessResponse> {
     const body = {
       userId: userId,
       letterGuessed: letterGuessed,
     };
-    return this.client.post<GameInProgress>(GUESSES_PATH, body);
+    return this.client.post<GuessResponse>(GUESSES_PATH, body);
   }
 }

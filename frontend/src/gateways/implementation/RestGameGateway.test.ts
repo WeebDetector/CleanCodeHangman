@@ -4,7 +4,7 @@ import { NewGame } from "../../domain/NewGame";
 import { RestGameGateway } from "./RestGameGateway";
 import { mock, MockProxy } from "jest-mock-extended";
 import { Client } from "../api/Client";
-import { GameInProgress } from "../../domain/GameInProgress";
+import { GuessResponse } from "../../domain/GuessResponse";
 
 describe("Game gateway", () => {
   let client: MockProxy<Client>;
@@ -33,7 +33,7 @@ describe("Game gateway", () => {
   });
 
   test("Guess verification", (done) => {
-    const expectedGame = new GameInProgress(
+    const expectedGame = new GuessResponse(
       true,
       "in-progress",
       [
@@ -47,7 +47,7 @@ describe("Game gateway", () => {
       ["a"]
     );
     client.post.mockReturnValue(of(expectedGame));
-    const gameObservable$: Observable<GameInProgress> = gameGateway.verifyGuess(
+    const gameObservable$: Observable<GuessResponse> = gameGateway.verifyGuess(
       1,
       "a"
     );
