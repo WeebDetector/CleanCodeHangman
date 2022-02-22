@@ -18,7 +18,7 @@ export class GuessController {
     letterGuessed: string
   ): Observable<ViewGameInProgress> {
     return this.guessUC
-      .guess(Number(playerId), letterGuessed)
+      .guess(playerId, letterGuessed)
       .pipe(map((game) => this.converter.convertGameInProgress(game)));
   }
 }

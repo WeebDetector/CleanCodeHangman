@@ -7,6 +7,7 @@ import useLetterKeyboard from "./useLetterKeyboard";
 
 interface Props {
   setGame: (game: ViewGameInProgress) => void;
+  playerId: number;
 }
 
 const LETTERS_CLICKED: string[] = [];
@@ -18,26 +19,24 @@ function isLetterClicked(letter: string) {
   return true;
 }
 
-export const LetterKeyboard = ({ setGame }: Props) => {
+export const LetterKeyboard = ({ setGame, playerId }: Props) => {
   const letterSequence: string[][] = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
     ["Z", "X", "C", "V", "B", "N", "M"],
   ];
   const guess = useLetterKeyboard(guessController, setGame);
-  //@ts-ignore
-  const userId: number = sessionStorage.getItem("userId");
 
   return (
     <div data-testid="letterKeyboard" key="letterKeyboard">
       {letterSequence.map((row, index) => (
-        <div key={index}>
-          {row.map((letter, index) => (
+        <div key={"btn-row-" + index}>
+          {row.map((letter) => (
             <Button
-              data-testid={letter}
-              key={letter}
+              data-testid={letter + "-btn"}
+              key={letter + "-btn"}
               onClick={() => {
-                guess(userId, letter.toLowerCase());
+                guess(playerId, letter.toLowerCase());
                 LETTERS_CLICKED.push(letter);
               }}
               disabled={isLetterClicked(letter)}

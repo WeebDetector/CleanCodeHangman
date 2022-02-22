@@ -10,9 +10,9 @@ describe("Letter keyboard tests", () => {
   test("Button click calls the hook", () => {
     const setStateMock = jest.fn();
     jest.spyOn(useLetterKeyboard, "default").mockReturnValue(setStateMock);
-    render(<LetterKeyboard setGame={setStateMock} />);
-    fireEvent.click(screen.getByTestId("A"));
+    render(<LetterKeyboard setGame={setStateMock} playerId={1} />);
+    fireEvent.click(screen.getByTestId("A-btn"));
 
-    expect(setStateMock).toHaveBeenCalledWith(null, "a");
+    expect(setStateMock).toHaveBeenCalledWith(1, "a");
   });
 });
