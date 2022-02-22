@@ -20,8 +20,8 @@ describe("Testing guess controller", () => {
                                 [0, '_'], [1, '_'], [2, '_'],
                                 [3, '_'], [4, '_']]);
         const freshWordStateArray = Array.from(freshWordStateMap);
-        const expectedResponseStruct = new BoundaryGuessResponse(true, "in-progress", freshWordStateMap);
-        const expectedCallStruct = new RestGuessResponse(true, 'in-progress', freshWordStateArray);
+        const expectedResponseStruct = new BoundaryGuessResponse(true, "in-progress", freshWordStateMap, new Array());
+        const expectedCallStruct = new RestGuessResponse(true, 'in-progress', freshWordStateArray, new Array());
         
         guessUC.isLetterInWord.mockReturnValue(expectedResponseStruct);
         
