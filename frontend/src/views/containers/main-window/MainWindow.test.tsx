@@ -6,7 +6,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { MainWindow } from "./MainWindow";
-import { ViewGame } from "../../../controllers/models/ViewGame";
+import { ViewNewGame } from "../../../controllers/models/ViewNewGame";
 
 describe("Main window tests", () => {
   test("Loads the initial window when game is undefined", () => {
@@ -16,7 +16,7 @@ describe("Main window tests", () => {
   });
 
   test("Loads game window when game is defined", () => {
-    const game = new ViewGame(1, "______");
+    const game = new ViewNewGame(1, "______");
     const useStateMock: any = () => [game, jest.fn()];
     jest.spyOn(React, "useState").mockImplementation(useStateMock);
 

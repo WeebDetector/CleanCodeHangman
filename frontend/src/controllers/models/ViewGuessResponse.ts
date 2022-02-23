@@ -1,18 +1,18 @@
-export class GameInProgress {
+export class ViewGuessResponse {
   readonly isGuessCorrect: boolean;
   readonly stateDescription: string;
-  readonly wordState: [number, string][];
+  readonly chosenWord: string;
   readonly lettersGuessed: string[];
 
   constructor(
     isGuessCorrect: boolean,
     stateDescription: string,
-    wordState: [number, string][],
+    chosenWord: string,
     lettersGuessed: string[]
   ) {
     this.isGuessCorrect = isGuessCorrect;
     this.stateDescription = stateDescription;
-    this.wordState = wordState;
+    this.chosenWord = chosenWord;
     this.lettersGuessed = lettersGuessed;
   }
 }

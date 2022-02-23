@@ -1,16 +1,16 @@
 /* eslint-disable no-restricted-imports */
-import { BoundaryGame } from "../use-cases/model/BoundaryGame";
-import { BoundaryGameInProgress } from "../use-cases/model/BoundaryGameInProgress";
-import { ViewGame } from "./models/ViewGame";
-import { ViewGameInProgress } from "./models/ViewGameInProgress";
+import { BoundaryNewGame } from "../use-cases/model/BoundaryNewGame";
+import { BoundaryGuessResponse } from "../use-cases/model/BoundaryGuessResponse";
+import { ViewNewGame } from "./models/ViewNewGame";
+import { ViewGuessResponse } from "./models/ViewGuessResponse";
 
 export class GameB2VConverter {
-  convert(game: BoundaryGame): ViewGame {
-    return new ViewGame(game.playerId, game.chosenWord);
+  convert(game: BoundaryNewGame): ViewNewGame {
+    return new ViewNewGame(game.playerId, game.chosenWord);
   }
 
-  convertGameInProgress(game: BoundaryGameInProgress): ViewGameInProgress {
-    return new ViewGameInProgress(
+  convertGuessResponse(game: BoundaryGuessResponse): ViewGuessResponse {
+    return new ViewGuessResponse(
       game.isGuessCorrect,
       game.stateDescription,
       game.wordState,

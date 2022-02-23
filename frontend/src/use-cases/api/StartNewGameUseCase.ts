@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-imports */
 import { Observable } from "rxjs";
-import { BoundaryGame } from "../model/BoundaryGame";
+import { BoundaryNewGame } from "../model/BoundaryNewGame";
 
 export interface StartNewGameUseCase {
-  startGame(): Observable<BoundaryGame>;
+  startGame(): Observable<BoundaryNewGame>;
 }

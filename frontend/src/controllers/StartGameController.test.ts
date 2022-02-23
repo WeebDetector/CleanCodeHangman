@@ -3,8 +3,8 @@ import { of } from "rxjs";
 import { mock, MockProxy } from "jest-mock-extended";
 import { StartNewGameUseCase } from "../use-cases/api/StartNewGameUseCase";
 import { StartGameController } from "./StartGameController";
-import { BoundaryGame } from "../use-cases/model/BoundaryGame";
-import { ViewGame } from "./models/ViewGame";
+import { BoundaryNewGame } from "../use-cases/model/BoundaryNewGame";
+import { ViewNewGame } from "./models/ViewNewGame";
 import { GameB2VConverter } from "./GameB2VConverter";
 
 describe("Start New Game Controller", () => {
@@ -19,8 +19,8 @@ describe("Start New Game Controller", () => {
   });
 
   test("New game is created and returned", (done) => {
-    const expectedUCValue = new BoundaryGame(1, "______");
-    const expectedControllerValue = new ViewGame(1, "______");
+    const expectedUCValue = new BoundaryNewGame(1, "______");
+    const expectedControllerValue = new ViewNewGame(1, "______");
     newGameUC.startGame.mockReturnValue(of(expectedUCValue));
     gameB2VConverter.convert.mockReturnValue(expectedControllerValue);
 

@@ -1,4 +1,4 @@
-export class BoundaryGameInProgress {
+export class BoundaryGuessResponse {
   readonly isGuessCorrect: boolean;
   readonly stateDescription: string;
   readonly wordState: string;

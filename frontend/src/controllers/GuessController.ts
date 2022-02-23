@@ -2,7 +2,7 @@
 import { map, Observable } from "rxjs";
 import { GuessUseCase } from "../use-cases/api/GuessUseCase";
 import { GameB2VConverter } from "./GameB2VConverter";
-import { ViewGameInProgress } from "./models/ViewGameInProgress";
+import { ViewGuessResponse } from "./models/ViewGuessResponse";
 
 export class GuessController {
   private readonly guessUC: GuessUseCase;
@@ -16,9 +16,9 @@ export class GuessController {
   guess(
     playerId: number,
     letterGuessed: string
-  ): Observable<ViewGameInProgress> {
+  ): Observable<ViewGuessResponse> {
     return this.guessUC
       .guess(playerId, letterGuessed)
-      .pipe(map((game) => this.converter.convertGameInProgress(game)));
+      .pipe(map((game) => this.converter.convertGuessResponse(game)));
   }
 }

@@ -8,7 +8,7 @@ import useInitialWindow from "./useInitialWindow";
 import { mock, MockProxy } from "jest-mock-extended";
 import { renderHook } from "@testing-library/react-hooks";
 import { StartGameController } from "../../../controllers/StartGameController";
-import { ViewGame } from "../../../controllers/models/ViewGame";
+import { ViewNewGame } from "../../../controllers/models/ViewNewGame";
 import { act } from "react-dom/test-utils";
 
 describe("Use Initial Window Hook", () => {
@@ -19,7 +19,7 @@ describe("Use Initial Window Hook", () => {
   });
 
   test("New game creation", () => {
-    const expectedControllerValue = new ViewGame(1, "______");
+    const expectedControllerValue = new ViewNewGame(1, "______");
     startGameController.startGame.mockReturnValue(of(expectedControllerValue));
     const setStateMock = jest.fn();
     const { result } = renderHook(() =>

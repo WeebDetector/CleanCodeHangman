@@ -1,28 +1,28 @@
 /* eslint-disable no-restricted-imports */
 import React, { useState } from "react";
-import { ViewGame } from "../../../controllers/models/ViewGame";
-import { ViewGameInProgress } from "../../../controllers/models/ViewGameInProgress";
+import { ViewNewGame } from "../../../controllers/models/ViewNewGame";
+import { ViewGuessResponse } from "../../../controllers/models/ViewGuessResponse";
 import { LetterKeyboard } from "../letter-keyboard/LetterKeyboard";
 
 interface Props {
-  game: ViewGame;
+  newGame: ViewNewGame;
 }
 
-export const GameWindow = ({ game }: Props) => {
-  const [newGame, setGame] = useState<ViewGameInProgress>();
+export const GameWindow = ({ newGame }: Props) => {
+  const [response, setResponse] = useState<ViewGuessResponse>();
 
-  const lettersGuessed = newGame === undefined ? [] : newGame.lettersGuessed;
+  const lettersGuessed = response === undefined ? [] : response.lettersGuessed;
 
   return (
     <div>
-      {newGame === undefined ? (
-        <h1 data-testid="gameWord">{game.chosenWord}</h1>
-      ) : (
+      {response === undefined ? (
         <h1 data-testid="gameWord">{newGame.chosenWord}</h1>
+      ) : (
+        <h1 data-testid="gameWord">{response.chosenWord}</h1>
       )}
       <LetterKeyboard
-        setGame={setGame}
-        playerId={game.playerId}
+        setResponse={setResponse}
+        playerId={newGame.playerId}
         lettersGuessed={lettersGuessed}
       />
     </div>

@@ -1,17 +1,17 @@
 /* eslint-disable no-restricted-imports */
-import { GameInProgress } from "../../domain/GameInProgress";
+import { GuessResponse } from "../../domain/GuessResponse";
 import { NewGame } from "../../domain/NewGame";
-import { BoundaryGame } from "../model/BoundaryGame";
-import { BoundaryGameInProgress } from "../model/BoundaryGameInProgress";
+import { BoundaryNewGame } from "../model/BoundaryNewGame";
+import { BoundaryGuessResponse } from "../model/BoundaryGuessResponse";
 import { GameD2BConverter } from "./GameD2BConverter";
 
 describe("Game D2B Converter", () => {
   let converter: GameD2BConverter;
-  let gameInProgressBefore: GameInProgress;
-  let gameInProgressAfter: BoundaryGameInProgress;
+  let guessResponseBefore: GuessResponse;
+  let guessResponseAfter: BoundaryGuessResponse;
   beforeEach(() => {
     converter = new GameD2BConverter();
-    gameInProgressBefore = new GameInProgress(
+    guessResponseBefore = new GuessResponse(
       true,
       "in-progress",
       [
@@ -25,7 +25,7 @@ describe("Game D2B Converter", () => {
       ["a"]
     );
 
-    gameInProgressAfter = new BoundaryGameInProgress(
+    guessResponseAfter = new BoundaryGuessResponse(
       true,
       "in-progress",
       "______",
@@ -41,14 +41,14 @@ describe("Game D2B Converter", () => {
       [4, "_"],
       [5, "_"],
     ]);
-    const gameAfter = new BoundaryGame(1, "______");
+    const gameAfter = new BoundaryNewGame(1, "______");
 
     expect(converter.convert(gameBefore)).toStrictEqual(gameAfter);
   });
 
-  test("Domain model to boundary in progress conversion", () => {
-    expect(converter.convertGameInProgress(gameInProgressBefore)).toStrictEqual(
-      gameInProgressAfter
+  test("Domain model to boundary guess response conversion", () => {
+    expect(converter.convertGuessResponse(guessResponseBefore)).toStrictEqual(
+      guessResponseAfter
     );
   });
 });

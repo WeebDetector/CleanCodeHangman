@@ -2,7 +2,7 @@
 import { map, Observable } from "rxjs";
 import { GameGateway } from "../../gateways/api/GameGateway";
 import { StartNewGameUseCase } from "../api/StartNewGameUseCase";
-import { BoundaryGame } from "../model/BoundaryGame";
+import { BoundaryNewGame } from "../model/BoundaryNewGame";
 import { GameD2BConverter } from "./GameD2BConverter";
 
 export class StartNewGameInteractor implements StartNewGameUseCase {
@@ -14,7 +14,7 @@ export class StartNewGameInteractor implements StartNewGameUseCase {
     this.converter = converter;
   }
 
-  startGame(): Observable<BoundaryGame> {
+  startGame(): Observable<BoundaryNewGame> {
     return this.gameGW
       .createGame()
       .pipe(map((game) => this.converter.convert(game)));

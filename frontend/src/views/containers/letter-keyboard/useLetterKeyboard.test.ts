@@ -9,7 +9,7 @@ import { mock, MockProxy } from "jest-mock-extended";
 import { renderHook } from "@testing-library/react-hooks";
 import { act } from "react-dom/test-utils";
 import { GuessController } from "../../../controllers/GuessController";
-import { ViewGameInProgress } from "../../../controllers/models/ViewGameInProgress";
+import { ViewGuessResponse } from "../../../controllers/models/ViewGuessResponse";
 
 describe("Use Letter Keyboard Hook", () => {
   let guessController: MockProxy<GuessController>;
@@ -19,7 +19,7 @@ describe("Use Letter Keyboard Hook", () => {
   });
 
   test("Making a guess", () => {
-    const expectedControllerValue = new ViewGameInProgress(
+    const expectedControllerValue = new ViewGuessResponse(
       true,
       "in-progress",
       "______",
