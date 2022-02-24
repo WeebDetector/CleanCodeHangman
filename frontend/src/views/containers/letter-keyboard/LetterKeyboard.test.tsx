@@ -21,4 +21,19 @@ describe("Letter keyboard tests", () => {
 
     expect(setStateMock).toHaveBeenCalledWith(1, "a");
   });
+
+  test("Disabled button click", () => {
+    const setStateMock = jest.fn();
+    jest.spyOn(useLetterKeyboard, "default").mockReturnValue(setStateMock);
+    render(
+      <LetterKeyboard
+        setResponse={setStateMock}
+        playerId={1}
+        lettersGuessed={['a']}
+      />
+    );
+    fireEvent.click(screen.getByTestId("btn-A"));
+
+    expect(setStateMock).not.toHaveBeenCalled();
+  })
 });
