@@ -2,7 +2,7 @@
 import { map, Observable } from "rxjs";
 import { StartNewGameUseCase } from "../use-cases/api/StartNewGameUseCase";
 import { GameB2VConverter } from "./GameB2VConverter";
-import { ViewGame } from "./models/ViewGame";
+import { ViewNewGame } from "./models/ViewNewGame";
 
 export class StartGameController {
   private readonly startGameUC: StartNewGameUseCase;
@@ -13,7 +13,7 @@ export class StartGameController {
     this.converter = converter;
   }
 
-  startGame(): Observable<ViewGame> {
+  startGame(): Observable<ViewNewGame> {
     return this.startGameUC
       .startGame()
       .pipe(map((game) => this.converter.convert(game)));

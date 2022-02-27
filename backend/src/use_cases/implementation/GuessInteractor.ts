@@ -23,7 +23,8 @@ export class GuessInteractor implements GuessUseCase {
 
         return new BoundaryGuessResponse(this.isGuessCorrect(gameSession, guessedLetter),
                                         response.getGameStateDescription(),
-                                        postUpdateGame.getCurrentWordState());
+                                        postUpdateGame.getCurrentWordState(),
+                                        postUpdateGame.getLettersGuessed());
     }
 
     private isGuessCorrect(gameSession : Game, guessedLetter : string) : boolean {

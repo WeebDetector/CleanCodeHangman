@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-imports */
 import { Observable } from "rxjs";
 import { NewGame } from "../../domain/NewGame";
-import { GameInProgress } from "../../domain/GameInProgress";
+import { GuessResponse } from "../../domain/GuessResponse";
 
 export interface GameGateway {
   createGame(): Observable<NewGame>;
@@ -9,5 +9,5 @@ export interface GameGateway {
   verifyGuess(
     playerId: number,
     letterGuessed: string
-  ): Observable<GameInProgress>;
+  ): Observable<GuessResponse>;
 }

@@ -2,7 +2,7 @@
 import { map, Observable } from "rxjs";
 import { GameGateway } from "../../gateways/api/GameGateway";
 import { GuessUseCase } from "../api/GuessUseCase";
-import { BoundaryGameInProgress } from "../model/BoundaryGameInProgress";
+import { BoundaryGuessResponse } from "../model/BoundaryGuessResponse";
 import { GameD2BConverter } from "./GameD2BConverter";
 
 export class GuessInteractor implements GuessUseCase {
@@ -17,9 +17,9 @@ export class GuessInteractor implements GuessUseCase {
   guess(
     playerId: number,
     letterGuessed: string
-  ): Observable<BoundaryGameInProgress> {
+  ): Observable<BoundaryGuessResponse> {
     return this.gameGW
       .verifyGuess(playerId, letterGuessed)
-      .pipe(map((game) => this.gameD2BConverter.convertGameInProgress(game)));
+      .pipe(map((game) => this.gameD2BConverter.convertGuessResponse(game)));
   }
 }

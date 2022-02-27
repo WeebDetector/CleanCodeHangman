@@ -26,10 +26,12 @@ describe("Testing guess interactor", () => {
     test("Letter in the word checking", () => {
         gameGateway.getGameByPlayerId.mockReturnValue(EXPECTED_GAME_GATEWAY_RESULT);
         const gameResponse = guessUC.isLetterInWord(1, GUESS);
+        const expectedLettersGuessed: string[] = ['a'];
     
         expect(gameResponse.getGuessState()).toBe(true);
         expect(gameResponse.getGameStateDescription()).toBe("in-progress");
         expect(gameResponse.getHiddenWord()).toStrictEqual(MODIFIED_WORD_STATE_MAP);
+        expect(gameResponse.getLettersGuessed()).toStrictEqual(expectedLettersGuessed);
     })
 
     test("The game doesn't exist case", () => {

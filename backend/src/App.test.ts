@@ -17,11 +17,13 @@ describe("Testing endpoints", () => {
             letterGuessed: "a"
         }
         const modifiedWordStateArray = [[0, '_'], [1, 'a'], [2, '_'], [3, '_'], [4, '_']];
+        const expectedLettersGuessed = ['a'];
 
-        const response = await supertest(app.getApp()).post('/guess').send(data).expect(200);
+        const response = await supertest(app.getApp()).post('/guesses').send(data).expect(200);
 
         expect(response.body.isGuessCorrect).toBe(true);
         expect(response.body.stateDescription).toBe('in-progress');
         expect(response.body.wordState).toStrictEqual(modifiedWordStateArray);
+        expect(response.body.lettersGuessed).toStrictEqual(expectedLettersGuessed);
     })
 })
