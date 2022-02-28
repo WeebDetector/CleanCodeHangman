@@ -13,6 +13,12 @@ export const theme = createTheme({
   typography: {
     h1: {
       fontFamily: "Permanent Marker",
+      textTransform: "uppercase",
+      textDecorationThickness: "5px",
+      textDecorationLine: "underline",
+      "&:not(:first-child)": {
+        paddingLeft: "1vw",
+      },
     },
   },
   overrides: {
