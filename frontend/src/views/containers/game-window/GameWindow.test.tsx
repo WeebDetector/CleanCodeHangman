@@ -14,7 +14,11 @@ describe("Game window tests", () => {
 
     render(<GameWindow newGame={game} />);
 
-    expect(screen.getByTestId("gameWord")).toBeInTheDocument();
+    expect(screen.getByTestId("game-word")).toBeInTheDocument();
     expect(screen.getByTestId("letterKeyboard")).toBeInTheDocument();
   });
 });
+
+jest.mock("../../components/UnderlinedWord", () => ({
+  UnderlinedWord: () => <div data-testid="game-word" />,
+}));

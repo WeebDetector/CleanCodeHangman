@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { ViewNewGame } from "../../../controllers/models/ViewNewGame";
 import { ViewGuessResponse } from "../../../controllers/models/ViewGuessResponse";
 import { LetterKeyboard } from "../letter-keyboard/LetterKeyboard";
+import { UnderlinedWord } from "../../components/UnderlinedWord";
+import { Box } from "@material-ui/core";
 
 interface Props {
   newGame: ViewNewGame;
@@ -14,17 +16,20 @@ export const GameWindow = ({ newGame }: Props) => {
   const lettersGuessed = response === undefined ? [] : response.lettersGuessed;
 
   return (
-    <div>
+    <Box
+      m="25vh"
+      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
       {response === undefined ? (
-        <h1 data-testid="gameWord">{newGame.chosenWord}</h1>
+        <UnderlinedWord data-testid="gameWord" word={newGame.chosenWord} />
       ) : (
-        <h1 data-testid="gameWord">{response.chosenWord}</h1>
+        <UnderlinedWord data-testid="gameWord" word={response.chosenWord} />
       )}
       <LetterKeyboard
         setResponse={setResponse}
         playerId={newGame.playerId}
         lettersGuessed={lettersGuessed}
       />
-    </div>
+    </Box>
   );
 };
