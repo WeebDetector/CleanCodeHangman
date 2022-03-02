@@ -25,11 +25,16 @@ describe("Game B2V Converter ", () => {
       true,
       "in-progress",
       "______",
-      ["a"]
+      ["a"],
+      0
     );
-    const gameAfter = new ViewGuessResponse(true, "in-progress", "______", [
-      "a",
-    ]);
+    const gameAfter = new ViewGuessResponse(
+      true,
+      "in-progress",
+      "______",
+      ["a"],
+      0
+    );
 
     expect(converter.convertGuessResponse(gameBefore)).toStrictEqual(gameAfter);
   });
