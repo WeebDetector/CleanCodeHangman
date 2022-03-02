@@ -20,6 +20,16 @@ export const theme = createTheme({
         paddingLeft: "1vw",
       },
     },
+
+    h2: {
+      fontFamily: "Hubballi",
+      textTransform: "uppercase",
+      textDecorationThickness: "5px",
+      textDecorationLine: "underline",
+      "&:not(:first-child)": {
+        paddingLeft: "1vw",
+      },
+    },
   },
   overrides: {
     MuiButton: {
