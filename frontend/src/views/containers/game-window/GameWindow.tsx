@@ -12,15 +12,9 @@ interface Props {
 }
 
 export const GameWindow = ({ newGame }: Props) => {
-  console.log(newGame);
-  let index = 0;
   const [response, setResponse] = useState<ViewGuessResponse>();
 
   const lettersGuessed = response === undefined ? [] : response.lettersGuessed;
-
-  index++;
-
-  console.log(index);
 
   return (
     <Box

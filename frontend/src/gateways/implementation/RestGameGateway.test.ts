@@ -44,7 +44,8 @@ describe("Game gateway", () => {
         [4, "_"],
         [5, "_"],
       ],
-      ["a"]
+      ["a"],
+      0
     );
     client.post.mockReturnValue(of(expectedGame));
     const gameObservable$: Observable<GuessResponse> = gameGateway.verifyGuess(

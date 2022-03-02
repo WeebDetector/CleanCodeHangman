@@ -14,7 +14,8 @@ export class GameB2VConverter {
       game.isGuessCorrect,
       game.stateDescription,
       game.wordState,
-      game.lettersGuessed
+      game.lettersGuessed,
+      game.missedGuesses
     );
   }
 }

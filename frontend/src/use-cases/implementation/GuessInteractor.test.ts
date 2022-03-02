@@ -29,13 +29,15 @@ describe("Guess Interactor", () => {
         [4, "_"],
         [5, "_"],
       ],
-      ["a"]
+      ["a"],
+      0
     );
     expectedGameBoundary = new BoundaryGuessResponse(
       true,
       "in-progress",
       "__a___",
-      ["a"]
+      ["a"],
+      0
     );
   });
 
