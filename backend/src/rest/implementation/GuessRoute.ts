@@ -22,7 +22,8 @@ export class GuessRoute {
         return new RestGuessResponse(interactorResponse.getGuessState(),
                                      interactorResponse.getGameStateDescription(),
                                      hiddenWordArray,
-                                     interactorResponse.getLettersGuessed());
+                                     interactorResponse.getLettersGuessed(),
+                                     interactorResponse.getMissedGuesses());
     }
 
     private convertMapToArray(hiddenWordMap : Map<number, string>) {
