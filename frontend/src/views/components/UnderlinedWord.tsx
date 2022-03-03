@@ -23,7 +23,11 @@ export const UnderlinedWord = ({ word }: Props) => {
   return (
     <Box sx={{ display: "inline-flex", alignItems: "center" }}>
       {wordLettersArray.map((letter, index) => (
-        <Typography key={"title-letter-" + index} variant={variant}>
+        <Typography
+          key={"word-letter-" + index}
+          data-testid={"word-letter-" + index}
+          variant={variant}
+        >
           {letter}
         </Typography>
       ))}

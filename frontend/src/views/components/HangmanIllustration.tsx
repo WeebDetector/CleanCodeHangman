@@ -29,6 +29,7 @@ function drawALine(
   return (
     <line
       key={lineNumber}
+      data-testid={lineNumber}
       x1={x1}
       y1={y1}
       x2={x2}
@@ -43,6 +44,7 @@ function drawACircle(cx: number, cy: number, r: number): JSX.Element {
   return (
     <circle
       key="head"
+      data-testid="head"
       cx={cx}
       cy={cy}
       r={r}
@@ -53,7 +55,7 @@ function drawACircle(cx: number, cy: number, r: number): JSX.Element {
   );
 }
 
-function drawToIndex(indexToDrawTo: number): JSX.Element[] {
+function drawHangman(indexToDrawTo: number): JSX.Element[] {
   const drawings: JSX.Element[] = [];
   for (let i = 0; i < indexToDrawTo; i++) {
     const CoordsArray = DRAWING_COORDS_ARRAY[i];
@@ -66,7 +68,7 @@ function drawToIndex(indexToDrawTo: number): JSX.Element[] {
         CoordsArray[1],
         CoordsArray[2],
         CoordsArray[3],
-        i
+        i+1
       );
     }
     drawings.push(drawing);
@@ -75,7 +77,7 @@ function drawToIndex(indexToDrawTo: number): JSX.Element[] {
 }
 
 export const HangmanIllustration = ({ drawingState }: Props) => {
-  const drawings = drawToIndex(drawingState);
+  const drawings = drawHangman(drawingState);
   return (
     <svg height="370" width="400" viewBox="90 90 400 370">
       {drawALine(180, 350, 380, 350, 0)}
