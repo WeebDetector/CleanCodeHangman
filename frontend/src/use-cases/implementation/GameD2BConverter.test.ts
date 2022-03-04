@@ -22,14 +22,16 @@ describe("Game D2B Converter", () => {
         [4, "_"],
         [5, "_"],
       ],
-      ["a"]
+      ["a"],
+      0
     );
 
     guessResponseAfter = new BoundaryGuessResponse(
       true,
       "in-progress",
       "______",
-      ["a"]
+      ["a"],
+      0
     );
   });
   test("Domain model to boundary new conversion", () => {

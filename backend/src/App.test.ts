@@ -25,5 +25,6 @@ describe("Testing endpoints", () => {
         expect(response.body.stateDescription).toBe('in-progress');
         expect(response.body.wordState).toStrictEqual(modifiedWordStateArray);
         expect(response.body.lettersGuessed).toStrictEqual(expectedLettersGuessed);
+        expect(response.body.missedGuesses).toBe(0);
     })
 })

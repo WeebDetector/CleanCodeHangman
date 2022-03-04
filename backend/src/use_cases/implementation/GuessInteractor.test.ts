@@ -32,6 +32,7 @@ describe("Testing guess interactor", () => {
         expect(gameResponse.getGameStateDescription()).toBe("in-progress");
         expect(gameResponse.getHiddenWord()).toStrictEqual(MODIFIED_WORD_STATE_MAP);
         expect(gameResponse.getLettersGuessed()).toStrictEqual(expectedLettersGuessed);
+        expect(gameResponse.getMissedGuesses()).toBe(0);
     })
 
     test("The game doesn't exist case", () => {

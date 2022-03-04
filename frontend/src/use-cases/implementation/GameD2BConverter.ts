@@ -17,7 +17,8 @@ export class GameD2BConverter {
       game.isGuessCorrect,
       game.stateDescription,
       gameWord,
-      game.lettersGuessed
+      game.lettersGuessed,
+      game.missedGuesses
     );
   }
 
