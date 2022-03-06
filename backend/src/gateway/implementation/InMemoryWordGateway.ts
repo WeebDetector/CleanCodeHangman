@@ -2,7 +2,8 @@ import { RandomIntGenerator } from "./RandomIntGenerator";
 import { WordGateway } from "../api/WordGateway";
 
 export class InMemoryWordGateway implements WordGateway {
-    private readonly wordsToPickFrom = ['table', 'hello', 'sunshine', 'knowledge', 'interface'];
+    private readonly wordsToPickFrom = ['table', 'hello', 'sunshine', 'knowledge', 'interface', 'skeleton', 'wok',
+                                        'bubbles', 'children', 'ears', 'fruits', 'apple', 'orange'];
     private readonly numberGenerator : RandomIntGenerator
 
     constructor(rnd : RandomIntGenerator) {

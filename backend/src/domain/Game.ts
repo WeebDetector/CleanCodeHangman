@@ -115,7 +115,22 @@ export class Game {
         let gameBuilder = GameBuilder.of(this);
         const missedGuesses = this.getMissedGuesses() + 1;
 
+        if (missedGuesses === 10) {
+            gameBuilder = gameBuilder.setCurrentWordState(this.revealWordAfterLoss())
+        }
+
         return gameBuilder.setMissedGuesses(missedGuesses);
+    }
+
+    private revealWordAfterLoss() : Map<number, string> {
+        const fullWordMap = new Map<number, string>();
+
+        let letterIndex = 0;
+        Array.from(this.getWordBeingGuessed()).forEach(letter => {
+            fullWordMap.set(letterIndex++, letter);
+        })
+
+        return fullWordMap;
     }
 
     private updateLettersGuessed(gameBuilder : GameBuilder, guessedLetter : string) : GameBuilder {
