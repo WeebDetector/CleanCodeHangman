@@ -6,16 +6,18 @@ import { LetterKeyboard } from "../letter-keyboard/LetterKeyboard";
 import { UnderlinedWord } from "../../components/UnderlinedWord";
 import { Box } from "@material-ui/core";
 import { HangmanIllustration } from "../../components/HangmanIllustration";
+import { GameOverModal } from "../../components/GameOverModal";
 
 interface Props {
   newGame: ViewNewGame;
+  setNewGame: (game: ViewNewGame | undefined) => void;
 }
 
-export const GameWindow = ({ newGame }: Props) => {
+export const GameWindow = ({ newGame, setNewGame }: Props) => {
   const [response, setResponse] = useState<ViewGuessResponse>();
 
   const lettersGuessed = response === undefined ? [] : response.lettersGuessed;
-  const missedGuesses = response === undefined ? 0 : response.missedGuesses
+  const missedGuesses = response === undefined ? 0 : response.missedGuesses;
 
   return (
     <Box
@@ -32,6 +34,11 @@ export const GameWindow = ({ newGame }: Props) => {
         setResponse={setResponse}
         playerId={newGame.playerId}
         lettersGuessed={lettersGuessed}
+      />
+      <GameOverModal
+        stateDescription={response?.stateDescription}
+        gameWord={response?.chosenWord}
+        setNewGame={setNewGame}
       />
     </Box>
   );

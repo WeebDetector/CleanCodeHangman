@@ -20,11 +20,11 @@ export const InitialWindow = ({ setGame }: Props) => {
       <UnderlinedWord word="HANGMAN" />
       <Box pt="10vh">
         <Button
-          style={{ minWidth: "10vw" }}
+          style={{ minWidth: "10vw", fontSize: "24px" }}
           data-testid="start-btn"
           onClick={startGame}
         >
-          start
+          <b>start</b>
         </Button>
       </Box>
     </Box>

@@ -49,7 +49,7 @@ export class Game {
         const maxMissedGuesses = 10;
         const correctGuessesRequiredToWin = this.getUniqueLettersInAWord();
 
-        if (this.getMissedGuesses() == maxMissedGuesses) 
+        if (this.getMissedGuesses() >= maxMissedGuesses) 
             return GameState.Lost;
         else if (this.getCorrectGuesses() == correctGuessesRequiredToWin)
             return GameState.Won;
@@ -67,6 +67,10 @@ export class Game {
         if (this.lettersGuessed.includes(guessedLetter))
             throw new Error("Letter " + guessedLetter + " has already been guessed");
 
+        if (this.isGameOver()) {
+            throw new Error("The game is already over");
+        }
+
         const wordBeingGuessed = this.getWordBeingGuessed();
 
         let gameBuilder = wordBeingGuessed.includes(guessedLetter)
@@ -79,6 +83,10 @@ export class Game {
         const stateDescription = updatedGame.getGameState();
 
         return new GuessResponse(updatedGame, stateDescription);
+    }
+
+    private isGameOver() {
+        return this.getGameState() === GameState.Lost || this.getGameState() === GameState.Won
     }
 
     private updateGameAfterCorrectGuess(guessedLetter : string) : GameBuilder {
@@ -115,7 +123,22 @@ export class Game {
         let gameBuilder = GameBuilder.of(this);
         const missedGuesses = this.getMissedGuesses() + 1;
 
+        if (missedGuesses === 10) {
+            gameBuilder = gameBuilder.setCurrentWordState(this.revealWordAfterLoss())
+        }
+
         return gameBuilder.setMissedGuesses(missedGuesses);
+    }
+
+    private revealWordAfterLoss() : Map<number, string> {
+        const fullWordMap = new Map<number, string>();
+
+        let letterIndex = 0;
+        Array.from(this.getWordBeingGuessed()).forEach(letter => {
+            fullWordMap.set(letterIndex++, letter);
+        })
+
+        return fullWordMap;
     }
 
     private updateLettersGuessed(gameBuilder : GameBuilder, guessedLetter : string) : GameBuilder {

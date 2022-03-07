@@ -10,6 +10,6 @@ export const MainWindow = () => {
   return newGame === undefined ? (
     <InitialWindow setGame={setGame} />
   ) : (
-    <GameWindow newGame={newGame} />
+    <GameWindow newGame={newGame} setNewGame={setGame} />
   );
 };

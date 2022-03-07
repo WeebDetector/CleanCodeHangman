@@ -11,8 +11,8 @@ import { GameWindow } from "./GameWindow";
 describe("Game window tests", () => {
   test("Window is rendered correctly", () => {
     const game = new ViewNewGame(1, "______");
-
-    render(<GameWindow newGame={game} />);
+    
+    render(<GameWindow newGame={game} setNewGame={jest.fn()} />);
 
     expect(screen.getByTestId("game-word")).toBeInTheDocument();
     expect(screen.getByTestId("letterKeyboard")).toBeInTheDocument();

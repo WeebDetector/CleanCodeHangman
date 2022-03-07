@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc",
-    "start": "npm run build && node dist/Index.js",
+    "start": "npm run build && node build/Index.js",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "lint": "tsc && eslint --max-warnings 0 --ext js,ts,tsx src"

@@ -44,9 +44,13 @@ export const LetterKeyboard = ({
                 guess(playerId, letter.toLowerCase());
               }}
               disabled={isLetterClicked(letter.toLowerCase(), lettersGuessed)}
-              style={{ marginRight: "0.1vw", marginLeft: "0.1vw" }}
+              style={{
+                marginRight: "0.1vw",
+                marginLeft: "0.1vw",
+                fontSize: "20px",
+              }}
             >
-              {letter}
+              <b>{letter}</b>
             </Button>
           ))}
         </Box>
