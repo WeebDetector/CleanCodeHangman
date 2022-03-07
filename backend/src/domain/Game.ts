@@ -49,7 +49,7 @@ export class Game {
         const maxMissedGuesses = 10;
         const correctGuessesRequiredToWin = this.getUniqueLettersInAWord();
 
-        if (this.getMissedGuesses() == maxMissedGuesses) 
+        if (this.getMissedGuesses() >= maxMissedGuesses) 
             return GameState.Lost;
         else if (this.getCorrectGuesses() == correctGuessesRequiredToWin)
             return GameState.Won;
@@ -67,6 +67,10 @@ export class Game {
         if (this.lettersGuessed.includes(guessedLetter))
             throw new Error("Letter " + guessedLetter + " has already been guessed");
 
+        if (this.isGameOver()) {
+            throw new Error("The game is already over");
+        }
+
         const wordBeingGuessed = this.getWordBeingGuessed();
 
         let gameBuilder = wordBeingGuessed.includes(guessedLetter)
@@ -79,6 +83,10 @@ export class Game {
         const stateDescription = updatedGame.getGameState();
 
         return new GuessResponse(updatedGame, stateDescription);
+    }
+
+    private isGameOver() {
+        return this.getGameState() === GameState.Lost || this.getGameState() === GameState.Won
     }
 
     private updateGameAfterCorrectGuess(guessedLetter : string) : GameBuilder {
