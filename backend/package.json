@@ -4,7 +4,7 @@
   "description": "Hangman game using SOLID principles",
   "main": "Index.js",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf build",
     "build": "npm run clean && tsc",
     "start": "npm run build && node build/Index.js",
     "test": "jest --coverage",

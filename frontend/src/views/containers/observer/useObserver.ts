@@ -8,8 +8,8 @@ export function useObserver<T>(callback: (param: T) => void): Observer<T> {
   return {
     next: (param: T) => callback(param),
     error: (error: AjaxError) => {
-      if (error.status === 500)
-        enqueueSnackbar("Internal server error", {
+      if (error.status === 400)
+        enqueueSnackbar("Error: " + error.response, {
           variant: "error",
           preventDuplicate: true,
         });

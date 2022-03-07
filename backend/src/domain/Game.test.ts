@@ -53,7 +53,6 @@ describe('Testing game', () => {
         const newGameBuilder = gameBuilder.setMissedGuesses(9);
         const builtGame = newGameBuilder.build();
         const lostGame = builtGame.guess("z");
-        console.log(lostGame.getGame())
         const wordStateMapAfterLoss = new Map<number, string>([
             [0, 't'], [1, 'a'], [2, 'b'],
             [3, 'l'], [4, 'e']]);
