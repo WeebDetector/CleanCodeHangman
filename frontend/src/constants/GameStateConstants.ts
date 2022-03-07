@@ -1,3 +1,3 @@
-export const lost = "lost";
-export const won = "won";
-export const inProgress = "in-progress";
+export const LOST = "lost";
+export const WON = "won";
+export const IN_PROGRESS = "in-progress";
