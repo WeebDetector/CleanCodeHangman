@@ -68,7 +68,7 @@ function drawHangman(indexToDrawTo: number): JSX.Element[] {
         CoordsArray[1],
         CoordsArray[2],
         CoordsArray[3],
-        i+1
+        i + 1
       );
     }
     drawings.push(drawing);
@@ -77,7 +77,8 @@ function drawHangman(indexToDrawTo: number): JSX.Element[] {
 }
 
 export const HangmanIllustration = ({ drawingState }: Props) => {
-  const drawings = (drawingState <= 10) ? drawHangman(drawingState) : drawHangman(10);
+  const drawings =
+    drawingState <= 10 ? drawHangman(drawingState) : drawHangman(10);
   return (
     <svg height="370" width="400" viewBox="90 90 400 370">
       {drawALine(180, 350, 380, 350, 0)}

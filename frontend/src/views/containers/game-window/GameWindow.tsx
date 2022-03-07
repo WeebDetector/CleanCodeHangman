@@ -7,8 +7,6 @@ import { UnderlinedWord } from "../../components/UnderlinedWord";
 import { Box } from "@material-ui/core";
 import { HangmanIllustration } from "../../components/HangmanIllustration";
 import { GameOverModal } from "../../components/GameOverModal";
-import { startGameController } from "../../../Configuration";
-import useInitialWindow from "../initial-window/useInitialWindow";
 
 interface Props {
   newGame: ViewNewGame;

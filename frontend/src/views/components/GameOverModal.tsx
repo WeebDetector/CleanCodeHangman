@@ -2,6 +2,7 @@
 import { Modal, Box, Typography, Button } from "@material-ui/core";
 import React from "react";
 import { ViewNewGame } from "../../controllers/models/ViewNewGame";
+import { inProgress } from "../../constants/GameStateConstants";
 
 const style = {
   position: "absolute",
@@ -28,7 +29,7 @@ interface Props {
 function isGameOver(stateDescription: string | undefined) {
   return stateDescription === undefined
     ? false
-    : stateDescription !== "in-progress";
+    : stateDescription !== inProgress;
 }
 
 export const GameOverModal = ({
