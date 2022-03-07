@@ -9,7 +9,6 @@ import { UnderlinedWord } from "./UnderlinedWord";
 
 describe("Underlined word tests", () => {
   test("Underlined word is rendered correctly", () => {
-
     render(<UnderlinedWord word="HANGMAN" />);
 
     expect(screen.getByTestId("word-letter-0")).toBeInTheDocument();

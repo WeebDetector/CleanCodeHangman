@@ -14,8 +14,8 @@ export class GuessRoute {
         const data = req.body;
         try {
             const interactorResponse = this.guessUC.isLetterInWord(data.userId, data.letterGuessed);
-        const restResponse = this.convertB2R(interactorResponse);
-        res.status(200).json(restResponse);
+            const restResponse = this.convertB2R(interactorResponse);
+            res.status(200).json(restResponse);
         } catch (e) {
             const err = e as Error;
             res.status(400).json(err.message);

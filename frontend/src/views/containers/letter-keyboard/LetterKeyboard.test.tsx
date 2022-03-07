@@ -29,11 +29,11 @@ describe("Letter keyboard tests", () => {
       <LetterKeyboard
         setResponse={setStateMock}
         playerId={1}
-        lettersGuessed={['a']}
+        lettersGuessed={["a"]}
       />
     );
     fireEvent.click(screen.getByTestId("btn-A"));
 
     expect(setStateMock).not.toHaveBeenCalled();
-  })
+  });
 });
