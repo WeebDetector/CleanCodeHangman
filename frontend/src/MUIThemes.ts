@@ -19,6 +19,9 @@ export const theme = createTheme({
       "&:not(:first-child)": {
         paddingLeft: "1vw",
       },
+      "@media (max-width: 600px)": {
+        fontSize: "3.5rem",
+      },
     },
 
     h2: {
