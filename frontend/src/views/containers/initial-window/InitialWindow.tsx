@@ -14,7 +14,7 @@ export const InitialWindow = ({ setGame }: Props) => {
   const startGame = useInitialWindow(startGameController, setGame);
   return (
     <Box
-      m="25vh"
+      mt="25vh"
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <UnderlinedWord word="HANGMAN" />

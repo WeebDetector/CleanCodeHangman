@@ -21,7 +21,7 @@ export const UnderlinedWord = ({ word }: Props) => {
   const wordLettersArray = convertWordToLettersArray(word);
 
   return (
-    <Box sx={{ display: "inline-flex", alignItems: "center" }}>
+    <Box sx={{ display: "inline-flex", alignItems: "center" }} >
       {wordLettersArray.map((letter, index) => (
         <Typography
           key={"word-letter-" + index}
