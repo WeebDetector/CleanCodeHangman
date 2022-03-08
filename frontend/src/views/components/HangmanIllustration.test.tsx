@@ -9,7 +9,6 @@ import { HangmanIllustration } from "./HangmanIllustration";
 
 describe("Hangman illustration tests", () => {
   test("Illustration is rendered correctly", () => {
-
     render(<HangmanIllustration drawingState={5} />);
 
     expect(screen.getByTestId("0")).toBeInTheDocument();

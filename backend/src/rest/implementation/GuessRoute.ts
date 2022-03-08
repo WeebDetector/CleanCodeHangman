@@ -12,9 +12,14 @@ export class GuessRoute {
 
     isLetterInWord(req : Request, res : Response) : void {
         const data = req.body;
-        const interactorResponse = this.guessUC.isLetterInWord(data.userId, data.letterGuessed);
-        const restResponse = this.convertB2R(interactorResponse);
-        res.status(200).json(restResponse);
+        try {
+            const interactorResponse = this.guessUC.isLetterInWord(data.userId, data.letterGuessed);
+            const restResponse = this.convertB2R(interactorResponse);
+            res.status(200).json(restResponse);
+        } catch (e) {
+            const err = e as Error;
+            res.status(400).json(err.message);
+        }
     }
 
     private convertB2R(interactorResponse: BoundaryGuessResponse) : RestGuessResponse {

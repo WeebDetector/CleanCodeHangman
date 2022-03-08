@@ -65,11 +65,10 @@ export class Game {
 
     guess(guessedLetter : string) : GuessResponse {
         if (this.lettersGuessed.includes(guessedLetter))
-            throw new Error("Letter " + guessedLetter + " has already been guessed");
+            throw new Error("Letter " + guessedLetter.toUpperCase() + " has already been guessed");
 
-        if (this.isGameOver()) {
+        if (this.isGameOver())
             throw new Error("The game is already over");
-        }
 
         const wordBeingGuessed = this.getWordBeingGuessed();
 
